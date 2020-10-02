@@ -8,7 +8,7 @@
   "globals": {
     "process": true
   },
-  "extends": ["plugin:prettier/recommended", "airbnb", "airbnb/hooks"],
+  "extends": ["plugin:prettier/recommended"],
   "parserOptions": {
     "ecmaVersion": 9,
     "ecmaFeatures": {

@@ -1,7 +1,7 @@
 import React from 'react';
 
 function MainPage() {
-  return <div>hellasdfasdo</div>;
+  return <div>helldfadsasdfasdo</div>;
 }
 
 export default MainPage;

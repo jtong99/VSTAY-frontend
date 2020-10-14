@@ -19,7 +19,11 @@ class MyDocument extends Document {
             content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
           />
         </Head>
-        <body style={{ fontFamily: "'Nunito Sans', sans-serif" }}>
+        <body
+          style={{
+            fontFamily: "'Open Sans', 'Nunito Sans', sans-serif",
+          }}
+        >
           <Main />
           <NextScript />
         </body>

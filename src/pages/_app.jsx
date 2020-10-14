@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import dynamic from 'next/dynamic';
 import { appWithTranslation } from 'i18n';
+import '@styles/index.scss';
 
 function MyApp({ Component, pageProps }) {
   return (

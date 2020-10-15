@@ -1,0 +1,27 @@
+.logo {
+  text-align: center;
+  padding-top: 5rem;
+  padding-bottom: 137px;
+}
+.headImage {
+  width: 100%;
+}
+.form {
+  @media only screen and (min-width: 768px) {
+    padding-left: 140px;
+  }
+  padding-top: 20px;
+  //   .inputGroup {
+
+  //     margin: 0 auto;
+  //   }
+  .input {
+    border-radius: 15px;
+    width: 80%;
+    height: 50px;
+    margin: 0 auto;
+  }
+  .formCheck {
+    border: 1px solid #ced4da;
+  }
+}

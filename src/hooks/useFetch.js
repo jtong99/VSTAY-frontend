@@ -38,7 +38,7 @@ function useFetch(path, { token = '', method = 'POST', isJSON = false } = {}) {
         loading: false,
         error: res,
       };
-    } catch (error) {
+    } catch (err) {
       setError(err);
       setLoading(false);
       return {

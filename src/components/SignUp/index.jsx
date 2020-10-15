@@ -15,6 +15,8 @@ import Link from 'next/link';
 import { Eye, EyeOff } from 'react-feather';
 import { useTranslation } from 'i18n';
 import useFetch from '@hooks/useFetch';
+import { useRouter } from 'next/router';
+import Loading from '@components/utils/Loading';
 
 const signUpPath = '/v1/auth/signup/prod/verify';
 function SignUpComponent() {
@@ -31,6 +33,7 @@ function SignUpComponent() {
   const [errorName, setErrorName] = useState({ state: false, message: '' });
   const [errorPwd, setErrorPwd] = useState({ state: false, message: '' });
   const [errorConPwd, setErrorConPwd] = useState({ state: false, message: '' });
+  const router = useRouter();
   const handleChange = (field) => (event) => {
     setFormData({
       ...formData,
@@ -47,10 +50,49 @@ function SignUpComponent() {
     event.preventDefault();
     setNullError();
     const { data: res, error: err } = await signUp(formData);
-    console.log(res);
+    if (res && (res.code === 200 || res.code === 201)) {
+      // if (name && email && token) {
+      //   return loginAfterJoin();
+      // }
+      router.push('/join/success');
+    }
+    if (err) {
+      if (err.code === 400) {
+        setErrorName({
+          state: true,
+          message: err.message,
+        });
+        return null;
+      }
+      if (err.code !== 409 && err.code !== 500) {
+        for (let i = 0; i < err.errors.length; i += 1) {
+          if (err.errors[i].field === 'email') {
+            setErrorEmail({ state: true, message: err.errors[i].message });
+          }
+          if (err.errors[i].field === 'name') {
+            setErrorName({ state: true, message: err.errors[i].message });
+          }
+          if (err.errors[i].field === 'password') {
+            setErrorPwd({ state: true, message: err.errors[i].message });
+          }
+          if (err.errors[i].field === 'confirmPassword') {
+            setErrorConPwd({ state: true, message: err.errors[i].message });
+          }
+        }
+      } else if (err.code === 409) {
+        if (err.message.includes('name')) {
+          setErrorName({ state: true, message: err.message });
+        } else if (err.message.includes('email')) {
+          setErrorEmail({ state: true, message: err.message });
+        }
+      } else if (err.code === 500) {
+        router.push('/error');
+      }
+    }
   };
   return (
     <Container>
+      <Loading show={loading} />
       <div className={style.logo}>
         <Link href="/">
           <a>
@@ -146,7 +188,7 @@ function SignUpComponent() {
               <div className="d-flex justify-content-between">
                 <div>
                   <Link href="/sign-in">
-                    <a>{t('Login now')}</a>
+                    <a>{t('Sign In now')}</a>
                   </Link>
                 </div>
                 <div>

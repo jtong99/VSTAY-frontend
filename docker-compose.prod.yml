@@ -2,6 +2,8 @@ version: '3.3'
 
 services:
   web-client:
+    environment:
+      - NODE_ENV=production
     image: vstay/web-client
     container_name: web-client
     restart: always

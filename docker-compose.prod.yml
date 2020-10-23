@@ -5,6 +5,7 @@ services:
     image: vstay/web-client
     container_name: web-client
     restart: always
+    command: node server.js
     expose:
       - 3000
 

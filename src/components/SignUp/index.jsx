@@ -54,7 +54,7 @@ function SignUpComponent() {
       // if (name && email && token) {
       //   return loginAfterJoin();
       // }
-      router.push('/join/success');
+      router.push('/sign-up/success');
     }
     if (err) {
       if (err.code === 400) {

@@ -1,7 +1,7 @@
 import React from 'react';
 
 function MainPage() {
-  return <div>helldfasdfadsasdfasdo</div>;
+  return <div>home page</div>;
 }
 
 export default MainPage;

@@ -52,7 +52,7 @@ function SignInComponent() {
       if (data && data.user && data.user.status && data.user.status === 'blocked') {
         setError({
           state: true,
-          message: `You are blocked, please checkout our policy or contact our customer service to resolve this problem.`,
+          message: `You are block, please checkout our policy or contact our customer service to resolve this problem.`,
         });
         return null;
       }

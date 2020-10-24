@@ -7,13 +7,15 @@ import {
   Row,
   Col,
   Button,
+  Fade,
+  Alert,
 } from 'react-bootstrap';
 import Logo from '@assets/logo/Logo_585x166.svg';
 import SubImage from './img/SignUp-1.svg';
 import style from './SignUp.module.scss';
 import Link from 'next/link';
 import { Eye, EyeOff } from 'react-feather';
-import { useTranslation } from 'i18n';
+import { useTranslation, i18n } from 'i18n';
 import useFetch from '@hooks/useFetch';
 import { useRouter } from 'next/router';
 import Loading from '@components/utils/Loading';
@@ -22,18 +24,31 @@ const signUpPath = '/v1/auth/signup/prod/verify';
 function SignUpComponent() {
   const { t } = useTranslation(['signup']);
   const [signUp, { loading }] = useFetch(signUpPath);
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    password: '',
-    confirmPassword: '',
-  });
+  const router = useRouter();
+  const { email, name, token } = router.query;
+  const [formData, setFormData] = useState(
+    name && email && token
+      ? {
+          name: name || '',
+          email: email || '',
+          password: '',
+          confirmPassword: '',
+          language: i18n.language,
+          firebaseToken: token || '',
+          provider: 'firebase',
+        }
+      : {
+          password: '',
+          confirmPassword: '',
+          language: i18n.language,
+        },
+  );
   const [showPwd, setShowPwd] = useState(false);
   const [errorEmail, setErrorEmail] = useState({ state: false, message: '' });
   const [errorName, setErrorName] = useState({ state: false, message: '' });
   const [errorPwd, setErrorPwd] = useState({ state: false, message: '' });
   const [errorConPwd, setErrorConPwd] = useState({ state: false, message: '' });
-  const router = useRouter();
+
   const handleChange = (field) => (event) => {
     setFormData({
       ...formData,
@@ -100,6 +115,19 @@ function SignUpComponent() {
           </a>
         </Link>
       </div>
+      <Fade in={true}>
+        <div className="mb-4">
+          <Alert
+            variant="danger"
+            style={{ width: '62%', margin: '0 auto', fontWeight: 600 }}
+            // onClose={() => setError(false)}
+            dismissible
+          >
+            {/* {error.message} */}
+            this is error
+          </Alert>
+        </div>
+      </Fade>
       <div className={style.form}>
         <p className={style.header}>{t('Create your V-account')}</p>
 
@@ -183,6 +211,7 @@ function SignUpComponent() {
                       </Button>
                     </div>
                   </div>
+                  {/* <div>{errorPwd.state && t(errorPwd.message)}</div> */}
                 </Form>
               </div>
               <div className="d-flex justify-content-between">

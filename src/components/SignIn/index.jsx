@@ -7,6 +7,8 @@ import {
   Row,
   Col,
   Button,
+  Alert,
+  Fade,
 } from 'react-bootstrap';
 import Logo from '@assets/logo/Logo_585x166.svg';
 import style from './SignIn.module.scss';
@@ -76,7 +78,7 @@ function SignInComponent() {
       }
       setError({
         state: true,
-        message: `Wrong email or password.`,
+        message: `Wrong email or password. Please sign up with this email!`,
       });
     }
     return null;
@@ -106,10 +108,10 @@ function SignInComponent() {
           });
       })
       .catch(function (errGoogle) {
-        setError({
-          state: true,
-          message: errGoogle.message,
-        });
+        // setError({
+        //   state: true,
+        //   message: errGoogle.message,
+        // });
         console.log(errGoogle);
 
         // router.push(`/join?email=${email}`);
@@ -191,6 +193,19 @@ function SignInComponent() {
           <Image src={HeadImage} alt="head-image" className={style.headImage} />
         </Col>
         <Col md={7} className={style.form}>
+          <Fade in={error.state}>
+            <div className="mb-4">
+              <Alert
+                variant="danger"
+                style={{ width: '80%', margin: '0 auto' }}
+                onClose={() => setError(false)}
+                dismissible
+              >
+                {error.message}
+              </Alert>
+            </div>
+          </Fade>
+
           <div className="text-center">
             <Button
               variant="link"
@@ -276,7 +291,7 @@ function SignInComponent() {
                   style={{
                     position: 'absolute',
                     right: 50,
-                    top: showPasswd ? 0 : 5,
+                    top: 0,
                   }}
                 >
                   {showPasswd ? (

@@ -3,7 +3,8 @@ import IntroImg from './img/Intro.svg';
 import { useTranslation } from 'i18n';
 import { Image, Button } from 'react-bootstrap';
 
-function Intro() {
+import ButtonDirect from '../ButtonDirect';
+function Intro({ upStep }) {
   const { t } = useTranslation(['topnav']);
   return (
     <>
@@ -16,10 +17,9 @@ function Intro() {
             {t('Beds, rooms, furniture, toilets etc')}
           </h5>
         </div>
-        <Button variant="green" style={{ fontWeight: 600 }}>
-          {t('Ok, I’m ready')}
-        </Button>
       </div>
+
+      <ButtonDirect currentStep={0} upStep={upStep} />
     </>
   );
 }

@@ -2,6 +2,9 @@
 
 src/app.config.js
 
+# environment files
+.env
+
 # dependencies
 /node_modules
 /.pnp

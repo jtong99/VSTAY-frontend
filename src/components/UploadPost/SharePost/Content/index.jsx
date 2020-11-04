@@ -1,6 +1,7 @@
 import React from 'react';
 import Intro from './Intro';
 import SelectTypeAccommodation from './SelectTypeAccommodation';
+import AboutPlace from './AboutPlace';
 
 function Content({ currentStep, upStep, downStep, onFinishStep, currentPostData }) {
   return (
@@ -14,6 +15,7 @@ function Content({ currentStep, upStep, downStep, onFinishStep, currentPostData 
           downStep={downStep}
         />
       )}
+      {currentStep === 2 && <AboutPlace />}
     </div>
   );
 }

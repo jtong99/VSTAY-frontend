@@ -5,10 +5,11 @@ import ReactMapGL, {
   FlyToInterpolator,
   Marker,
 } from 'react-map-gl';
-import { Button, Modal } from 'react-bootstrap';
+import { Button, Modal, Image } from 'react-bootstrap';
 import { useTranslation } from 'i18n';
 import { mapBoxToken } from '@helper/vars';
 import useDataFromGeocode from '@hooks/api/useDataFromGeocode';
+import MarkImg from './img/mark.svg';
 
 function MapModalSelectAddress({ show, onFinish, dismiss }) {
   const { t } = useTranslation(['topnav']);
@@ -17,8 +18,6 @@ function MapModalSelectAddress({ show, onFinish, dismiss }) {
   const [viewport, setViewport] = useState({
     latitude: 10.762622,
     longitude: 106.660172,
-    width: '100vw',
-    height: '100vh',
     zoom: 10,
   });
   const getAddressName = ({ features }) => {
@@ -63,22 +62,43 @@ function MapModalSelectAddress({ show, onFinish, dismiss }) {
           <div style={{ width: '100%', height: 500 }}>
             <ReactMapGL
               {...viewport}
+              width="100%"
+              height="100%"
               mapStyle="mapbox://styles/mapbox/streets-v11"
               mapboxApiAccessToken={mapBoxToken}
               onViewportChange={handleChangeViewport}
               transitionInterpolator={new FlyToInterpolator()}
               onClick={handleClick}
             >
-              {markers !== '' && <Marker {...markers}>mark</Marker>}
-              <NavigationControl
-                onViewportChange={(viewport) => setViewport(viewport)}
-              />
-              <GeolocateControl
-                positionOptions={{ enableHighAccuracy: true }}
-                trackUserLocation={true}
-                showUserLocation={true}
-                auto={true}
-              />
+              {markers !== '' && (
+                <Marker {...markers} offsetTop={-30} offsetLeft={-15}>
+                  <div
+                    style={{
+                      height: 30,
+                      width: 30,
+                      display: 'flex',
+                      justifyContent: 'center',
+                    }}
+                  >
+                    <Image src={MarkImg} width="100%" height="100%" />
+                  </div>
+                </Marker>
+              )}
+              <div
+                style={{ position: 'absolute', top: 0, right: 0, padding: '10px' }}
+              >
+                <div className="mb-3">
+                  <GeolocateControl
+                    positionOptions={{ enableHighAccuracy: true }}
+                    trackUserLocation={true}
+                    showUserLocation={true}
+                    auto={true}
+                  />
+                </div>
+                <NavigationControl
+                  onViewportChange={(viewport) => setViewport(viewport)}
+                />
+              </div>
             </ReactMapGL>
           </div>
         </Modal.Body>

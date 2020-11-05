@@ -15,7 +15,14 @@ function Content({ currentStep, upStep, downStep, onFinishStep, currentPostData 
           downStep={downStep}
         />
       )}
-      {currentStep === 2 && <AboutPlace />}
+      {currentStep === 2 && (
+        <AboutPlace
+          onFinishAbout={onFinishStep}
+          currentData={currentPostData}
+          upStep={upStep}
+          downStep={downStep}
+        />
+      )}
     </div>
   );
 }

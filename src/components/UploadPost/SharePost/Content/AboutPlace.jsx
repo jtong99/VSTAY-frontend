@@ -1,31 +1,46 @@
 import React, { useState } from 'react';
-import { Button, Image, Container, Form, FormControl } from 'react-bootstrap';
+import {
+  Button,
+  Image,
+  Container,
+  Form,
+  FormControl,
+  OverlayTrigger,
+  Popover,
+} from 'react-bootstrap';
 import { useTranslation } from 'i18n';
 import MapModal from '@components/Map/MapModalSelectAddress';
 import { Parking, Bills } from '@helper/enum';
+import ButtonDirect from '../ButtonDirect';
 
-function AboutPlace() {
-  const enumToArray = function (enumObject) {
-    const all = [];
-    for (const key in enumObject) {
-      all.push(enumObject[key]);
-    }
-    return all;
-  };
+import { HelpCircle } from 'react-feather';
+import SelectNumberRoom from './util/SelectNumberRoom';
+
+function AboutPlace({ onFinishAbout, downStep, currentData, upStep }) {
   const { t } = useTranslation(['topnav']);
   const [showSelectMap, setShowSelectMap] = useState(false);
-  const [aboutData, setAboutData] = useState({
-    title: '',
-    addressName: '',
-    longitude: '',
-    latitude: '',
-    parking: 'Select parking',
-    internet: '',
-    total_bathrooms: 0,
-    total_bedrooms: 0,
-  });
-  const internetValue = enumToArray(Bills);
   const [errorTitle, setErrorTitle] = useState(false);
+  const [aboutData, setAboutData] = useState({
+    title: currentData.title ?? '',
+    addressName: (currentData.address && currentData.address.name) ?? '',
+    longitude: (currentData.address && currentData.address.longitude) ?? '',
+    latitude: (currentData.address && currentData.address.latitude) ?? '',
+    parking: (currentData.detail && currentData.detail.internet) ?? 'Select parking',
+    internet:
+      (currentData.detail && currentData.detail.internet) ?? 'Select internet',
+    total_bathrooms: (currentData.detail && currentData.detail.total_bathrooms) ?? 0,
+    total_bedrooms: (currentData.detail && currentData.detail.total_bedrooms) ?? 0,
+  });
+  const isEmpty = () => {
+    return (
+      aboutData.title === '' &&
+      aboutData.addressName === '' &&
+      aboutData.longitude === '' &&
+      aboutData.latitude === '' &&
+      aboutData.parking === 'Select parking' &&
+      aboutData.internet === 'Select internet'
+    );
+  };
   const handleChange = (field) => (event) => {
     if (field === 'title' && event.target.value === '') {
       setErrorTitle(true);
@@ -43,9 +58,36 @@ function AboutPlace() {
   const finishSelectAddress = () => {
     console.log('select');
   };
+  const popover = (
+    <Popover id="popover-password-hint">
+      {/* <Popover.Title as="h3">{t('Address Selection')}</Popover.Title> */}
+      <Popover.Content as="div">{t('address tutorial')}</Popover.Content>
+    </Popover>
+  );
+  const onFinish = () => {
+    if (onFinishAbout)
+      onFinishAbout({
+        ...currentData,
+        title: aboutData.title,
+        address: {
+          name: aboutData.addressName,
+          geocode: {
+            longitude: aboutData.longitude,
+            latitude: aboutData.latitude,
+          },
+        },
+        detail: {
+          parking: aboutData.parking,
+          internet: aboutData.internet,
+          total_bedrooms: aboutData.total_bedrooms,
+          total_bathrooms: aboutData.total_bathrooms,
+        },
+      });
+    if (upStep) upStep();
+  };
   return (
     <Container className="pt-5">
-      <button onClick={() => console.log(aboutData)}>click</button>
+      {/* <button onClick={() => console.log(aboutData)}>click</button> */}
       <div className="p-3">
         <h4 className="text-secondary">{t('Introduce your place')}</h4>
         <h3 style={{ fontWeight: 600 }}>{t('About your place')}</h3>
@@ -67,15 +109,29 @@ function AboutPlace() {
         </Form.Group>
 
         <Form.Group>
-          <Form.Label style={{ fontWeight: 600 }}>{t('Address')}</Form.Label>
-          {aboutData.addressName !== '' && <p>{aboutData.addressName}</p>}
-          <Button
-            variant="primary"
-            onClick={() => setShowSelectMap(!showSelectMap)}
-            block
-          >
-            {t('Select your address')}
-          </Button>
+          <Form.Label style={{ fontWeight: 600 }}>
+            {t('Address')}{' '}
+            <OverlayTrigger placement="right" overlay={popover}>
+              <HelpCircle width="15px" height="15px" />
+            </OverlayTrigger>
+          </Form.Label>
+          <Form.Control
+            type="text"
+            //   className=" border-light"
+            value={aboutData.addressName}
+            onChange={handleChange('addressName')}
+            required
+          />
+          <Form.Text>
+            <Button
+              variant="link"
+              onClick={() => setShowSelectMap(!showSelectMap)}
+              block
+            >
+              {t('Select your address')}
+            </Button>
+          </Form.Text>
+
           {showSelectMap && (
             <MapModal
               show={showSelectMap}
@@ -87,6 +143,8 @@ function AboutPlace() {
             {t('error.message')}
           </FormControl.Feedback>
         </Form.Group>
+
+        <SelectNumberRoom />
 
         <Form.Group>
           <Form.Label style={{ fontWeight: 600 }}>{t('Parking')}</Form.Label>
@@ -133,6 +191,12 @@ function AboutPlace() {
           </Form.Control>
         </Form.Group>
       </Form>
+      <ButtonDirect
+        currentStep={2}
+        downStep={downStep}
+        onFinishStep={onFinish}
+        disableValue={isEmpty()}
+      />
     </Container>
   );
 }

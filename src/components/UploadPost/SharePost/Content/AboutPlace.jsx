@@ -20,6 +20,7 @@ function AboutPlace({ onFinishAbout, downStep, currentData, upStep }) {
   const { t } = useTranslation(['topnav']);
   const [showSelectMap, setShowSelectMap] = useState(false);
   const [errorTitle, setErrorTitle] = useState(false);
+  const [errorLocation, setErrorLocation] = useState(false);
   const [aboutData, setAboutData] = useState({
     title: currentData.title ?? '',
     addressName: (currentData.address && currentData.address.name) ?? '',
@@ -33,15 +34,23 @@ function AboutPlace({ onFinishAbout, downStep, currentData, upStep }) {
   });
   const isEmpty = () => {
     return (
-      aboutData.title === '' &&
-      aboutData.addressName === '' &&
-      aboutData.longitude === '' &&
-      aboutData.latitude === '' &&
-      aboutData.parking === 'Select parking' &&
+      aboutData.title === '' ||
+      aboutData.addressName === '' ||
+      aboutData.longitude === '' ||
+      aboutData.latitude === '' ||
+      aboutData.parking === 'Select parking' ||
       aboutData.internet === 'Select internet'
     );
   };
   const handleChange = (field) => (event) => {
+    if (
+      field === 'addressName' &&
+      (aboutData.longitude === '' || aboutData.latitude === '')
+    ) {
+      setErrorLocation(true);
+    } else {
+      setErrorLocation(false);
+    }
     if (field === 'title' && event.target.value === '') {
       setErrorTitle(true);
     } else {
@@ -59,6 +68,7 @@ function AboutPlace({ onFinishAbout, downStep, currentData, upStep }) {
     });
   };
   const onSelectAddress = (longitude, latitude, addressName) => {
+    setErrorLocation(false);
     setAboutData({ ...aboutData, longitude, latitude, addressName });
   };
   const finishSelectAddress = () => {
@@ -137,17 +147,9 @@ function AboutPlace({ onFinishAbout, downStep, currentData, upStep }) {
             //   className=" border-light"
             value={aboutData.addressName}
             onChange={handleChange('addressName')}
+            isInvalid={errorLocation}
             required
           />
-          <Form.Text>
-            <Button
-              variant="link"
-              onClick={() => setShowSelectMap(!showSelectMap)}
-              block
-            >
-              {t('Select your address')}
-            </Button>
-          </Form.Text>
 
           {showSelectMap && (
             <MapModal
@@ -157,8 +159,17 @@ function AboutPlace({ onFinishAbout, downStep, currentData, upStep }) {
             />
           )}
           <FormControl.Feedback type="invalid" style={{ whiteSpace: 'pre-line' }}>
-            {t('error.message')}
+            {t('You have to mark location on our map')}
           </FormControl.Feedback>
+          <Form.Text>
+            <Button
+              variant="link"
+              onClick={() => setShowSelectMap(!showSelectMap)}
+              block
+            >
+              {t('Select your address')}
+            </Button>
+          </Form.Text>
         </Form.Group>
 
         {((currentData && currentData.type === PostType.R_HOUSE) ||

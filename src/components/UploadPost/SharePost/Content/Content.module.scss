@@ -7,35 +7,89 @@
   justify-content: center;
   align-items: center;
   margin: 0 auto;
+  position: relative;
+  transition: background-color 400ms, border 400ms;
+  // &:hover {
+  //   background-color: #b3dcf5;
+  //   border: 1px solid #000000 !important;
+  // }
+}
+.typeHover {
+  &:hover {
+    background-color: #b3dcf5;
+    border: 1px solid #000000 !important;
+  }
 }
 .property__Container {
   text-align: center;
-  margin: 3rem;
+  margin: 1rem 2rem 1rem 2rem;
+  width: 100px;
   @media only screen and (max-width: 711px) {
     margin: 0.5rem;
   }
 }
 
-.boardingHouse__Container:hover {
-  background-color: #b3dcf5;
-  border: 1px solid #000000 !important;
-  //   .boardingHouse {
-  //     // filter: invert(27%) sepia(51%) saturate(2878%) hue-rotate(346deg)
-  //     //   brightness(104%) contrast(97%);
-  //     filter: invert(99%) sepia(30%) saturate(3304%) hue-rotate(75deg) brightness(100%)
-  //       contrast(95%);
-  //   }
-}
+// .boardingHouse__Container:hover {
+//   //   .boardingHouse {
+//   //     // filter: invert(27%) sepia(51%) saturate(2878%) hue-rotate(346deg)
+//   //     //   brightness(104%) contrast(97%);
+//   //     filter: invert(99%) sepia(30%) saturate(3304%) hue-rotate(75deg) brightness(100%)
+//   //       contrast(95%);
+//   //   }
+// }
+// .boardingHouse {
+//   filter: invert(100%) sepia(2%) saturate(5166%) hue-rotate(331deg) brightness(100%)
+//     contrast(104%);
+// }
 .boardingHouse__ContainerHover {
-  background-color: #b3dcf5;
+  background-color: #303774;
   border: 1px solid #000000 !important;
-}
-.boardingHouse__Container {
-  position: relative;
-  transition: background-color 400ms, border 400ms;
+
+  .iconFeatures,
+  .boardingHouse {
+    // filter: invert(27%) sepia(51%) saturate(2878%) hue-rotate(346deg)
+    //   brightness(104%) contrast(97%);
+    // filter: invert(99%) sepia(30%) saturate(3304%) hue-rotate(75deg) brightness(100%)
+    //   contrast(95%);
+    filter: invert(100%) sepia(2%) saturate(5166%) hue-rotate(331deg)
+      brightness(100%) contrast(104%);
+  }
 }
 
 // .boardingHouse {
 //   position: relative;
 //   transition: filter 400ms;
 // }
+// FEATURES STEP
+.features__Container {
+  border: 1px solid #bbbbbb;
+  width: 90px;
+  height: 70px;
+  border-radius: 60%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  position: relative;
+  transition: background-color 400ms, border 400ms;
+}
+.features__ContainerHover {
+  &:hover {
+    background-color: #b3dcf5;
+    border: 1px solid #000000 !important;
+  }
+}
+
+.iconFeatures {
+  width: 40px;
+  height: 40px;
+}
+
+//Bills and rent
+.currencyInput {
+  &:focus {
+    outline: none;
+    border: none;
+    box-shadow: none;
+  }
+}

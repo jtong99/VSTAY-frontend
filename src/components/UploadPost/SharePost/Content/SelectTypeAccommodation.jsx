@@ -43,7 +43,7 @@ function SelectTypeAccommodation({
                 onClick={() => setTypeValue(i.val)}
                 className={`${style.boardingHouse__Container} text-center ${
                   typeValue === i.val ? style.boardingHouse__ContainerHover : ''
-                } `}
+                } ${typeValue !== i.val ? style.typeHover : ''}`}
                 block
               >
                 <Image
@@ -60,7 +60,7 @@ function SelectTypeAccommodation({
               </Button>
             </div>
 
-            <p style={{ width: '70%', margin: '0 auto' }}>{t(i.text)}</p>
+            <p style={{ margin: '0 auto' }}>{t(i.text)}</p>
           </div>
         ))}
       </div>

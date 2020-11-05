@@ -37,8 +37,8 @@ function AboutRoom({ currentData, upStep, downStep, onFinishRoom }) {
   const handleChangeToilet = (val) => setRoomData({ ...roomData, toilets: val });
   const isEmpty = () => {
     return (
-      roomData.furnishing === '' &&
-      roomData.toilets === '' &&
+      roomData.furnishing === '' ||
+      roomData.toilets === '' ||
       roomData.max_people_live_with === ''
     );
   };

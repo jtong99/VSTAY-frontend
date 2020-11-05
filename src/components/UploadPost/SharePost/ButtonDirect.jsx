@@ -31,14 +31,14 @@ function ButtonDIrect({
           >
             {t('Next')}
           </Button>
-          <Button
+          {/* <Button
             variant="link"
             onClick={downStep}
             style={{ fontWeight: 600, margin: '30px auto', color: '#000000' }}
             block
           >
             {t('Back')}
-          </Button>
+          </Button> */}
         </div>
       )}
     </div>

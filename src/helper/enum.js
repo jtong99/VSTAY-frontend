@@ -26,3 +26,17 @@ module.exports.RoomToilet = {
   SHARED: 'shared',
   OWNED: 'owned',
 };
+
+module.exports.RoomFeatures = {
+  DOOR_LOCK: 'door_lock',
+  AIR_CONDITIONER: 'air_conditioner',
+  WARDROBE: 'wardrobe',
+  CHAIR: 'chair',
+  BALCONY: 'balcony',
+  COUCH: 'couch',
+  FAN: 'fan',
+  KITCHENETTE: 'kitchenette',
+  DESK: 'desk',
+  TABLE: 'table',
+  TV: 'tv',
+};

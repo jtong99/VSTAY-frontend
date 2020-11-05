@@ -3,6 +3,8 @@ import Intro from './Intro';
 import SelectTypeAccommodation from './SelectTypeAccommodation';
 import AboutPlace from './AboutPlace';
 import AboutRoom from './AboutRoom';
+import RoomFeatures from './RoomFeatures';
+import RentAndBills from './RentAndBills';
 
 function Content({ currentStep, upStep, downStep, onFinishStep, currentPostData }) {
   return (
@@ -27,6 +29,22 @@ function Content({ currentStep, upStep, downStep, onFinishStep, currentPostData 
       {currentStep === 3 && (
         <AboutRoom
           onFinishRoom={onFinishStep}
+          currentData={currentPostData}
+          upStep={upStep}
+          downStep={downStep}
+        />
+      )}
+      {currentStep === 4 && (
+        <RoomFeatures
+          onFinishFeatures={onFinishStep}
+          currentData={currentPostData}
+          upStep={upStep}
+          downStep={downStep}
+        />
+      )}
+      {currentStep === 5 && (
+        <RentAndBills
+          onFinishRent={onFinishStep}
           currentData={currentPostData}
           upStep={upStep}
           downStep={downStep}

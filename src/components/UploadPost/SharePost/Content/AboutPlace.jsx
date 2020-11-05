@@ -12,7 +12,7 @@ import { useTranslation } from 'i18n';
 import MapModal from '@components/Map/MapModalSelectAddress';
 import { Parking, Bills } from '@helper/enum';
 import ButtonDirect from '../ButtonDirect';
-
+import { PostType } from '@helper/enum';
 import { HelpCircle } from 'react-feather';
 import SelectNumberRoom from './util/SelectNumberRoom';
 
@@ -52,6 +52,12 @@ function AboutPlace({ onFinishAbout, downStep, currentData, upStep }) {
       [field]: event.target.value,
     });
   };
+  const handleChangeSpecific = (field, val) => {
+    setAboutData({
+      ...aboutData,
+      [field]: val,
+    });
+  };
   const onSelectAddress = (longitude, latitude, addressName) => {
     setAboutData({ ...aboutData, longitude, latitude, addressName });
   };
@@ -61,7 +67,13 @@ function AboutPlace({ onFinishAbout, downStep, currentData, upStep }) {
   const popover = (
     <Popover id="popover-password-hint">
       {/* <Popover.Title as="h3">{t('Address Selection')}</Popover.Title> */}
-      <Popover.Content as="div">{t('address tutorial')}</Popover.Content>
+      <Popover.Content as="div">
+        <div>
+          {t(
+            'To allow Vstay save your address, please click button below and locate your place in our map. Vstay system will automatically save it.',
+          )}
+        </div>
+      </Popover.Content>
     </Popover>
   );
   const onFinish = () => {
@@ -85,9 +97,14 @@ function AboutPlace({ onFinishAbout, downStep, currentData, upStep }) {
       });
     if (upStep) upStep();
   };
+  const onChangeBed = (v) => {
+    setAboutData({ ...aboutData, total_bedrooms: v });
+  };
+  const onChangeBath = (v) => {
+    setAboutData({ ...aboutData, total_bathrooms: v });
+  };
   return (
     <Container className="pt-5">
-      {/* <button onClick={() => console.log(aboutData)}>click</button> */}
       <div className="p-3">
         <h4 className="text-secondary">{t('Introduce your place')}</h4>
         <h3 style={{ fontWeight: 600 }}>{t('About your place')}</h3>
@@ -144,7 +161,10 @@ function AboutPlace({ onFinishAbout, downStep, currentData, upStep }) {
           </FormControl.Feedback>
         </Form.Group>
 
-        <SelectNumberRoom />
+        {((currentData && currentData.type === PostType.R_HOUSE) ||
+          currentData.type === PostType.N_HOUSE) && (
+          <SelectNumberRoom onChangeBed={onChangeBed} onChangeBath={onChangeBath} />
+        )}
 
         <Form.Group>
           <Form.Label style={{ fontWeight: 600 }}>{t('Parking')}</Form.Label>

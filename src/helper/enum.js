@@ -16,3 +16,13 @@ module.exports.Parking = {
   YES: 'yes',
   NO: 'no',
 };
+
+module.exports.RoomFurnishing = {
+  FLEXIBLE: 'flexible',
+  FURNISHED: 'furnished',
+};
+
+module.exports.RoomToilet = {
+  SHARED: 'shared',
+  OWNED: 'owned',
+};

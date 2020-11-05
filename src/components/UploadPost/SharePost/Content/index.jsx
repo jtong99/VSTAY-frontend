@@ -2,6 +2,7 @@ import React from 'react';
 import Intro from './Intro';
 import SelectTypeAccommodation from './SelectTypeAccommodation';
 import AboutPlace from './AboutPlace';
+import AboutRoom from './AboutRoom';
 
 function Content({ currentStep, upStep, downStep, onFinishStep, currentPostData }) {
   return (
@@ -18,6 +19,14 @@ function Content({ currentStep, upStep, downStep, onFinishStep, currentPostData 
       {currentStep === 2 && (
         <AboutPlace
           onFinishAbout={onFinishStep}
+          currentData={currentPostData}
+          upStep={upStep}
+          downStep={downStep}
+        />
+      )}
+      {currentStep === 3 && (
+        <AboutRoom
+          onFinishRoom={onFinishStep}
           currentData={currentPostData}
           upStep={upStep}
           downStep={downStep}

@@ -1,6 +1,6 @@
 import { API_URL } from 'app.config';
 
-const enumToArray = function (enumObject) {
+export const enumToArray = function (enumObject) {
   const all = [];
   for (const key in enumObject) {
     all.push(enumObject[key]);

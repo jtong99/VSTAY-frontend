@@ -1,20 +1,20 @@
 import React, { useState } from 'react';
-import {
-  Button,
-  Image,
-  Container,
-  Form,
-  FormControl,
-  OverlayTrigger,
-  Popover,
-} from 'react-bootstrap';
+import { Button, Form, FormControl } from 'react-bootstrap';
 import { useTranslation } from 'i18n';
 
-function SelectNumberRoom() {
+function SelectNumberRoom({ onChangeBed, onChangeBath }) {
   const [bedroom, setBedroom] = useState('');
   const [bathroom, setBathroom] = useState('');
   const { t } = useTranslation(['topnav']);
   const bedSelect = [2, 3, 4, 5];
+  const handleChangeBed = (value) => {
+    onChangeBed(value);
+    setBedroom(value);
+  };
+  const handleChangeBath = (value) => {
+    onChangeBath(value);
+    setBathroom(value);
+  };
   return (
     <>
       <div>
@@ -26,7 +26,7 @@ function SelectNumberRoom() {
               <Button
                 variant="whiter"
                 className={`border-dark ${bedroom === b ? 'bg-black-blue' : ''}`}
-                onClick={() => setBedroom(b)}
+                onClick={() => handleChangeBed(b)}
                 style={{
                   padding: '15px 41px 15px 41px',
                   borderRadius: 'initial',
@@ -55,7 +55,7 @@ function SelectNumberRoom() {
               <Button
                 variant="whiter"
                 className={`border-dark ${bathroom === b ? 'bg-black-blue' : ''}`}
-                onClick={() => setBathroom(b)}
+                onClick={() => handleChangeBath(b)}
                 style={{
                   padding: '15px 41px 15px 41px',
                   borderRadius: 'initial',

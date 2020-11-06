@@ -1,23 +1,23 @@
-import React, { useState, useRef, forwardRef, createRef } from 'react';
-import { Button, Image, Container, Form, FormControl } from 'react-bootstrap';
+import React from 'react';
+import { Image, Container } from 'react-bootstrap';
 import { useTranslation } from 'i18n';
 import ButtonDirect from '../ButtonDirect';
-import IdealCustomerImg from './img/IdealCustomer.svg';
+import DescriptionImg from './img/Description.svg';
 
-function IdealCustomer({ upStep, downStep }) {
+function Description({ onFinishDescription, upStep }) {
   const { t } = useTranslation(['topnav']);
   return (
     <Container className="pt-5">
       <div className="p-3 text-center">
         <h3 style={{ fontWeight: 600, textAlign: 'center' }}>
-          {t('Show us your ideal customer(s)')}
+          {t('Introduce yourself and your property')}
         </h3>
-        <Image src={IdealCustomerImg} width="170px" className="m-5" />
+        <Image src={DescriptionImg} width="170px" className="m-5" />
         <p style={{ fontWeight: 600, textAlign: 'center' }}>
-          {t('Show us your ideal customer(s)')}
+          {t('Introduce yourself and property')}
         </p>
         <p className="text-secondary">
-          {t('Pets, kids, smoking, start date, length of stay etc.')}
+          {t('Help your future customer know about you and your property')}
         </p>
       </div>
       <ButtonDirect
@@ -29,4 +29,4 @@ function IdealCustomer({ upStep, downStep }) {
   );
 }
 
-export default IdealCustomer;
+export default Description;

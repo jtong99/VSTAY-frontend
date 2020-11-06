@@ -8,6 +8,8 @@ import RentAndBills from './RentAndBills';
 import RoomAvailability from './RoomAvailability';
 import IdealCustomer from './IdealCustomer';
 import CustomerPreference from './CustomerPreference';
+import DescriptionTutorial from './DescriptionTutorial';
+import DescriptionInput from './DescriptionInput';
 
 function Content({ currentStep, upStep, downStep, onFinishStep, currentPostData }) {
   return (
@@ -64,7 +66,23 @@ function Content({ currentStep, upStep, downStep, onFinishStep, currentPostData 
       {currentStep === 7 && <IdealCustomer upStep={upStep} downStep={downStep} />}
       {currentStep === 8 && (
         <CustomerPreference
-          onFinishRoomAvailability={onFinishStep}
+          onFinishPreference={onFinishStep}
+          currentData={currentPostData}
+          upStep={upStep}
+          downStep={downStep}
+        />
+      )}
+      {currentStep === 9 && (
+        <DescriptionTutorial
+          onFinishDescription={onFinishStep}
+          currentData={currentPostData}
+          upStep={upStep}
+          downStep={downStep}
+        />
+      )}
+      {currentStep === 10 && (
+        <DescriptionInput
+          onFinishInput={onFinishStep}
           currentData={currentPostData}
           upStep={upStep}
           downStep={downStep}

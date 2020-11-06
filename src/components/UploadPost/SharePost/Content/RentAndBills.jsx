@@ -49,7 +49,7 @@ function RentAndBills({ currentData, upStep, downStep, onFinishRent }) {
     if (onFinishRent)
       onFinishRent({
         ...currentData,
-        price: rentData.rent,
+        price: parseInt(rentData.rent),
         detail: { ...currentData.detail, bills: rentData.bills },
       });
     if (upStep) upStep();

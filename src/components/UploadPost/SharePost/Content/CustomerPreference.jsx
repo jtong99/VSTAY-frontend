@@ -4,12 +4,7 @@ import { useTranslation } from 'i18n';
 import ButtonDirect from '../ButtonDirect';
 import { CustomerPreference as Preference } from '@helper/enum';
 
-function CustomerPreference({
-  onFinishRoomAvailability,
-  currentData,
-  upStep,
-  downStep,
-}) {
+function CustomerPreference({ onFinishPreference, currentData, upStep, downStep }) {
   const { t } = useTranslation(['topnav']);
   const [pre, setPre] = useState(
     (currentData.detail && currentData.detail.except) ?? '',
@@ -22,8 +17,8 @@ function CustomerPreference({
     { text: 'Just Couple', val: Preference.COUPLE },
   ];
   const onFinish = () => {
-    if (onFinishRoomAvailability)
-      onFinishRoomAvailability({
+    if (onFinishPreference)
+      onFinishPreference({
         ...currentData,
         detail: {
           ...currentData.detail,

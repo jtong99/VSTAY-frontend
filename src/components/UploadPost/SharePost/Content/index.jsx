@@ -5,6 +5,9 @@ import AboutPlace from './AboutPlace';
 import AboutRoom from './AboutRoom';
 import RoomFeatures from './RoomFeatures';
 import RentAndBills from './RentAndBills';
+import RoomAvailability from './RoomAvailability';
+import IdealCustomer from './IdealCustomer';
+import CustomerPreference from './CustomerPreference';
 
 function Content({ currentStep, upStep, downStep, onFinishStep, currentPostData }) {
   return (
@@ -45,6 +48,23 @@ function Content({ currentStep, upStep, downStep, onFinishStep, currentPostData 
       {currentStep === 5 && (
         <RentAndBills
           onFinishRent={onFinishStep}
+          currentData={currentPostData}
+          upStep={upStep}
+          downStep={downStep}
+        />
+      )}
+      {currentStep === 6 && (
+        <RoomAvailability
+          onFinishRoomAvailability={onFinishStep}
+          currentData={currentPostData}
+          upStep={upStep}
+          downStep={downStep}
+        />
+      )}
+      {currentStep === 7 && <IdealCustomer upStep={upStep} downStep={downStep} />}
+      {currentStep === 8 && (
+        <CustomerPreference
+          onFinishRoomAvailability={onFinishStep}
           currentData={currentPostData}
           upStep={upStep}
           downStep={downStep}

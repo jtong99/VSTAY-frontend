@@ -1,13 +1,5 @@
 import React, { useState } from 'react';
-import {
-  Button,
-  Image,
-  Container,
-  Form,
-  FormControl,
-  OverlayTrigger,
-  Popover,
-} from 'react-bootstrap';
+import { Button, Image, Container } from 'react-bootstrap';
 import style from './Content.module.scss';
 import { useTranslation } from 'i18n';
 import AirConditioner from '../img/air-conditioner.svg';

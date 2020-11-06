@@ -4,7 +4,7 @@ import { appWithTranslation } from 'i18n';
 import '@styles/index.scss';
 import Authentication from 'components/Auth';
 import { fetchNewToken } from '@helper/auth';
-
+import 'react-datepicker/dist/react-datepicker.css';
 function MyApp({ Component, pageProps, tokenData = {} }) {
   return (
     <>

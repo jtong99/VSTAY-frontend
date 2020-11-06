@@ -52,7 +52,7 @@ function RentAndBills({ currentData, upStep, downStep, onFinishRent }) {
         price: rentData.rent,
         detail: { ...currentData.detail, bills: rentData.bills },
       });
-    // if (upStep) upStep();
+    if (upStep) upStep();
   };
   return (
     <Container className="pt-5">

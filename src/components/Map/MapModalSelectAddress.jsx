@@ -71,7 +71,7 @@ function MapModalSelectAddress({ show, onFinish, dismiss }) {
               onClick={handleClick}
             >
               {markers !== '' && (
-                <Marker {...markers}>
+                <Marker {...markers} offsetTop={-30} offsetLeft={-15}>
                   <div
                     style={{
                       height: 30,

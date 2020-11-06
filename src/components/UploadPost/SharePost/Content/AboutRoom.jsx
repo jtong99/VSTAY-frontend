@@ -48,7 +48,7 @@ function AboutRoom({ currentData, upStep, downStep, onFinishRoom }) {
         ...currentData,
         detail: {
           ...currentData.detail,
-          max_people_live_with: roomData.max_people_live_with,
+          max_people_live_with: parseInt(roomData.max_people_live_with),
           toilets: roomData.toilets,
           furnishing: roomData.furnishing,
         },

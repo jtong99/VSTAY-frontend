@@ -64,6 +64,7 @@ function SignUpComponent() {
   const onSubmit = async (event) => {
     event.preventDefault();
     setNullError();
+    console.log(formData);
     const { data: res, error: err } = await signUp(formData);
     if (res && (res.code === 200 || res.code === 201)) {
       // if (name && email && token) {

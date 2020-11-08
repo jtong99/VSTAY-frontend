@@ -20,10 +20,10 @@ export const fetcher = async ({
     body,
     headers: isJSON
       ? {
+          'Content-Type': 'application/json',
           Authorization: token,
         }
       : {
-          'Content-Type': 'application/json',
           Authorization: token,
         },
   });

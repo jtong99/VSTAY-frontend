@@ -10,11 +10,12 @@ import IdealCustomer from './IdealCustomer';
 import CustomerPreference from './CustomerPreference';
 import DescriptionTutorial from './DescriptionTutorial';
 import DescriptionInput from './DescriptionInput';
+import ImagePost from './ImagesPost';
 
 function Content({ currentStep, upStep, downStep, onFinishStep, currentPostData }) {
   return (
     <div>
-      {currentStep === 0 && <Intro upStep={upStep} />}
+      {currentStep === 110 && <Intro upStep={upStep} />}
       {currentStep === 1 && (
         <SelectTypeAccommodation
           onFinishSelectType={onFinishStep}
@@ -63,8 +64,16 @@ function Content({ currentStep, upStep, downStep, onFinishStep, currentPostData 
           downStep={downStep}
         />
       )}
-      {currentStep === 7 && <IdealCustomer upStep={upStep} downStep={downStep} />}
-      {currentStep === 8 && (
+      {currentStep === 7 && (
+        <ImagePost
+          onFinishImage={onFinishStep}
+          currentData={currentPostData}
+          upStep={upStep}
+          downStep={downStep}
+        />
+      )}
+      {currentStep === 8 && <IdealCustomer upStep={upStep} downStep={downStep} />}
+      {currentStep === 9 && (
         <CustomerPreference
           onFinishPreference={onFinishStep}
           currentData={currentPostData}
@@ -72,7 +81,7 @@ function Content({ currentStep, upStep, downStep, onFinishStep, currentPostData 
           downStep={downStep}
         />
       )}
-      {currentStep === 9 && (
+      {currentStep === 10 && (
         <DescriptionTutorial
           onFinishDescription={onFinishStep}
           currentData={currentPostData}
@@ -80,7 +89,7 @@ function Content({ currentStep, upStep, downStep, onFinishStep, currentPostData 
           downStep={downStep}
         />
       )}
-      {currentStep === 10 && (
+      {currentStep === 11 && (
         <DescriptionInput
           onFinishInput={onFinishStep}
           currentData={currentPostData}

@@ -9,7 +9,7 @@ function useFetch(path, { token = '', method = 'POST', isJSON = false } = {}) {
   const doFetch = async (input = null, options) => {
     let body = null;
     if (input) {
-      body = isJSON ? input : JSON.stringify(input);
+      body = !isJSON ? input : JSON.stringify(input);
     }
     setLoading(true);
     setError(null);

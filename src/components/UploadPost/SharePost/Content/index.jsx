@@ -11,11 +11,12 @@ import CustomerPreference from './CustomerPreference';
 import DescriptionTutorial from './DescriptionTutorial';
 import DescriptionInput from './DescriptionInput';
 import ImagePost from './ImagesPost';
+import Preview from './Preview';
 
 function Content({ currentStep, upStep, downStep, onFinishStep, currentPostData }) {
   return (
     <div>
-      {currentStep === 110 && <Intro upStep={upStep} />}
+      {currentStep === 0 && <Intro upStep={upStep} />}
       {currentStep === 1 && (
         <SelectTypeAccommodation
           onFinishSelectType={onFinishStep}
@@ -91,6 +92,14 @@ function Content({ currentStep, upStep, downStep, onFinishStep, currentPostData 
       )}
       {currentStep === 11 && (
         <DescriptionInput
+          onFinishInput={onFinishStep}
+          currentData={currentPostData}
+          upStep={upStep}
+          downStep={downStep}
+        />
+      )}
+      {currentStep === 12 && (
+        <Preview
           onFinishInput={onFinishStep}
           currentData={currentPostData}
           upStep={upStep}

@@ -19,6 +19,7 @@ function ImagesPost({ currentData, upStep, downStep, onFinishImage }) {
   const [fire, { loading }] = useFetch(path, {
     token: getToken(),
     method: 'POST',
+    isJSON: false,
   });
 
   const handleChange = (e) => {

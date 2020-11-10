@@ -13,7 +13,7 @@ export const fetcher = async ({
   token = '',
   method = 'POST',
   body = {},
-  isJSON = false,
+  isJSON = true,
 }) => {
   const res = await fetch(API_URL + path, {
     method,

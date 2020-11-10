@@ -1,0 +1,88 @@
+import React from 'react';
+import { Image, Button } from 'react-bootstrap';
+import { useTranslation } from 'i18n';
+import Bathtub from '@assets/img/post/bathtub.svg';
+import Bed from '@assets/img/post/bed.svg';
+import Home from '@assets/img/post/home.svg';
+import { PostType } from '@helper/enum';
+function Info({
+  title,
+  postType,
+  detail: { total_bedrooms, total_bathrooms, max_people_live_with },
+  price,
+}) {
+  const { t } = useTranslation(['topnav']);
+  const type = [
+    { text: 'Room(s) in boarding house', val: PostType.S_ROOM },
+    { text: 'Room(s) in your house', val: PostType.S_HOUSE },
+    { text: 'Whole property renting', val: PostType.R_HOUSE },
+  ];
+  return (
+    <>
+      <h4>{title}</h4>
+      <div className="d-flex mt-4">
+        <div
+          style={{
+            backgroundColor: '#FFDEDE',
+            padding: '5px 8px 5px 8px',
+            border: '1px solid #B6B6B6',
+            borderRadius: 5,
+            fontWeight: 600,
+          }}
+        >
+          {t('Free to contact')}
+        </div>
+        <div>
+          <p
+            style={{
+              fontWeight: 600,
+              marginLeft: 20,
+              marginBottom: 0,
+              marginTop: 5,
+            }}
+          >
+            {type.find((t) => t.val === postType).text}
+          </p>
+        </div>
+      </div>
+      <hr className="my-4" />
+      <div className="d-flex">
+        <div
+          style={{
+            backgroundColor: '#FFDEDE',
+            padding: '3px 15px 3px 15px',
+            border: '1px solid #B6B6B6',
+            textAlign: 'center',
+          }}
+        >
+          <div className="mt-2">
+            <span style={{ fontWeight: 600, fontSize: 20 }}>${price}</span>
+            <span
+              className="text-secondary"
+              style={{ fontWeight: 600, fontSize: 15 }}
+            >
+              /mt
+            </span>
+          </div>
+          <p>{t('With bills')}</p>
+        </div>
+        <div className="d-flex pt-4 pl-4">
+          <div>
+            <Image src={Bed} />
+            <span className="ml-1">{total_bedrooms}</span>
+          </div>
+          <div className="ml-4">
+            <Image src={Bathtub} />
+            <span className="ml-1">{total_bathrooms}</span>
+          </div>
+          <div className="ml-4">
+            <Image src={Home} />
+            <span className="ml-1">{max_people_live_with}</span>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+}
+
+export default Info;

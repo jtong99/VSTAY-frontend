@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { fetcher } from 'helper';
 
-function useFetch(path, { token = '', method = 'POST', isJSON = false } = {}) {
+function useFetch(path, { token = '', method = 'POST', isJSON = true } = {}) {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
@@ -9,7 +9,7 @@ function useFetch(path, { token = '', method = 'POST', isJSON = false } = {}) {
   const doFetch = async (input = null, options) => {
     let body = null;
     if (input) {
-      body = !isJSON ? input : JSON.stringify(input);
+      body = isJSON ? JSON.stringify(input) : input;
     }
     setLoading(true);
     setError(null);

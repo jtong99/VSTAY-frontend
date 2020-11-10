@@ -109,7 +109,11 @@ function RoomAvailability({
             }
           >
             {lengthStay.map((l) => (
-              <option value={l} key={l} disabled={l > stayAvailable.max}>
+              <option
+                value={l}
+                key={l}
+                disabled={stayAvailable.max !== '' && l > stayAvailable.max}
+              >
                 {l === -1 ? 'Unlimited' : `${l} month${l > 1 ? 's' : ''}`}
               </option>
             ))}
@@ -131,7 +135,10 @@ function RoomAvailability({
             }
           >
             {lengthStay.map((l) => (
-              <option value={l}>
+              <option
+                value={l}
+                disabled={stayAvailable.min !== '' && l < stayAvailable.min}
+              >
                 {l === -1 ? 'Unlimited' : `${l} month${l > 1 ? 's' : ''}`}
               </option>
             ))}

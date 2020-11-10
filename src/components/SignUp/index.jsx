@@ -116,7 +116,7 @@ function SignUpComponent() {
           </a>
         </Link>
       </div>
-      <Fade in={true}>
+      {/* <Fade in={true}>
         <div className="mb-4">
           <Alert
             variant="danger"
@@ -124,11 +124,10 @@ function SignUpComponent() {
             // onClose={() => setError(false)}
             dismissible
           >
-            {/* {error.message} */}
             this is error
           </Alert>
         </div>
-      </Fade>
+      </Fade> */}
       <div className={style.form}>
         <p className={style.header}>{t('Create your V-account')}</p>
 

@@ -99,6 +99,7 @@ function AboutPlace({ onFinishAbout, downStep, currentData, upStep }) {
           },
         },
         detail: {
+          ...currentData.detail,
           parking: aboutData.parking,
           internet: aboutData.internet,
           total_bedrooms: aboutData.total_bedrooms,
@@ -114,7 +115,8 @@ function AboutPlace({ onFinishAbout, downStep, currentData, upStep }) {
     setAboutData({ ...aboutData, total_bathrooms: v });
   };
   return (
-    <Container className="pt-5">
+    <Container className="pt-5 pb-5">
+      {/* <button onClick={() => console.log(currentData)}>click</button> */}
       <div className="p-3">
         <h4 className="text-secondary">{t('Introduce your place')}</h4>
         <h3 style={{ fontWeight: 600 }}>{t('About your place')}</h3>
@@ -172,11 +174,11 @@ function AboutPlace({ onFinishAbout, downStep, currentData, upStep }) {
           </Form.Text>
         </Form.Group>
 
-        {((currentData && currentData.type === PostType.R_HOUSE) ||
+        {/* {((currentData && currentData.type === PostType.R_HOUSE) ||
           currentData.type === PostType.N_HOUSE) && (
           <SelectNumberRoom onChangeBed={onChangeBed} onChangeBath={onChangeBath} />
-        )}
-
+        )} */}
+        <SelectNumberRoom onChangeBed={onChangeBed} onChangeBath={onChangeBath} />
         <Form.Group>
           <Form.Label style={{ fontWeight: 600 }}>{t('Parking')}</Form.Label>
           <Form.Control

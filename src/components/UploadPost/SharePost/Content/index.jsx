@@ -12,6 +12,7 @@ import DescriptionTutorial from './DescriptionTutorial';
 import DescriptionInput from './DescriptionInput';
 import ImagePost from './ImagesPost';
 import Preview from './Preview';
+import SuccessUpload from './Success';
 
 function Content({ currentStep, upStep, downStep, onFinishStep, currentPostData }) {
   return (
@@ -100,6 +101,14 @@ function Content({ currentStep, upStep, downStep, onFinishStep, currentPostData 
       )}
       {currentStep === 12 && (
         <Preview
+          onFinishInput={onFinishStep}
+          currentData={currentPostData}
+          upStep={upStep}
+          downStep={downStep}
+        />
+      )}
+      {currentStep === 13 && (
+        <SuccessUpload
           onFinishInput={onFinishStep}
           currentData={currentPostData}
           upStep={upStep}

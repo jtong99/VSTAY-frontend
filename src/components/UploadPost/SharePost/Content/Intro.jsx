@@ -12,7 +12,6 @@ function Intro({ upStep }) {
   return (
     <>
       <div className="text-center">
-        {/* <button onClick={() => console.log(data)}>click</button> */}
         <div style={{ paddingTop: 100, paddingBottom: 100 }}>
           <h3>
             Hello <span style={{ fontWeight: 600 }}>{name}</span>, let’s get started

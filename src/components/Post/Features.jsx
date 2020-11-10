@@ -36,7 +36,14 @@ function Features({ features }) {
   return (
     <div>
       <h4 style={{ fontWeight: 600 }}>{t('Features')}</h4>
-      <div className="d-flex justify-content-between mt-4">
+      <div
+        className={`${
+          features.includes(featuresData[0].value) &&
+          features.includes(featuresData[1].value)
+            ? 'd-flex justify-content-between mt-4'
+            : 'd-none'
+        } `}
+      >
         {featuresData.slice(0, 2).map((f, i) => (
           <div style={{ display: features.includes(f.value) ? 'inherit' : 'none' }}>
             <Image src={f.icon} />
@@ -55,7 +62,14 @@ function Features({ features }) {
           </div>
         ))} */}
       </div>
-      <div className="d-flex justify-content-between mt-4">
+      <div
+        className={`${
+          features.includes(featuresData[2].value) &&
+          features.includes(featuresData[3].value)
+            ? 'd-flex justify-content-between mt-4'
+            : 'd-none'
+        } `}
+      >
         {featuresData.slice(2, 4).map((f, i) => (
           <div style={{ display: features.includes(f.value) ? 'inherit' : 'none' }}>
             <Image src={f.icon} />
@@ -65,7 +79,14 @@ function Features({ features }) {
           </div>
         ))}
       </div>
-      <div className="d-flex justify-content-between mt-4">
+      <div
+        className={`${
+          features.includes(featuresData[4].value) &&
+          features.includes(featuresData[5].value)
+            ? 'd-flex justify-content-between mt-4'
+            : 'd-none'
+        } `}
+      >
         {featuresData.slice(4, 6).map((f, i) => (
           <div style={{ display: features.includes(f.value) ? 'inherit' : 'none' }}>
             <Image src={f.icon} />
@@ -75,7 +96,14 @@ function Features({ features }) {
           </div>
         ))}
       </div>
-      <div className="d-flex justify-content-between mt-4">
+      <div
+        className={`${
+          features.includes(featuresData[6].value) &&
+          features.includes(featuresData[7].value)
+            ? 'd-flex justify-content-between mt-4'
+            : 'd-none'
+        } `}
+      >
         {featuresData.slice(6, 8).map((f, i) => (
           <div style={{ display: features.includes(f.value) ? 'inherit' : 'none' }}>
             <Image src={f.icon} />
@@ -85,7 +113,14 @@ function Features({ features }) {
           </div>
         ))}
       </div>
-      <div className="d-flex justify-content-between mt-4">
+      <div
+        className={`${
+          features.includes(featuresData[8].value) &&
+          features.includes(featuresData[9].value)
+            ? 'd-flex justify-content-between mt-4'
+            : 'd-none'
+        } `}
+      >
         {featuresData.slice(8, 10).map((f, i) => (
           <div style={{ display: features.includes(f.value) ? 'inherit' : 'none' }}>
             <Image src={f.icon} />

@@ -16,7 +16,7 @@ function DescriptionInput({ onFinishInput, currentData, upStep, downStep }) {
   };
   return (
     <Container className="pt-5">
-      <button onClick={() => console.log(currentData)}>clci</button>
+      {/* <button onClick={() => console.log(currentData)}>clci</button> */}
       <div className="p-3">
         <h4 className="text-secondary">{t('Introduce yourself')}</h4>
         <h3 style={{ fontWeight: 600 }}>

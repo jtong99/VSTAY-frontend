@@ -15,7 +15,9 @@ function Preview({ onFinishAbout, downStep, currentData, upStep }) {
   });
   const onFinish = async () => {
     const { data, error } = await fire(currentData);
-    console.log(data);
+    if (data && data.code === 200) {
+      upStep();
+    }
   };
   return (
     <>

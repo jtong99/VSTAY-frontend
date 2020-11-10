@@ -8,6 +8,7 @@ import useFetch from '@hooks/useFetch';
 import AuthContext from '@components/Auth/AuthContext';
 import { Camera } from 'react-feather';
 import CarouselImage from './util/CarouselImage';
+import LoadingComponent from '@components/utils/Loading';
 
 const path = '/v1/api/post/upload-images';
 function ImagesPost({ currentData, upStep, downStep, onFinishImage }) {
@@ -83,85 +84,88 @@ function ImagesPost({ currentData, upStep, downStep, onFinishImage }) {
     }
   };
   return (
-    <Container className="pt-5">
-      <div className="p-3">
-        <h4 className="text-secondary">{t('Introduce your place')}</h4>
-        <h3 style={{ fontWeight: 600 }}>{t('Room and feature images')}</h3>
-      </div>
-      <div className="text-center">
-        {images.length > 0 ? (
-          <div style={{ width: '55%', margin: '0 auto', position: 'relative' }}>
-            <CarouselImage
-              images={images.reverse()}
-              onRemove={(index) => {
-                image.current.value = '';
-                // image.current.files = [
-                //   ...imageFile.slice(0, index),
-                //   ...imageFile.slice(index + 1, imageFile.length),
-                // ];
-                setImageFile([
-                  ...imageFile.slice(0, index),
-                  ...imageFile.slice(index + 1, imageFile.length),
-                ]);
-                setImages([
-                  ...images.slice(0, index),
-                  ...images.slice(index + 1, images.length),
-                ]);
-              }}
-            />
-          </div>
-        ) : (
-          <Image src={RoomAndFeatures} style={{ width: '30%' }} className="m-5" />
-        )}
-
-        <p
-          className="text-center"
-          style={{ width: '41%', margin: '-10px auto 40px auto' }}
-        >
-          {t(
-            'Listings with images appear higher in search results than those without. You can also add or change images later.',
-          )}
-        </p>
-        <div>
-          <Button
-            variant="true-green"
-            onClick={onAddImg}
-            // disabled={disableValue}
-            style={{ fontWeight: 600, width: '150px', height: 46 }}
-          >
-            {t('Add photos')}{' '}
-            <Camera width="20px" style={{ marginBottom: 1, marginLeft: 2 }} />
-          </Button>
+    <>
+      <LoadingComponent show={loading} />
+      <Container className="pt-5">
+        <div className="p-3">
+          <h4 className="text-secondary">{t('Introduce your place')}</h4>
+          <h3 style={{ fontWeight: 600 }}>{t('Room and feature images')}</h3>
         </div>
-      </div>
+        <div className="text-center">
+          {images.length > 0 ? (
+            <div style={{ width: '55%', margin: '0 auto', position: 'relative' }}>
+              <CarouselImage
+                images={images.reverse()}
+                onRemove={(index) => {
+                  image.current.value = '';
+                  // image.current.files = [
+                  //   ...imageFile.slice(0, index),
+                  //   ...imageFile.slice(index + 1, imageFile.length),
+                  // ];
+                  setImageFile([
+                    ...imageFile.slice(0, index),
+                    ...imageFile.slice(index + 1, imageFile.length),
+                  ]);
+                  setImages([
+                    ...images.slice(0, index),
+                    ...images.slice(index + 1, images.length),
+                  ]);
+                }}
+              />
+            </div>
+          ) : (
+            <Image src={RoomAndFeatures} style={{ width: '30%' }} className="m-5" />
+          )}
 
-      <Form
-        onSubmit={onSubmit}
-        style={{ width: '35%', margin: '0 auto', display: 'none' }}
-        encType="multipart/form-data"
-      >
-        <Form.File
-          ref={image}
-          onChange={handleChange}
-          id="custom-file"
-          label="Custom file input"
-          accept="image/*"
-          custom
+          <p
+            className="text-center"
+            style={{ width: '41%', margin: '-10px auto 40px auto' }}
+          >
+            {t(
+              'Listings with images appear higher in search results than those without. You can also add or change images later.',
+            )}
+          </p>
+          <div>
+            <Button
+              variant="true-green"
+              onClick={onAddImg}
+              // disabled={disableValue}
+              style={{ fontWeight: 600, width: '150px', height: 46 }}
+            >
+              {t('Add photos')}{' '}
+              <Camera width="20px" style={{ marginBottom: 1, marginLeft: 2 }} />
+            </Button>
+          </div>
+        </div>
+
+        <Form
+          onSubmit={onSubmit}
+          style={{ width: '35%', margin: '0 auto', display: 'none' }}
+          encType="multipart/form-data"
+        >
+          <Form.File
+            ref={image}
+            onChange={handleChange}
+            id="custom-file"
+            label="Custom file input"
+            accept="image/*"
+            custom
+          />
+          <Button type="submit">submit</Button>
+        </Form>
+        <ButtonDirect
+          currentStep={11}
+          downStep={downStep}
+          onFinishStep={onFinish}
+          disableValue={false}
         />
-        <Button type="submit">submit</Button>
-      </Form>
-      <ButtonDirect
-        currentStep={11}
-        downStep={downStep}
-        onFinishStep={onFinish}
-        disableValue={false}
-      />
-      {/* <div className="preview">
+        {/* <div className="preview">
         {images.map((url) => (
           <Image src={url} alt="..." width="100px" />
         ))}
       </div> */}
-    </Container>
+      </Container>
+    </>
   );
 }
 

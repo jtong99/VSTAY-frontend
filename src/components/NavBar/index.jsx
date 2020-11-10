@@ -5,9 +5,11 @@ import logo from '@assets/logo/Logo_585x166.svg';
 import SearchBar from './SearchBar';
 import AuthContext from '../Auth/AuthContext';
 import GuestButton from './GuestButton';
+import UserMenu from './UserMenu';
 
 function NavBarComponent() {
   const { isAuth } = useContext(AuthContext);
+
   return (
     <>
       <Navbar bg="light" expand="lg" sticky="top">
@@ -23,6 +25,11 @@ function NavBarComponent() {
               <div className="flex-grow-1 d-block mt-2 mb-2">
                 <SearchBar />
               </div>
+              {isAuth && (
+                <div className="d-block ">
+                  <UserMenu />
+                </div>
+              )}
               {!isAuth && (
                 <div className="d-flex justify-content-end">
                   <GuestButton />

@@ -16,7 +16,7 @@ function PostComponent({
   //     'https://images.unsplash.com/photo-1534161308652-fdfcf10f62c4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2174&q=80',
   //   ];
   return (
-    <Container fluid>
+    <Container className="mb-5" fluid>
       <Row>
         <Col lg={6}>
           <div>

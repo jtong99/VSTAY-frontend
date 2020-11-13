@@ -1,42 +1,37 @@
 import React from 'react';
 import { useTranslation } from 'i18n';
-import { RoomFeatures as featuresEnum } from '@helper/enum';
-import { Button, Image, Container } from 'react-bootstrap';
-import AirConditioner from '@assets/img/features/air-conditioner.svg';
-import Balcony from '@assets/img/features/balcony.svg';
-import Chair from '@assets/img/features/chair.svg';
-import Couch from '@assets/img/features/couch.svg';
-import Desk from '@assets/img/features/desk.svg';
-import Fan from '@assets/img/features/fan.svg';
-import Kitchenette from '@assets/img/features/kitchenette.svg';
-import Table from '@assets/img/features/table.svg';
-import Television from '@assets/img/features/tv.svg';
-import Wardrobe from '@assets/img/features/wardrobe.svg';
-import Lock from '@assets/img/features/lock.svg';
+import { Image } from 'react-bootstrap';
 
 function Features({ features }) {
   const { t } = useTranslation(['topnav']);
-  const featuresData = [
-    {
-      icon: AirConditioner,
-      text: 'Air Conditioner',
-      value: featuresEnum.AIR_CONDITIONER,
-    },
-    { icon: Balcony, text: 'Balcony', value: featuresEnum.BALCONY },
-    { icon: Chair, text: 'Chair', value: featuresEnum.CHAIR },
-    { icon: Couch, text: 'Couch', value: featuresEnum.COUCH },
-    { icon: Desk, text: 'Desk', value: featuresEnum.DESK },
-    { icon: Fan, text: 'Fan', value: featuresEnum.FAN },
-    { icon: Kitchenette, text: 'Kitchenette', value: featuresEnum.KITCHENETTE },
-    { icon: Table, text: 'Table', value: featuresEnum.TABLE },
-    { icon: Television, text: 'Television', value: featuresEnum.TV },
-    { icon: Wardrobe, text: 'Wardrobe', value: featuresEnum.WARDROBE },
-    { icon: Lock, text: 'Lock', value: featuresEnum.DOOR_LOCK },
-  ];
+
   return (
-    <div>
+    <div className="mb-4">
       <h4 style={{ fontWeight: 600 }}>{t('Features')}</h4>
-      <div
+      <div className="d-flex justify-content-between flex-wrap mt-4">
+        {features &&
+          features.map((f, i) => (
+            <div
+              className={`mt-3 d-flex justify-content-${
+                i % 2 !== 0 ? 'end' : 'start'
+              }`}
+              style={{
+                width: '50%',
+                flexGrow: 1,
+              }}
+            >
+              <Image src={f.icon} alt="icon" className="d-block" />
+
+              <h6
+                className="ml-4 mt-2"
+                style={{ fontWeight: 600, minWidth: '90px' }}
+              >
+                {f.text}
+              </h6>
+            </div>
+          ))}
+      </div>
+      {/* <div
         className={`${
           features.includes(featuresData[0].value) &&
           features.includes(featuresData[1].value)
@@ -52,17 +47,8 @@ function Features({ features }) {
             </span>
           </div>
         ))}
-
-        {/* {featuresData.map((f, i) => (
-          <div className={`${i % 2 === 0 ? 'flex-grow-1' : ''}`}>
-            <Image src={f.icon} />
-            <span className="ml-3" style={{ fontWeight: 600 }}>
-              {f.text}
-            </span>
-          </div>
-        ))} */}
-      </div>
-      <div
+      </div> */}
+      {/* <div
         className={`${
           features.includes(featuresData[2].value) &&
           features.includes(featuresData[3].value)
@@ -78,8 +64,8 @@ function Features({ features }) {
             </span>
           </div>
         ))}
-      </div>
-      <div
+      </div> */}
+      {/* <div
         className={`${
           features.includes(featuresData[4].value) &&
           features.includes(featuresData[5].value)
@@ -129,7 +115,7 @@ function Features({ features }) {
             </span>
           </div>
         ))}
-      </div>
+      </div> */}
     </div>
   );
 }

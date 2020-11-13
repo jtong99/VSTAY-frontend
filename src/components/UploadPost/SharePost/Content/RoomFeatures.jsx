@@ -2,66 +2,60 @@ import React, { useState } from 'react';
 import { Button, Image, Container } from 'react-bootstrap';
 import style from './Content.module.scss';
 import { useTranslation } from 'i18n';
-import AirConditioner from '../img/air-conditioner.svg';
-import Balcony from '../img/balcony.svg';
-import Chair from '../img/chair.svg';
-import Couch from '../img/couch.svg';
-import Desk from '../img/desk.svg';
-import Fan from '../img/fan.svg';
-import Kitchenette from '../img/kitchenette.svg';
-import Table from '../img/table.svg';
-import Television from '../img/television.svg';
-import Wardrobe from '../img/wardrobe.svg';
-import Lock from '../img/padlock.svg';
 import Check from './img/check.svg';
+import { featuresData } from '@helper/feature';
 
 import ButtonDirect from '../ButtonDirect';
-import { RoomFeatures as featuresEnum } from '@helper/enum';
 
 function RoomFeatures({ onFinishFeatures, currentData, upStep, downStep }) {
   const { t } = useTranslation(['topnav']);
   const [featuresSelected, setFeaturesSelected] = useState(
     currentData.features ?? [],
   );
-  const featuresData = [
-    {
-      icon: AirConditioner,
-      text: 'Air Conditioner',
-      value: featuresEnum.AIR_CONDITIONER,
-    },
-    { icon: Balcony, text: 'Balcony', value: featuresEnum.BALCONY },
-    { icon: Chair, text: 'Chair', value: featuresEnum.CHAIR },
-    { icon: Couch, text: 'Couch', value: featuresEnum.COUCH },
-    { icon: Desk, text: 'Desk', value: featuresEnum.DESK },
-    { icon: Fan, text: 'Fan', value: featuresEnum.FAN },
-    { icon: Kitchenette, text: 'Kitchenette', value: featuresEnum.KITCHENETTE },
-    { icon: Table, text: 'Table', value: featuresEnum.TABLE },
-    { icon: Television, text: 'Television', value: featuresEnum.TV },
-    { icon: Wardrobe, text: 'Wardrobe', value: featuresEnum.WARDROBE },
-    { icon: Lock, text: 'Lock', value: featuresEnum.DOOR_LOCK },
-  ];
+  const [featuresDisplay, setFeaturesDisplay] = useState(
+    currentData.featuresDisplay ?? [],
+  );
   const addFeatures = (v) => setFeaturesSelected([...featuresSelected, v]);
+  const addFeaturesDisplay = (v) => setFeaturesDisplay([...featuresDisplay, v]);
   const removeFeatures = (index) =>
     setFeaturesSelected([
       ...featuresSelected.slice(0, index),
       ...featuresSelected.slice(index + 1, featuresSelected.length),
     ]);
+
+  const removeFeaturesDisplay = (index) =>
+    setFeaturesDisplay([
+      ...featuresDisplay.slice(0, index),
+      ...featuresDisplay.slice(index + 1, featuresDisplay.length),
+    ]);
   const handleClick = (v) => {
-    if (featuresSelected.includes(v)) {
-      removeFeatures(featuresSelected.indexOf(v));
+    if (featuresSelected.includes(v.value)) {
+      removeFeatures(featuresSelected.indexOf(v.value));
+      removeFeaturesDisplay(
+        featuresDisplay
+          .map((f) => {
+            return f.value;
+          })
+          .indexOf(v.value),
+      );
     } else {
-      addFeatures(v);
+      addFeatures(v.value);
+      addFeaturesDisplay(v);
     }
   };
   const onFinish = () => {
     if (onFinishFeatures)
-      onFinishFeatures({ ...currentData, features: featuresSelected });
+      onFinishFeatures({
+        ...currentData,
+        features: featuresSelected,
+        featuresDisplay,
+      });
     if (upStep) upStep();
   };
 
   return (
     <Container className="pt-5">
-      {/* <button onClick={() => console.log(featuresSelected)}>click</button> */}
+      {/* <button onClick={() => console.log(featuresDisplay)}>click</button> */}
       <div className="p-3">
         <h4 className="text-secondary">{t('Introduce your place')}</h4>
         <h3 style={{ fontWeight: 600 }}>{t('Room features')}</h3>
@@ -78,7 +72,7 @@ function RoomFeatures({ onFinishFeatures, currentData, upStep, downStep }) {
             <div>
               <Button
                 variant="link"
-                onClick={() => handleClick(i.value)}
+                onClick={() => handleClick(i)}
                 className={`${style.features__Container} text-center ${
                   featuresSelected.includes(i.value)
                     ? style.boardingHouse__ContainerHover

@@ -11,7 +11,7 @@ function TopBar({ currentStep, downStep }) {
     <>
       <Container style={{ paddingTop: 75 }}>
         <div className="d-flex justify-content-between">
-          {currentStep > 0 && (
+          {currentStep > 0 && currentStep < 13 && (
             <Button
               variant="link"
               onClick={downStep}

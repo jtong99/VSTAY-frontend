@@ -16,8 +16,8 @@ import SuccessUpload from './Success';
 
 function Content({ currentStep, upStep, downStep, onFinishStep, currentPostData }) {
   return (
-    <div>
-      {currentStep === 0 && <Intro upStep={upStep} />}
+    <div className="mb-5">
+      {currentStep === 110 && <Intro upStep={upStep} />}
       {currentStep === 1 && (
         <SelectTypeAccommodation
           onFinishSelectType={onFinishStep}
@@ -107,7 +107,7 @@ function Content({ currentStep, upStep, downStep, onFinishStep, currentPostData 
           downStep={downStep}
         />
       )}
-      {currentStep === 13 && (
+      {currentStep === 0 && (
         <SuccessUpload
           onFinishInput={onFinishStep}
           currentData={currentPostData}

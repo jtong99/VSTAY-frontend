@@ -7,7 +7,7 @@ import RoomOverview from './RoomOverview';
 import Features from './Features';
 
 function PostComponent({
-  data: { images, description, detail, price, title, type, features },
+  data: { images, description, detail, price, title, type, featuresDisplay },
 }) {
   //   const images = [
   //     'https://images.unsplash.com/photo-1449034446853-66c86144b0ad?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2100&q=80',
@@ -25,7 +25,7 @@ function PostComponent({
             <hr className="my-4" />
             <RoomOverview overview={detail} price={price} />
             <hr className="my-4" />
-            <Features features={features} />
+            <Features features={featuresDisplay} />
           </div>
         </Col>
         <Col lg={6}>

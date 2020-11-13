@@ -37,6 +37,7 @@ function Preview({ onFinishAbout, downStep, currentData, upStep }) {
           {t('Finish')}
         </Button>
       </div>
+      <button onClick={() => console.log(currentData)}>lcik</button>
       <Container className="pt-5">
         <PostPreview data={currentData} />
       </Container>

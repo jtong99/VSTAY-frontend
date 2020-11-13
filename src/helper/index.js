@@ -27,7 +27,7 @@ export const fetcher = async ({
           Authorization: token,
         },
   });
-
+  console.log(API_URL);
   const json = await res.json();
 
   return json;

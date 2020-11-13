@@ -61,7 +61,7 @@ export const fetchNewToken = async (context = null) => {
 };
 
 export const fetchLogout = async (token) => {
-  const res = await fetch(`${API_URL}/v1/auth/signout`, {
+  const res = await fetch(`${API_URL}/v1/auth/logout`, {
     headers: {
       Authorization: token,
       'cache-control': 'no-cache',

@@ -95,6 +95,19 @@ function Auth({ tokenData, ...props }) {
     };
   }, []);
 
+  useEffect(() => {
+    if (tokenData.value) {
+      clearTimeout(timer.current);
+      token.current = tokenData.value;
+      timer.current = setTimeout(
+        handleRenewToken,
+        tokenData.exp * 1000 - Date.now() - timerPadding,
+      );
+    } else {
+      handleRenewToken();
+    }
+  }, [handleRenewToken, tokenData.exp, tokenData.value]);
+
   return (
     <SWRConfig
       value={{

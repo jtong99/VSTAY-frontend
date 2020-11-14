@@ -22,6 +22,7 @@ function MainPage() {
         <NavBar />
         <MainButton />
         <PostList />
+        etete
       </div>
     </>
   );

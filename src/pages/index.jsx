@@ -2,8 +2,9 @@ import React from 'react';
 import NavBar from '@components/NavBar';
 import { NextSeo } from 'next-seo';
 import { APP_URL } from 'app.config';
-import MainButton from '@components/MainPage/MainButton';
-import PostList from '@components/MainPage/PostList';
+import ActionBtn from '@components/home/ActionBtn';
+import ListPost from '@components/home/PostList';
+import Test from '@components/Test';
 
 function MainPage() {
   return (
@@ -20,9 +21,8 @@ function MainPage() {
       />
       <div>
         <NavBar />
-        <MainButton />
-        <PostList />
-        etete
+        <ActionBtn />
+        <ListPost />
       </div>
     </>
   );

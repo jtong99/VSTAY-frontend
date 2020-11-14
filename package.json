@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "@mapbox/mapbox-gl-directions": "^4.1.0",
+    "@next/bundle-analyzer": "^10.0.1",
     "babel-plugin-transform-imports": "^2.0.0",
     "eslint-plugin-import": "^2.22.1",
     "express": "^4.17.1",

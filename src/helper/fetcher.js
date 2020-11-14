@@ -1,7 +1,7 @@
 import fetch from 'unfetch';
 import { API_URL } from 'app.config';
 
-export default async (path, token) => {
+const fetcher = async (path, token) => {
   const res = await fetch(API_URL + path, {
     headers: {
       'Content-Type': 'application/json',
@@ -14,3 +14,5 @@ export default async (path, token) => {
 
   return json;
 };
+
+export default fetcher;

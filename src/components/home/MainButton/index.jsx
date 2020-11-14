@@ -1,6 +1,7 @@
 import React from 'react';
-import ShareButton from './ShareBtn';
+import ShareBtn from './ShareBtn';
 import NeedButton from './NeedButton';
+import Test from '@components/Test';
 import { Container } from 'react-bootstrap';
 
 function MainButton() {
@@ -10,7 +11,7 @@ function MainButton() {
       style={{ padding: '24px 20rem 24px 20rem' }}
     >
       <NeedButton />
-      <ShareButton />
+      <ShareBtn />
     </div>
   );
 }

@@ -69,17 +69,22 @@ function ImagesPost({ currentData, upStep, downStep, onFinishImage }) {
   const onAddImg = () => {
     image.current.click();
   };
+
   const onFinish = async () => {
-    const formData = new FormData();
-    let blobArr = [];
-    for (let i = 0; i < imageFile.length; i++) {
-      formData.append('images', imageFile[i]);
-      blobArr.push(dataURIToBlob(images[i]));
-    }
-    const { data: res, error: err } = await fire(formData);
-    if (res && res.code === 201) {
-      const { inserted } = res;
-      onFinishImage({ ...currentData, images: inserted });
+    if (imageFile.length > 0) {
+      const formData = new FormData();
+      let blobArr = [];
+      for (let i = 0; i < imageFile.length; i++) {
+        formData.append('images', imageFile[i]);
+        blobArr.push(dataURIToBlob(images[i]));
+      }
+      const { data: res, error: err } = await fire(formData);
+      if (res && res.code === 201) {
+        const { inserted } = res;
+        onFinishImage({ ...currentData, images: inserted });
+        upStep();
+      }
+    } else {
       upStep();
     }
   };

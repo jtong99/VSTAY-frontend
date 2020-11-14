@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 
 import TopBarPost from './TopBar';
 import Content from './Content';
-function SharePost() {
+
+function NeedPostComponent() {
   const [currentStep, setCurrentStep] = useState(0);
-  const [postData, setPostData] = useState({ type_of_post: 'SHARE' });
+  const [postData, setPostData] = useState({ type_of_post: 'NEED' });
 
   const upStep = () => {
     setCurrentStep(currentStep + 1);
@@ -31,4 +32,4 @@ function SharePost() {
   );
 }
 
-export default SharePost;
+export default NeedPostComponent;

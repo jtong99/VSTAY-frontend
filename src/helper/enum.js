@@ -64,3 +64,8 @@ module.exports.CustomerPreference = {
   NO_COUPLE: 'no_couple',
   COUPLE: 'couple',
 };
+
+module.exports.RoomFurnishingNeed = {
+  FLEXIBLE: 'flexible',
+  REQUIRED: 'required',
+};

@@ -31,8 +31,10 @@ function SelectTypeAccommodation({
   return (
     <Container className="pt-5">
       <div className="p-3">
-        <h4 className="text-secondary">{t('Introduce your place')}</h4>
-        <h3 style={{ fontWeight: 600 }}>{t('What type of your place?')}</h3>
+        <h4 className="text-secondary">{t('YOUR IDEAL PLACE')}</h4>
+        <h3 style={{ fontWeight: 600 }}>
+          {t('What type of place are you looking for')}
+        </h3>
       </div>
       <div className="d-flex justify-content-center flex-wrap">
         {propertyImage.map((i) => (

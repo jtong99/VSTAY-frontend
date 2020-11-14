@@ -9,65 +9,41 @@ import {
   Popover,
 } from 'react-bootstrap';
 import { useTranslation } from 'i18n';
-import MapModal from '@components/Map/MapModalSelectAddress';
-import { Parking, Bills } from '@helper/enum';
 import ButtonDirect from '../ButtonDirect';
 import { enumToArray } from 'helper';
-import { RoomFurnishing, RoomToilet } from '@helper/enum';
+import { RoomFurnishingNeed, RoomToilet } from '@helper/enum';
 
-function AboutRoom({ currentData, upStep, downStep, onFinishRoom }) {
+function PropertyPreference({ currentData, upStep, downStep, onFinishRoom }) {
   const { t } = useTranslation(['topnav']);
-  const arrayNum = enumToArray(RoomFurnishing);
-  const furnishSelect = [
-    { text: 'Flexible', val: RoomFurnishing.FLEXIBLE },
-    { text: 'Furnish', val: RoomFurnishing.FURNISHED },
+  const selectFurnish = [
+    { text: 'Flexible', val: 'flexible' },
+    { text: 'Required', val: 'required' },
+    { text: 'Not Required', val: 'not_required' },
   ];
-  const toiletSelect = [
-    { text: 'Shared', val: RoomToilet.SHARED },
-    { text: 'Owned', val: RoomToilet.OWNED },
+  const selectInternet = [
+    { text: 'Flexible', val: 'flexible' },
+    { text: 'Required', val: 'required' },
+  ];
+  const selectToilet = [
+    { text: 'Flexible', val: 'flexible' },
+    { text: 'Owned', val: 'required' },
   ];
   const maxPeopleLive = [1, 2, 3, 4, 5];
   const [roomData, setRoomData] = useState({
     furnishing: (currentData.detail && currentData.detail.furnishing) ?? '',
-    toilets: (currentData.detail && currentData.detail.toilets) ?? '',
-    max_people_live_with:
-      (currentData.detail && currentData.detail.max_people_live_with) ??
-      'Select max people live with',
   });
-  const handleChangeFurnish = (val) => setRoomData({ ...roomData, furnishing: val });
-  const handleChangeToilet = (val) => setRoomData({ ...roomData, toilets: val });
-  const isEmpty = () => {
-    return (
-      roomData.furnishing === '' ||
-      roomData.toilets === '' ||
-      roomData.max_people_live_with === ''
-    );
-  };
-  const onFinish = () => {
-    if (onFinishRoom)
-      onFinishRoom({
-        ...currentData,
-        detail: {
-          ...currentData.detail,
-          max_people_live_with: parseInt(roomData.max_people_live_with),
-          toilets: roomData.toilets,
-          furnishing: roomData.furnishing,
-        },
-      });
-    if (upStep) upStep();
-  };
   return (
-    <Container className="pt-5">
+    <Container className="pt-5 pb-5">
       <div className="p-3">
-        <h4 className="text-secondary">{t('Introduce your bed room(s)')}</h4>
-        <h3 style={{ fontWeight: 600 }}>{t('About your bed room(s)')}</h3>
+        <h4 className="text-secondary">{t('YOUR IDEAL PLACE')}</h4>
+        <h3 style={{ fontWeight: 600 }}>{t('Property preferences')}</h3>
       </div>
-      <Form style={{ width: '35%', margin: '0 auto' }}>
+      <Form style={{ width: '55%', margin: '0 auto' }}>
         <Form.Group>
           <Form.Label style={{ fontWeight: 600 }}>{t('Room Furnishing')}</Form.Label>
 
           <div>
-            {furnishSelect.map((b) => (
+            {selectFurnish.map((b) => (
               <Button
                 variant="whiter"
                 className={`border-dark ${
@@ -75,7 +51,7 @@ function AboutRoom({ currentData, upStep, downStep, onFinishRoom }) {
                 }`}
                 onClick={() => handleChangeFurnish(b.val)}
                 style={{
-                  padding: '15px 66px 15px 66px',
+                  padding: '15px 60px 15px 60px',
                   borderRadius: 'initial',
                   color: roomData.furnishing === b.val ? '#ffffff' : '#000000',
                   fontWeight: 600,
@@ -91,21 +67,50 @@ function AboutRoom({ currentData, upStep, downStep, onFinishRoom }) {
           </FormControl.Feedback>
         </Form.Group>
         <Form.Group>
-          <Form.Label style={{ fontWeight: 600 }}>{t('Toilets')}</Form.Label>
+          <Form.Label style={{ fontWeight: 600 }}>{t('Internet')}</Form.Label>
 
           <div>
-            {toiletSelect.map((b) => (
+            {selectInternet.map((b) => (
               <Button
                 variant="whiter"
                 className={`border-dark ${
-                  roomData.toilets === b.val ? 'bg-black-blue' : ''
+                  roomData.furnishing === b.val ? 'bg-black-blue' : ''
                 }`}
-                onClick={() => handleChangeToilet(b.val)}
+                onClick={() => handleChangeFurnish(b.val)}
                 style={{
-                  padding: '15px 68px 15px 68px',
+                  padding: '15px 116px 15px 116px',
                   borderRadius: 'initial',
-                  color: roomData.toilets === b.val ? '#ffffff' : '#000000',
+                  color: roomData.furnishing === b.val ? '#ffffff' : '#000000',
                   fontWeight: 600,
+                  width: 300,
+                }}
+              >
+                {b.text}
+              </Button>
+            ))}
+          </div>
+
+          <FormControl.Feedback type="invalid" style={{ whiteSpace: 'pre-line' }}>
+            {t('Title cannot be empty')}
+          </FormControl.Feedback>
+        </Form.Group>
+        <Form.Group style={{ width: '100%' }}>
+          <Form.Label style={{ fontWeight: 600 }}>{t('Toilets')}</Form.Label>
+
+          <div>
+            {selectToilet.map((b) => (
+              <Button
+                variant="whiter"
+                className={`border-dark ${
+                  roomData.furnishing === b.val ? 'bg-black-blue' : ''
+                }`}
+                onClick={() => handleChangeFurnish(b.val)}
+                style={{
+                  padding: '15px 116px 15px 116px',
+                  borderRadius: 'initial',
+                  color: roomData.furnishing === b.val ? '#ffffff' : '#000000',
+                  fontWeight: 600,
+                  width: 300,
                 }}
               >
                 {b.text}
@@ -142,20 +147,10 @@ function AboutRoom({ currentData, upStep, downStep, onFinishRoom }) {
               <option value={m}>{m === 5 ? '5+' : m}</option>
             ))}
           </Form.Control>
-
-          <FormControl.Feedback type="invalid" style={{ whiteSpace: 'pre-line' }}>
-            {t('Title cannot be empty')}
-          </FormControl.Feedback>
         </Form.Group>
       </Form>
-      <ButtonDirect
-        currentStep={3}
-        downStep={downStep}
-        onFinishStep={onFinish}
-        disableValue={isEmpty()}
-      />
     </Container>
   );
 }
 
-export default AboutRoom;
+export default PropertyPreference;

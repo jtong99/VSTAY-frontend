@@ -1,9 +1,17 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { NextSeo } from 'next-seo';
 import { APP_URL } from 'app.config';
+import { useRouter } from 'next/router';
 import SharePost from '@components/UploadPost/SharePost';
+import NeedPost from '@components/UploadPost/NeedPost';
 
 function UploadPostPage() {
+  const router = useRouter();
+  useEffect(() => {
+    if (!router.query.t) {
+      router.push('/');
+    }
+  }, []);
   return (
     <>
       <NextSeo
@@ -16,7 +24,7 @@ function UploadPostPage() {
           description: 'Finding best place for your family',
         }}
       />
-      <SharePost />
+      {router.query.t === 'share' ? <SharePost /> : <NeedPost />}
     </>
   );
 }

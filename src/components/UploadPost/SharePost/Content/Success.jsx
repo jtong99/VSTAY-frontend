@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'i18n';
-import SuccessImg from './img/post-success.svg';
+import SuccessImg from '../../img/post-success.svg';
 import { Image, Button } from 'react-bootstrap';
 import Link from 'next/link';
 

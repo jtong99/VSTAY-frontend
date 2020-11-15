@@ -69,3 +69,25 @@ module.exports.RoomFurnishingNeed = {
   FLEXIBLE: 'flexible',
   REQUIRED: 'required',
 };
+
+module.exports.Gender = {
+  MALE: 'male',
+  FEMALE: 'female',
+};
+
+module.exports.Employment = {
+  WORKING_FULLTIME: 'working_fulltime',
+  WORKING_PARTTIME: 'working_parttime',
+  WORKING_HOLIDAY: 'working_holiday',
+  UNEMPLOYED: 'unemployed',
+  BACKPACKER: 'backpacker',
+  STUDENT: 'student',
+  RETIRED: 'retired',
+};
+
+module.exports.LifeStyle = {
+  SMOKE: 'smoke',
+  LGBT: 'lgbt',
+  PETS: 'pets',
+  CHILDREN: 'children',
+};

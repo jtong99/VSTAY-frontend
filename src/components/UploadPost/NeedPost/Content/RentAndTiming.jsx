@@ -14,50 +14,51 @@ import style from './Content.module.scss';
 import DatePicker from 'react-datepicker';
 import { LengthOfStay } from '@helper/enum';
 import { enumToArray } from 'helper';
+import ButtonDirect from '../ButtonDirect';
+import { DateFormat, toUnixTimeStamp } from '@helper/format';
 
 function RentAndTiming({ currentData, upStep, downStep, onFinishRent }) {
   const { t } = useTranslation(['topnav']);
   const lengthStay = enumToArray(LengthOfStay);
   const [rentData, setRentData] = useState({
-    bills: (currentData.detail && currentData.detail.bills) ?? '',
-    rent: currentData.price ?? '',
+    budget: currentData.budget ?? '',
+    length_of_stay: currentData.length_of_stay ?? 'Select length stay',
   });
-  const [date, setDate] = useState(
-    (currentData.detail &&
-      currentData.detail.room_availability &&
-      currentData.detail.room_availability.date_availability) ??
-      new Date(Date.now() - 7 * 24 * 60 * 60 * 1000),
+  const [stayAvailable, setStayAvailable] = useState(
+    currentData.length_of_stay ?? '',
   );
-  const billData = [
-    { text: 'Include in rent', val: Bills.INCLUDE_IN_RENT },
-    { text: 'Some in rent', val: Bills.SOME_IN_RENT },
-    { text: 'Not in rent', val: Bills.NOT_IN_RENT },
-  ];
+  const [date, setDate] = useState(
+    currentData.move_date ?? new Date(Date.now() - 7 * 24 * 60 * 60 * 1000),
+  );
+
   const isEmpty = () => {
-    return rentData.bills === '' || rentData.rent === '';
+    return (
+      rentData.budget === '' || rentData.length_of_stay === 'Select length stay'
+    );
   };
   const handleChange = (field) => (event) => {
     const re = /^[0-9\b]+$/;
     if (
-      field === 'rent' &&
+      field === 'budget' &&
       (re.test(event.target.value) || event.target.value === '')
     ) {
-      setRentData({
+      return setRentData({
         ...rentData,
         [field]: event.target.value,
       });
     }
-    // return setRentData({
-    //   ...rentData,
-    //   [field]: event.target.value,
-    // });
+    return setRentData({
+      ...rentData,
+      [field]: event.target.value,
+    });
   };
   const onFinish = () => {
     if (onFinishRent)
       onFinishRent({
         ...currentData,
-        price: parseInt(rentData.rent),
-        detail: { ...currentData.detail, bills: rentData.bills },
+        budget: parseInt(rentData.budget),
+        length_of_stay: parseInt(rentData.length_of_stay),
+        move_date: toUnixTimeStamp(date),
       });
     if (upStep) upStep();
   };
@@ -104,9 +105,10 @@ function RentAndTiming({ currentData, upStep, downStep, onFinishRent }) {
         <h4 className="text-secondary">{t('YOUR IDEAL PLACE')}</h4>
         <h3 style={{ fontWeight: 600 }}>{t('Rent and timing')}</h3>
       </div>
+      {/* <button onClick={() => console.log(currentData)}>click</button> */}
       <Form style={{ width: '35%', margin: '0 auto' }}>
         <Form.Group>
-          <Form.Label style={{ fontWeight: 600 }}>{t('Monthly Rent')}</Form.Label>
+          <Form.Label style={{ fontWeight: 600 }}>{t('Budget')}</Form.Label>
           <div
             className="d-flex"
             style={{
@@ -122,8 +124,8 @@ function RentAndTiming({ currentData, upStep, downStep, onFinishRent }) {
               type="tel"
               style={{ width: '65%' }}
               className={`border-light ${style.currencyInput}`}
-              value={rentData.rent}
-              onChange={handleChange('rent')}
+              value={rentData.budget}
+              onChange={handleChange('budget')}
               required
               // isInvalid={errorTitle}
             />
@@ -142,17 +144,15 @@ function RentAndTiming({ currentData, upStep, downStep, onFinishRent }) {
           </FormControl.Feedback>
         </Form.Group>
         <Form.Group>
-          <Form.Label style={{ fontWeight: 600 }}>{t('Bills')}</Form.Label>
+          <Form.Label style={{ fontWeight: 600 }}>{t('Length of stay')}</Form.Label>
           <Form.Control
             as="select"
             className="pr-3 border-dark"
-            // value={stayAvailable.max}
-            // onChange={(e) =>
-            //   setStayAvailable({ ...stayAvailable, max: e.target.value })
-            // }
+            value={rentData.length_of_stay}
+            onChange={handleChange('length_of_stay')}
           >
             <option
-              value="Select parking"
+              value="Select length stay"
               style={{ fontWeight: 600 }}
               selected
               disabled
@@ -173,6 +173,13 @@ function RentAndTiming({ currentData, upStep, downStep, onFinishRent }) {
           </FormControl.Feedback>
         </Form.Group>
       </Form>
+
+      <ButtonDirect
+        currentStep={1}
+        // downStep={downStep}
+        onFinishStep={onFinish}
+        disableValue={isEmpty()}
+      />
     </Container>
   );
 }

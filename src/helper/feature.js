@@ -9,7 +9,23 @@ import Table from '@assets/img/features/table.svg';
 import Television from '@assets/img/features/tv.svg';
 import Wardrobe from '@assets/img/features/wardrobe.svg';
 import Lock from '@assets/img/features/lock.svg';
-import { RoomFeatures as featuresEnum } from '@helper/enum';
+import WorkingFulltime from '@assets/img/employment/fulltime.svg';
+import WorkingParttime from '@assets/img/employment/parttime.svg';
+import WorkingHoliday from '@assets/img/employment/working-holiday.svg';
+import Retired from '@assets/img/employment/retired.svg';
+import Unemployed from '@assets/img/employment/unemployed.svg';
+import Student from '@assets/img/employment/student.svg';
+import Backpacker from '@assets/img/employment/backpacker.svg';
+import Smoker from '@assets/img/lifestyle/cigarrete.svg';
+import LGBT from '@assets/img/lifestyle/lgtb.svg';
+import Pets from '@assets/img/lifestyle/dog.svg';
+import Children from '@assets/img/lifestyle/family.svg';
+
+import {
+  RoomFeatures as featuresEnum,
+  Employment as employmentEnum,
+  LifeStyle as lifestyleEnum,
+} from '@helper/enum';
 
 const featuresData = [
   {
@@ -29,4 +45,64 @@ const featuresData = [
   { icon: Lock, text: 'Lock', value: featuresEnum.DOOR_LOCK },
 ];
 
-module.exports = { featuresData };
+const employmentData = [
+  {
+    icon: WorkingFulltime,
+    text: 'Working full-time',
+    value: employmentEnum.WORKING_FULLTIME,
+  },
+  {
+    icon: WorkingParttime,
+    text: 'Working part-time',
+    value: employmentEnum.WORKING_PARTTIME,
+  },
+  {
+    icon: WorkingHoliday,
+    text: 'Working holiday',
+    value: employmentEnum.WORKING_HOLIDAY,
+  },
+  {
+    icon: Retired,
+    text: 'Retired',
+    value: employmentEnum.RETIRED,
+  },
+  {
+    icon: Unemployed,
+    text: 'Unemployed',
+    value: employmentEnum.UNEMPLOYED,
+  },
+  {
+    icon: Backpacker,
+    text: 'Backpacker',
+    value: employmentEnum.BACKPACKER,
+  },
+  {
+    icon: Student,
+    text: 'Student',
+    value: employmentEnum.STUDENT,
+  },
+];
+
+const lifeStyleData = [
+  {
+    icon: Smoker,
+    text: 'Smoker',
+    value: lifestyleEnum.SMOKE,
+  },
+  {
+    icon: LGBT,
+    text: 'LGBT+',
+    value: lifestyleEnum.LGBT,
+  },
+  {
+    icon: Pets,
+    text: 'Pets',
+    value: lifestyleEnum.PETS,
+  },
+  {
+    icon: Children,
+    text: 'Children',
+    value: lifestyleEnum.CHILDREN,
+  },
+];
+module.exports = { featuresData, employmentData, lifeStyleData };

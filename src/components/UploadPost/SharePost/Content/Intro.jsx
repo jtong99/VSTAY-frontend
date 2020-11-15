@@ -1,5 +1,5 @@
 import React from 'react';
-import IntroImg from './img/Intro.svg';
+import IntroImg from '../../img/Intro.svg';
 import { useTranslation } from 'i18n';
 import { Image, Button } from 'react-bootstrap';
 import useCurrentUser from '@hooks/api/useCurrentUserData';

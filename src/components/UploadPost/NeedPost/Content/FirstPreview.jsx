@@ -2,22 +2,19 @@ import React from 'react';
 import { Image, Container } from 'react-bootstrap';
 import { useTranslation } from 'i18n';
 import ButtonDirect from '../ButtonDirect';
-import DescriptionImg from '../../img/Description.svg';
+import PreviewImg from '@assets/img/preview.svg';
 
-function Description({ onFinishDescription, upStep }) {
+function FirstPreview({ onFinishDescription, upStep }) {
   const { t } = useTranslation(['topnav']);
   return (
     <Container className="pt-5">
       <div className="p-3 text-center">
         <h3 style={{ fontWeight: 600, textAlign: 'center' }}>
-          {t('Introduce yourself and your property')}
+          {t('Show me what my listing will look like')}
         </h3>
-        <Image src={DescriptionImg} width="170px" className="m-5" />
+        <Image src={PreviewImg} width="140px" className="m-5" />
         <p style={{ fontWeight: 600, textAlign: 'center' }}>
-          {t('Introduce yourself and property')}
-        </p>
-        <p className="text-secondary">
-          {t('Help your future customer know about you and your property')}
+          {t('Preview Listing')}
         </p>
       </div>
       <ButtonDirect
@@ -29,4 +26,4 @@ function Description({ onFinishDescription, upStep }) {
   );
 }
 
-export default Description;
+export default FirstPreview;

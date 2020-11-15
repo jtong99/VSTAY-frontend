@@ -2,18 +2,17 @@ import React, { useState } from 'react';
 import { Button, Image, Container } from 'react-bootstrap';
 import style from './Content.module.scss';
 import { useTranslation } from 'i18n';
+import { lifeStyleData } from '@helper/feature';
 import Check from '../../img/check.svg';
-import { featuresData } from '@helper/feature';
-
 import ButtonDirect from '../ButtonDirect';
 
-function RoomFeatures({ onFinishFeatures, currentData, upStep, downStep }) {
+function LifeStyleComponent({ onFinishEmploy, currentData, upStep, downStep }) {
   const { t } = useTranslation(['topnav']);
   const [featuresSelected, setFeaturesSelected] = useState(
-    currentData.features ?? [],
+    currentData.life_style ?? [],
   );
   const [featuresDisplay, setFeaturesDisplay] = useState(
-    currentData.featuresDisplay ?? [],
+    currentData.lifeStyleDisplay ?? [],
   );
   const addFeatures = (v) => setFeaturesSelected([...featuresSelected, v]);
   const addFeaturesDisplay = (v) => setFeaturesDisplay([...featuresDisplay, v]);
@@ -44,30 +43,25 @@ function RoomFeatures({ onFinishFeatures, currentData, upStep, downStep }) {
     }
   };
   const onFinish = () => {
-    if (onFinishFeatures)
-      onFinishFeatures({
+    if (onFinishEmploy)
+      onFinishEmploy({
         ...currentData,
-        features: featuresSelected,
-        featuresDisplay,
+        life_style: featuresSelected,
+        lifeStyleDisplay,
       });
     if (upStep) upStep();
   };
-
   return (
     <Container className="pt-5">
-      {/* <button onClick={() => console.log(featuresDisplay)}>click</button> */}
       <div className="p-3">
-        <h4 className="text-secondary">{t('Introduce your place')}</h4>
-        <h3 style={{ fontWeight: 600 }}>{t('Room features')}</h3>
+        <h4 className="text-secondary">{t('INTRODUCE YOURSELF')}</h4>
+        <h3 style={{ fontWeight: 600 }}>{t('Lifestyle')}</h3>
       </div>
-      <h5 style={{ fontWeight: 600 }} className="text-center mb-4">
-        {t('Room furnishing and features')}
-      </h5>
       <div
         className="d-flex justify-content-center flex-wrap "
-        style={{ width: '65%', margin: '0 auto' }}
+        style={{ width: '65%', margin: '90px auto' }}
       >
-        {featuresData.map((i) => (
+        {lifeStyleData.map((i) => (
           <div className={`${style.property__Container}`}>
             <div>
               <Button
@@ -104,7 +98,6 @@ function RoomFeatures({ onFinishFeatures, currentData, upStep, downStep }) {
             <p style={{ margin: '0 auto' }}>{t(i.text)}</p>
           </div>
         ))}
-        <div style={{ width: 104, margin: '2rem' }} />
       </div>
       <ButtonDirect
         currentStep={1}
@@ -116,4 +109,4 @@ function RoomFeatures({ onFinishFeatures, currentData, upStep, downStep }) {
   );
 }
 
-export default RoomFeatures;
+export default LifeStyleComponent;

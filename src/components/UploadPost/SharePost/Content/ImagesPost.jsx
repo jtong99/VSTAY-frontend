@@ -3,7 +3,7 @@ import { Button, Image, Container, Form, FormControl } from 'react-bootstrap';
 import { useTranslation } from 'i18n';
 import dataURIToBlob from '@helper/base64ToBlob';
 import ButtonDirect from '../ButtonDirect';
-import RoomAndFeatures from './img/RoomAndFeatures.svg';
+import RoomAndFeatures from '../../img/RoomAndFeatures.svg';
 import useFetch from '@hooks/useFetch';
 import AuthContext from '@components/Auth/AuthContext';
 import { Camera } from 'react-feather';

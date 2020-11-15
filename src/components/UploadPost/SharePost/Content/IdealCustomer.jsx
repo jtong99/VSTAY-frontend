@@ -2,7 +2,7 @@ import React, { useState, useRef, forwardRef, createRef } from 'react';
 import { Button, Image, Container, Form, FormControl } from 'react-bootstrap';
 import { useTranslation } from 'i18n';
 import ButtonDirect from '../ButtonDirect';
-import IdealCustomerImg from './img/IdealCustomer.svg';
+import IdealCustomerImg from '../../img/IdealCustomer.svg';
 
 function IdealCustomer({ upStep, downStep }) {
   const { t } = useTranslation(['topnav']);

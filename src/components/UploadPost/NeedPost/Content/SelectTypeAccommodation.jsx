@@ -21,7 +21,7 @@ function SelectTypeAccommodation({
   );
   const propertyImage = [
     { img: BoardingHouse, text: 'Room(s) in boarding house', val: PostType.S_ROOM },
-    { img: House, text: 'Room(s) in your house', val: PostType.S_HOUSE },
+    { img: House, text: 'Room(s) in house', val: PostType.S_HOUSE },
     { img: WholeProperty, text: 'Whole property renting', val: PostType.R_HOUSE },
   ];
   const onFinish = () => {

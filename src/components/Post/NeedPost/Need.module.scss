@@ -5,3 +5,35 @@
     max-width: 35vw;
   }
 }
+
+.tags {
+  background-color: #0a496d;
+  color: #ffffff;
+  border-radius: 3px;
+  min-width: 100px;
+  padding: 10px;
+  text-align: center;
+  font-weight: 600;
+}
+.tagsText {
+  font-weight: 600;
+  margin-top: 11px;
+  margin-left: 16px;
+}
+.dollarIcon {
+  padding: 5px;
+  background-color: #a0cfeb;
+  color: #000000;
+  border-radius: 30px;
+}
+.textIcon {
+  font-size: 20px;
+  text-align: center;
+}
+.itemFeatures {
+  border: 1px solid #d9d9da;
+  border-radius: 30px;
+  padding: 0.5rem 0.75rem;
+  margin-right: 10px;
+  margin-top: 10px;
+}

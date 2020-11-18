@@ -34,7 +34,7 @@ function IntroduceInput({ currentData, upStep, downStep, onFinishInput }) {
     }
   };
   const onFinish = () => {
-    if (onFinishRoom)
+    if (onFinishInput)
       onFinishInput({
         ...currentData,
         about,

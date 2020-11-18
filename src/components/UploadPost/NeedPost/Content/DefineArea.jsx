@@ -5,6 +5,8 @@ import Map from '@components/utils/Map';
 import ButtonDirect from '../ButtonDirect';
 import { HelpCircle } from 'react-feather';
 
+import useDataFromGeocode from '@hooks/api/useDataFromGeocode';
+
 function DefineArea({ onFinishMap, currentData, upStep, downStep }) {
   const { t } = useTranslation(['topnav']);
   const [location, setLocation] = useState({
@@ -13,6 +15,7 @@ function DefineArea({ onFinishMap, currentData, upStep, downStep }) {
     latitude:
       (currentData && currentData.location && currentData.location.latitude) || '',
   });
+  const [address, setAddress] = useState('');
   const popover = (
     <Popover id="popover-address-hint">
       {/* <Popover.Title as="h3">{t('Address Selection')}</Popover.Title> */}
@@ -26,7 +29,7 @@ function DefineArea({ onFinishMap, currentData, upStep, downStep }) {
     </Popover>
   );
   const onFinish = () => {
-    if (onFinishMap) onFinishMap({ ...currentData, location });
+    if (onFinishMap) onFinishMap({ ...currentData, location, address });
     if (upStep) upStep();
   };
   return (
@@ -42,7 +45,12 @@ function DefineArea({ onFinishMap, currentData, upStep, downStep }) {
       </div>
 
       <div className="p-3" style={{ width: '100%' }}>
-        <Map height="350px" onSetLocation={(v) => setLocation(v)} width="100%" />
+        <Map
+          height="350px"
+          onSetLocation={(v) => setLocation(v)}
+          onSetAddress={(v) => setAddress(v)}
+          width="100%"
+        />
       </div>
       <ButtonDirect
         currentStep={1}

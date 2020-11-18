@@ -14,6 +14,7 @@ function Employment({ onFinishEmploy, currentData, upStep, downStep }) {
   const [featuresDisplay, setFeaturesDisplay] = useState(
     currentData.employmentDisplay ?? [],
   );
+
   const addFeatures = (v) => setFeaturesSelected([...featuresSelected, v]);
   const addFeaturesDisplay = (v) => setFeaturesDisplay([...featuresDisplay, v]);
   const removeFeatures = (index) =>
@@ -47,7 +48,7 @@ function Employment({ onFinishEmploy, currentData, upStep, downStep }) {
       onFinishEmploy({
         ...currentData,
         employment_status: featuresSelected,
-        employmentDisplay,
+        employmentDisplay: featuresDisplay,
       });
     if (upStep) upStep();
   };

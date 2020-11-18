@@ -21,3 +21,28 @@ export function DateFormat(date_) {
     date_.getDate() >= 10 ? date_.getDate() : `0${date_.getDate()}`
   }`;
 }
+
+export const formatDate = (value, mode) => {
+  const datetime = new Date(value);
+  // const locale = Languages.data[i18n.language]
+  //   ? Languages.data[i18n.language].locale
+  //   : 'en-US';
+  const locale = 'en-US';
+
+  switch (mode) {
+    case 'long':
+      return datetime.toLocaleDateString(locale, {
+        year: 'numeric',
+        month: 'long',
+        day: '2-digit',
+      });
+    case 'short':
+      return datetime.toLocaleDateString(locale, {
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+      });
+    default:
+      return datetime.toLocaleDateString(locale);
+  }
+};

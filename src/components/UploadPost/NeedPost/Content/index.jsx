@@ -11,6 +11,7 @@ import LifeStyle from './LifeStyle';
 import DescriptionInput from './Description';
 import FirstPreview from './FirstPreview';
 import Preview from './Preview';
+import SuccessUpload from './Success';
 
 function NeedPostContent({
   currentStep,
@@ -21,7 +22,7 @@ function NeedPostContent({
 }) {
   return (
     <div className="mb-5">
-      {currentStep === 110 && <Intro upStep={upStep} />}
+      {currentStep === 0 && <Intro upStep={upStep} />}
       {currentStep === 1 && (
         <SelectTypeAccommodation
           onFinishSelectType={onFinishStep}
@@ -48,7 +49,7 @@ function NeedPostContent({
       )}
       {currentStep === 4 && (
         <PropertyPreference
-          onFinishSelectType={onFinishStep}
+          onFinishRoom={onFinishStep}
           currentData={currentPostData}
           upStep={upStep}
           downStep={downStep}
@@ -102,8 +103,16 @@ function NeedPostContent({
           downStep={downStep}
         />
       )}
-      {currentStep === 0 && (
+      {currentStep === 11 && (
         <Preview
+          onFinishInput={onFinishStep}
+          currentData={currentPostData}
+          upStep={upStep}
+          downStep={downStep}
+        />
+      )}
+      {currentStep === 12 && (
+        <SuccessUpload
           onFinishInput={onFinishStep}
           currentData={currentPostData}
           upStep={upStep}

@@ -8,13 +8,16 @@ import ReactMapGL, {
 import { mapBoxToken } from '@helper/vars';
 import { Image } from 'react-bootstrap';
 
-function MapWithInitial({ viewportInitial = {}, geocode = {} }) {
+function MapWithInitial({ viewportInitial = {}, geocode = {}, address = '' }) {
   const [viewport, setViewport] = useState(viewportInitial ?? '');
   const geolocateStyle = {
     position: 'absolute',
     top: 0,
     left: 0,
     margin: 10,
+  };
+  const get = () => {
+    return address.replace(/,/g, '').split(' ').slice(0, 2).join(' ');
   };
   return (
     <ReactMapGL
@@ -39,7 +42,7 @@ function MapWithInitial({ viewportInitial = {}, geocode = {} }) {
               borderRadius: '50%',
             }}
           >
-            <div>MARK</div>
+            <div className="font-weight-600">{(address && get()) || 'MARK'}</div>
           </div>
         </Marker>
       )}

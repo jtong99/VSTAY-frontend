@@ -7,7 +7,9 @@ import Bed from '@assets/img/post/bed.svg';
 import User from '@assets/img/post/user.svg';
 import Wifi from '@assets/img/post/wifi.svg';
 
-function Preference() {
+function Preference({
+  data: { max_people_live_with, toilets, internet, furnishing },
+}) {
   const { t } = useTranslation(['topnav']);
   return (
     <div className="py-2">
@@ -27,10 +29,17 @@ function Preference() {
             }}
           >
             <Image src={Bath} alt="icon" className="d-block" />
-            <h6 className="ml-4 mt-2">{t('Bathroom')}</h6>
+            <h6 className="ml-4 mt-2">{t('Toilet')}</h6>
 
-            <h6 className="ml-4 mt-2" style={{ fontWeight: 600, minWidth: '90px' }}>
-              Flexible
+            <h6
+              className="ml-4 mt-2"
+              style={{
+                fontWeight: 600,
+                minWidth: '90px',
+                textTransform: 'capitalize',
+              }}
+            >
+              {toilets}
             </h6>
           </div>
           <div
@@ -41,10 +50,17 @@ function Preference() {
             }}
           >
             <Image src={Bed} alt="icon" className="d-block" />
-            <h6 className="ml-4 mt-2">{t('Bed')}</h6>
+            <h6 className="ml-4 mt-2">{t('Furnish')}</h6>
 
-            <h6 className="ml-4 mt-2" style={{ fontWeight: 600, minWidth: '90px' }}>
-              Flexible
+            <h6
+              className="ml-4 mt-2"
+              style={{
+                fontWeight: 600,
+                minWidth: '90px',
+                textTransform: 'capitalize',
+              }}
+            >
+              {furnishing}
             </h6>
           </div>
         </div>
@@ -60,7 +76,7 @@ function Preference() {
             <h6 className="ml-4 mt-2">{t('Max people live with')}</h6>
 
             <h6 className="ml-4 mt-2" style={{ fontWeight: 600, minWidth: '90px' }}>
-              Flexible
+              {max_people_live_with}
             </h6>
           </div>
           <div
@@ -73,8 +89,15 @@ function Preference() {
             <Image src={Wifi} width="30px" alt="icon" className="d-block" />
             <h6 className="ml-4 mt-2">{t('Internet')}</h6>
 
-            <h6 className="ml-4 mt-2" style={{ fontWeight: 600, minWidth: '90px' }}>
-              Flexible
+            <h6
+              className="ml-4 mt-2"
+              style={{
+                fontWeight: 600,
+                minWidth: '90px',
+                textTransform: 'capitalize',
+              }}
+            >
+              {internet}
             </h6>
           </div>
         </div>

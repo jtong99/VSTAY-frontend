@@ -8,8 +8,9 @@ import ReactMapGL, {
 import MarkImg from '@assets/img/location.svg';
 import { Image } from 'react-bootstrap';
 import { mapBoxToken } from '@helper/vars';
+import useDataFromGeocode from '@hooks/api/useDataFromGeocode';
 
-function MapComponent({ width, height, onSetLocation }) {
+function MapComponent({ width, height, onSetLocation, onSetAddress }) {
   const [viewport, setViewport] = useState({
     // latitude: 10.762622,
     // longitude: 106.660172,
@@ -24,10 +25,15 @@ function MapComponent({ width, height, onSetLocation }) {
     left: 0,
     margin: 10,
   };
+  const getAddressName = ({ features }) => {
+    return features[2].place_name;
+  };
   const handleClick = async (e) => {
     const longitude = e.lngLat[0];
     const latitude = e.lngLat[1];
+    const data = await useDataFromGeocode({ longitude, latitude });
     if (onSetLocation) onSetLocation({ longitude, latitude });
+    if (onSetAddress) onSetAddress(getAddressName(data));
     setMarkers({ longitude, latitude });
   };
   return (

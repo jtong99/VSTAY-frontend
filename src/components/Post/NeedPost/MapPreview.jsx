@@ -1,7 +1,7 @@
 import React from 'react';
 import MapWithInitial from '@components/utils/Map/MapWithInitial';
 
-function MapPreview() {
+function MapPreview({ address }) {
   const viewport = {
     longitude: 105.77034019999995,
     latitude: 10.04403640411679,
@@ -15,7 +15,11 @@ function MapPreview() {
   };
   return (
     <div>
-      <MapWithInitial viewportInitial={viewport} geocode={geocode} />
+      <MapWithInitial
+        viewportInitial={viewport}
+        geocode={geocode}
+        address={address}
+      />
     </div>
   );
 }

@@ -47,7 +47,7 @@ function LifeStyleComponent({ onFinishEmploy, currentData, upStep, downStep }) {
       onFinishEmploy({
         ...currentData,
         life_style: featuresSelected,
-        lifeStyleDisplay,
+        lifeStyleDisplay: featuresDisplay,
       });
     if (upStep) upStep();
   };

@@ -5,7 +5,7 @@ import useFetch from '@hooks/useFetch';
 import AuthContext from '@components/Auth/AuthContext';
 import PostPreview from '@components/Post/NeedPost';
 
-const path = '/v1/api/post';
+const path = '/v1/api/need-post';
 function Preview({ onFinishAbout, downStep, currentData, upStep }) {
   const { t } = useTranslation(['topnav']);
   const { getToken } = useContext(AuthContext);
@@ -14,8 +14,15 @@ function Preview({ onFinishAbout, downStep, currentData, upStep }) {
     method: 'POST',
   });
   const onFinish = async () => {
-    delete currentData.featuresDisplay;
-    const { data, error } = await fire(currentData);
+    const uploadData = currentData;
+    // delete uploadData.featuresDisplay;
+    // delete uploadData.employmentDisplay;
+    // delete uploadData.lifeStyleDisplay;
+    // delete uploadData.address;
+    // const uploadData = {
+
+    // }
+    const { data, error } = await fire(uploadData);
     if (data && data.code === 201) {
       upStep();
     }

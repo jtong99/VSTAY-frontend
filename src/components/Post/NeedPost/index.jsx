@@ -5,6 +5,8 @@ import Info from './Info';
 import Detail from './Detail';
 import About from './About';
 import Preference from './Preference';
+import MapPreview from './MapPreview';
+import Contact from './Contact';
 
 function NeedPostComponent() {
   //   const images = [
@@ -32,9 +34,12 @@ function NeedPostComponent() {
             <hr className="my-4" />
             <Preference />
           </Col>
-          <Col lg={4}>contact</Col>
+          <Col lg={4}>
+            <Contact />
+          </Col>
         </Row>
       </Container>
+      <MapPreview />
     </div>
   );
 }

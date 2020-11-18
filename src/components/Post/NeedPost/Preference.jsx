@@ -3,6 +3,9 @@ import { useTranslation } from 'i18n';
 import style from './Need.module.scss';
 import { Image } from 'react-bootstrap';
 import Bath from '@assets/img/post/bathtub.svg';
+import Bed from '@assets/img/post/bed.svg';
+import User from '@assets/img/post/user.svg';
+import Wifi from '@assets/img/post/wifi.svg';
 
 function Preference() {
   const { t } = useTranslation(['topnav']);
@@ -15,7 +18,7 @@ function Preference() {
         >
           {t('DETAILS')}
         </p>
-        <div className="d-flex justify-content-between flex-wrap mt-4">
+        <div className="d-flex justify-content-between mt-4">
           <div
             className={`mt-3 d-flex justify-content-start`}
             style={{
@@ -24,33 +27,56 @@ function Preference() {
             }}
           >
             <Image src={Bath} alt="icon" className="d-block" />
-            <h6 className="ml-4 mt-2">Bathroom</h6>
+            <h6 className="ml-4 mt-2">{t('Bathroom')}</h6>
 
             <h6 className="ml-4 mt-2" style={{ fontWeight: 600, minWidth: '90px' }}>
               Flexible
             </h6>
           </div>
-          {/* {features &&
-          features.map((f, i) => (
-            <div
-              className={`mt-3 d-flex justify-content-${
-                i % 2 !== 0 ? 'end' : 'start'
-              }`}
-              style={{
-                width: '50%',
-                flexGrow: 1,
-              }}
-            >
-              <Image src={f.icon} alt="icon" className="d-block" />
+          <div
+            className={`mt-3 d-flex justify-content-end`}
+            style={{
+              width: '50%',
+              flexGrow: 1,
+            }}
+          >
+            <Image src={Bed} alt="icon" className="d-block" />
+            <h6 className="ml-4 mt-2">{t('Bed')}</h6>
 
-              <h6
-                className="ml-4 mt-2"
-                style={{ fontWeight: 600, minWidth: '90px' }}
-              >
-                {f.text}
-              </h6>
-            </div>
-          ))} */}
+            <h6 className="ml-4 mt-2" style={{ fontWeight: 600, minWidth: '90px' }}>
+              Flexible
+            </h6>
+          </div>
+        </div>
+        <div className="d-flex justify-content-between mt-4">
+          <div
+            className={`mt-3 d-flex justify-content-start`}
+            style={{
+              width: '50%',
+              flexGrow: 1,
+            }}
+          >
+            <Image src={User} width="30px" alt="icon" className="d-block" />
+            <h6 className="ml-4 mt-2">{t('Max people live with')}</h6>
+
+            <h6 className="ml-4 mt-2" style={{ fontWeight: 600, minWidth: '90px' }}>
+              Flexible
+            </h6>
+          </div>
+          <div
+            className={`mt-3 d-flex justify-content-end`}
+            style={{
+              width: '50%',
+              flexGrow: 1,
+            }}
+          >
+            <Image src={Wifi} width="30px" alt="icon" className="d-block" />
+            <h6 className="ml-4 mt-2">{t('Internet')}</h6>
+
+            <h6 className="ml-4 mt-2" style={{ fontWeight: 600, minWidth: '90px' }}>
+              Flexible
+            </h6>
+          </div>
         </div>
       </div>
     </div>

@@ -5,30 +5,16 @@ import ReactMapGL, {
   FlyToInterpolator,
   Marker,
 } from 'react-map-gl';
-import MarkImg from '@assets/img/location.svg';
-import { Image } from 'react-bootstrap';
 import { mapBoxToken } from '@helper/vars';
+import { Image } from 'react-bootstrap';
 
-function MapComponent({ width, height, onSetLocation }) {
-  const [viewport, setViewport] = useState({
-    // latitude: 10.762622,
-    // longitude: 106.660172,
-    width,
-    height,
-    zoom: 10,
-  });
-  const [markers, setMarkers] = useState('');
+function MapWithInitial({ viewportInitial = {}, geocode = {} }) {
+  const [viewport, setViewport] = useState(viewportInitial ?? '');
   const geolocateStyle = {
     position: 'absolute',
     top: 0,
     left: 0,
     margin: 10,
-  };
-  const handleClick = async (e) => {
-    const longitude = e.lngLat[0];
-    const latitude = e.lngLat[1];
-    if (onSetLocation) onSetLocation({ longitude, latitude });
-    setMarkers({ longitude, latitude });
   };
   return (
     <ReactMapGL
@@ -38,32 +24,32 @@ function MapComponent({ width, height, onSetLocation }) {
       onViewportChange={(viewport) => {
         setViewport(viewport);
       }}
-      transitionInterpolator={new FlyToInterpolator()}
-      onClick={handleClick}
+      //   transitionInterpolator={new FlyToInterpolator()}
     >
-      {markers !== '' && (
-        <Marker {...markers} offsetTop={-30} offsetLeft={-15}>
+      {geocode !== {} && (
+        <Marker {...geocode} offsetTop={-30} offsetLeft={-15}>
           <div
             style={{
-              height: 30,
-              width: 30,
+              height: 100,
+              width: 100,
               display: 'flex',
               justifyContent: 'center',
+              alignItems: 'center',
+              backgroundColor: '#EB423F',
+              borderRadius: '50%',
             }}
           >
-            <Image src={MarkImg} width="100%" height="100%" />
+            <div>MARK</div>
           </div>
         </Marker>
       )}
-
-      <GeolocateControl
+      {/* <GeolocateControl
         style={geolocateStyle}
-        positionOptions={{ enableHighAccuracy: true }}
-        trackUserLocation={true}
-        showUserLocation={true}
+        // positionOptions={{ enableHighAccuracy: true }}
+        // trackUserLocation={true}
+        // showUserLocation={true}
         auto={true}
-      />
-
+      /> */}
       <div style={{ position: 'absolute', top: 0, right: 0, padding: '10px' }}>
         <NavigationControl
           style={geolocateStyle}
@@ -74,4 +60,4 @@ function MapComponent({ width, height, onSetLocation }) {
   );
 }
 
-export default MapComponent;
+export default MapWithInitial;

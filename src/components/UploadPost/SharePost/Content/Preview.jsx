@@ -39,9 +39,9 @@ function Preview({ onFinishAbout, downStep, currentData, upStep }) {
         </Button>
       </div>
       {/* <button onClick={() => console.log(currentData)}>lcik</button> */}
-      <Container className="pt-5">
+      <div className="pt-5">
         <PostPreview data={currentData} />
-      </Container>
+      </div>
     </>
   );
 }

@@ -1,16 +1,17 @@
 import React from 'react';
 import { useTranslation } from 'i18n';
 import { Image } from 'react-bootstrap';
+import { extractFeaturesData } from '@helper/feature';
 
 function Features({ features }) {
   const { t } = useTranslation(['topnav']);
-
+  const featureDisplay = extractFeaturesData(features);
   return (
     <div className="mb-4">
       <h4 style={{ fontWeight: 600 }}>{t('Features')}</h4>
       <div className="d-flex justify-content-between flex-wrap mt-4">
-        {features &&
-          features.map((f, i) => (
+        {featureDisplay &&
+          featureDisplay.map((f, i) => (
             <div
               className={`mt-3 d-flex justify-content-${
                 i % 2 !== 0 ? 'end' : 'start'

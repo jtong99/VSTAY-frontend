@@ -5,7 +5,7 @@ import Content from './Content';
 function SharePost() {
   const [currentStep, setCurrentStep] = useState(0);
   const [postData, setPostData] = useState({
-    type_of_post: 'SHARE',
+    type_of_post: 'share',
     status: 'pending',
   });
 

@@ -12,11 +12,17 @@ import { useTranslation } from 'i18n';
 import MapModal from '@components/Map/MapModalSelectAddress';
 import { Bills } from '@helper/enum';
 import ButtonDirect from '../ButtonDirect';
+import { LengthOfStay } from '@helper/enum';
 import { enumToArray } from 'helper';
 import style from './Content.module.scss';
 
 function RentAndBills({ currentData, upStep, downStep, onFinishRent }) {
   const { t } = useTranslation(['topnav']);
+  const lengthStay = enumToArray(LengthOfStay);
+  const [isErrorLength, setIsErrorLength] = useState(false);
+  const [depositLength, setDepositLength] = useState(
+    currentData.depositLength ?? '',
+  );
   const [rentData, setRentData] = useState({
     bills: (currentData.detail && currentData.detail.bills) ?? '',
     rent: currentData.price ?? '',
@@ -35,6 +41,11 @@ function RentAndBills({ currentData, upStep, downStep, onFinishRent }) {
       field === 'rent' &&
       (re.test(event.target.value) || event.target.value === '')
     ) {
+      if (event.target.value.length > 10) {
+        setIsErrorLength(true);
+      } else {
+        setIsErrorLength(false);
+      }
       setRentData({
         ...rentData,
         [field]: event.target.value,
@@ -50,7 +61,7 @@ function RentAndBills({ currentData, upStep, downStep, onFinishRent }) {
       onFinishRent({
         ...currentData,
         price: parseInt(rentData.rent),
-        detail: { ...currentData.detail, bills: rentData.bills },
+        detail: { ...currentData.detail, bills: rentData.bills, depositLength },
       });
     if (upStep) upStep();
   };
@@ -60,7 +71,7 @@ function RentAndBills({ currentData, upStep, downStep, onFinishRent }) {
         <h4 className="text-secondary">{t('Introduce your place')}</h4>
         <h3 style={{ fontWeight: 600 }}>{t('Rent and bill(s)')}</h3>
       </div>
-      {/* <button onClick={() => console.log(currentData)}>click</button> */}
+      {/* <button onClick={() => console.log(lengthStayDisplay)}>click</button> */}
       <Form style={{ width: '35%', margin: '0 auto' }}>
         <Form.Group>
           <Form.Label style={{ fontWeight: 600 }}>{t('Monthly Rent')}</Form.Label>
@@ -81,10 +92,45 @@ function RentAndBills({ currentData, upStep, downStep, onFinishRent }) {
               className={`border-light ${style.currencyInput}`}
               value={rentData.rent}
               onChange={handleChange('rent')}
+              maxLength="10"
               required
-              // isInvalid={errorTitle}
+              // isInvalid={isErrorLength}
             />
           </div>
+          <FormControl.Feedback type="invalid" style={{ whiteSpace: 'pre-line' }}>
+            {t('Your rent is invalid')}
+          </FormControl.Feedback>
+        </Form.Group>
+        <Form.Group>
+          <Form.Label style={{ fontWeight: 600 }}>
+            {t('Minimum length of deposit')}
+          </Form.Label>
+          <Form.Control
+            as="select"
+            className="pr-3 border-dark"
+            value={depositLength}
+            onChange={(e) => setDepositLength(e.target.value)}
+          >
+            {lengthStay
+              .filter((l) => l > -1)
+              .map((l) => (
+                <option
+                  value={l}
+                  key={l}
+                  // disabled={stayAvailable.max !== '' && l > stayAvailable.max}
+                >
+                  {l === -1 ? 'Unlimited' : `${l} month${l > 1 ? 's' : ''}`}
+                </option>
+              ))}
+          </Form.Control>
+          {rentData.rent !== '' && depositLength !== '' && (
+            <Form.Text>{`Your customer have to pay ${(
+              depositLength * parseInt(rentData.rent)
+            ).toLocaleString('en-US', {
+              style: 'currency',
+              currency: 'VND',
+            })} for the deposit`}</Form.Text>
+          )}
           <FormControl.Feedback type="invalid" style={{ whiteSpace: 'pre-line' }}>
             {t('Title cannot be empty')}
           </FormControl.Feedback>

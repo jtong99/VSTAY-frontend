@@ -45,6 +45,18 @@ const featuresData = [
   { icon: Lock, text: 'Lock', value: featuresEnum.DOOR_LOCK },
 ];
 
+const extractFeaturesData = (initial) => {
+  const rs = [];
+  for (let i = 0; i < initial.length; i++) {
+    for (let j = 0; j < featuresData.length; j++) {
+      if (featuresData[j].value === initial[i]) {
+        rs.push(featuresData[j]);
+      }
+    }
+  }
+  return rs;
+};
+
 const employmentData = [
   {
     icon: WorkingFulltime,
@@ -135,4 +147,5 @@ module.exports = {
   lifeStyleData,
   extractEmploymentData,
   extractLifeStyleData,
+  extractFeaturesData,
 };

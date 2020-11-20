@@ -5,7 +5,10 @@ import Content from './Content';
 
 function NeedPostComponent() {
   const [currentStep, setCurrentStep] = useState(0);
-  const [postData, setPostData] = useState({ type_of_post: 'NEED' });
+  const [postData, setPostData] = useState({
+    type_of_post: 'NEED',
+    status: 'pending',
+  });
 
   const upStep = () => {
     setCurrentStep(currentStep + 1);

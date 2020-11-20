@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { Button, Container } from 'react-bootstrap';
 import { useTranslation } from 'i18n';
-import PostPreview from '@components/Post';
+import PostPreview from '@components/Post/SharePost';
 import useFetch from '@hooks/useFetch';
 import AuthContext from '@components/Auth/AuthContext';
 

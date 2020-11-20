@@ -83,6 +83,18 @@ const employmentData = [
   },
 ];
 
+const extractEmploymentData = (initial) => {
+  const rs = [];
+  for (let i = 0; i < initial.length; i++) {
+    for (let j = 0; j < employmentData.length; j++) {
+      if (employmentData[j].value === initial[i]) {
+        rs.push(employmentData[j]);
+      }
+    }
+  }
+  return rs;
+};
+
 const lifeStyleData = [
   {
     icon: Smoker,
@@ -105,4 +117,22 @@ const lifeStyleData = [
     value: lifestyleEnum.CHILDREN,
   },
 ];
-module.exports = { featuresData, employmentData, lifeStyleData };
+
+const extractLifeStyleData = (initial) => {
+  const rs = [];
+  for (let i = 0; i < initial.length; i++) {
+    for (let j = 0; j < lifeStyleData.length; j++) {
+      if (lifeStyleData[j].value === initial[i]) {
+        rs.push(lifeStyleData[j]);
+      }
+    }
+  }
+  return rs;
+};
+module.exports = {
+  featuresData,
+  employmentData,
+  lifeStyleData,
+  extractEmploymentData,
+  extractLifeStyleData,
+};

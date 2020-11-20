@@ -1,13 +1,11 @@
 import React from 'react';
 import style from './Need.module.scss';
-import useCurrentUserData from '@hooks/api/useCurrentUserData';
 import LazyImage from '@components/utils/LazyImage';
 import { socialIcons } from '@helper/social';
 import { useTranslation } from 'i18n';
+import getLastActivity from '@helper/getLastActivity';
 
-function Contact() {
-  const { data } = useCurrentUserData();
-  const { user } = data || {};
+function Contact({ user }) {
   const { t } = useTranslation(['topnav']);
   return (
     <div className={style.wrapperContact}>
@@ -24,7 +22,7 @@ function Contact() {
         />
         <div className="ml-3 mt-3">
           <h4 className="font-weight-600">{(user && user.name) || ''}</h4>
-          <p className="text-secondary">Online today</p>
+          <p className="text-secondary">{getLastActivity(user.lastActivity)}</p>
         </div>
       </div>
       <div className="text-center mt-4">

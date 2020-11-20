@@ -1,10 +1,13 @@
 import React from 'react';
 import { useTranslation } from 'i18n';
 import { Check } from 'react-feather';
+import { extractEmploymentData, extractLifeStyleData } from '@helper/feature';
 import style from './Need.module.scss';
 
 function About({ description, features, lifeStyle }) {
   const { t } = useTranslation(['topnav']);
+  const featureDisplay = extractEmploymentData(features);
+  const lifeStyleDisplay = extractLifeStyleData(lifeStyle);
 
   const Item = ({ text }) => {
     return (
@@ -22,12 +25,12 @@ function About({ description, features, lifeStyle }) {
       <div>
         <h4 style={{ fontWeight: 600 }}>{t('Features')}</h4>
         <div className="d-flex flex-wrap">
-          {features.map((f) => (
+          {featureDisplay.map((f) => (
             <>
               <Item key={f.value} text={f.text} />
             </>
           ))}
-          {lifeStyle.map((f) => (
+          {lifeStyleDisplay.map((f) => (
             <>
               <Item key={f.value} text={f.text} />
             </>

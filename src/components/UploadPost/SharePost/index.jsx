@@ -4,7 +4,10 @@ import TopBarPost from './TopBar';
 import Content from './Content';
 function SharePost() {
   const [currentStep, setCurrentStep] = useState(0);
-  const [postData, setPostData] = useState({ type_of_post: 'SHARE' });
+  const [postData, setPostData] = useState({
+    type_of_post: 'SHARE',
+    status: 'pending',
+  });
 
   const upStep = () => {
     setCurrentStep(currentStep + 1);

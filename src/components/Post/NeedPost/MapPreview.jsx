@@ -3,22 +3,22 @@ import MapWithInitial from '@components/utils/Map/MapWithInitial';
 
 function MapPreview({ address }) {
   const viewport = {
-    longitude: 105.77034019999995,
-    latitude: 10.04403640411679,
+    longitude: address.longitude,
+    latitude: address.latitude,
     height: '350px',
     width: '100%',
     zoom: 15,
   };
   const geocode = {
-    longitude: 105.77034019999995,
-    latitude: 10.04403640411679,
+    longitude: address.longitude,
+    latitude: address.latitude,
   };
   return (
     <div>
       <MapWithInitial
         viewportInitial={viewport}
         geocode={geocode}
-        address={address}
+        address={address.name}
       />
     </div>
   );

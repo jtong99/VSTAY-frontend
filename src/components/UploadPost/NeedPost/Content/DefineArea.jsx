@@ -14,6 +14,7 @@ function DefineArea({ onFinishMap, currentData, upStep, downStep }) {
       (currentData && currentData.location && currentData.location.longitude) || '',
     latitude:
       (currentData && currentData.location && currentData.location.latitude) || '',
+    name: (currentData && currentData.location && currentData.location.name) || '',
   });
   const [address, setAddress] = useState('');
   const popover = (
@@ -29,7 +30,12 @@ function DefineArea({ onFinishMap, currentData, upStep, downStep }) {
     </Popover>
   );
   const onFinish = () => {
-    if (onFinishMap) onFinishMap({ ...currentData, location, address });
+    const locate = {
+      ...location,
+      name: address,
+    };
+    setLocation({ ...location, name: address });
+    if (onFinishMap) onFinishMap({ ...currentData, location: locate });
     if (upStep) upStep();
   };
   return (

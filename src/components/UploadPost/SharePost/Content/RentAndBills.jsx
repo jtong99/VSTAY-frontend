@@ -98,7 +98,7 @@ function RentAndBills({ currentData, upStep, downStep, onFinishRent }) {
             />
           </div>
           <FormControl.Feedback type="invalid" style={{ whiteSpace: 'pre-line' }}>
-            {t('Your rent is invalid')}
+            {t('Your rent is invalids')}
           </FormControl.Feedback>
         </Form.Group>
         <Form.Group>

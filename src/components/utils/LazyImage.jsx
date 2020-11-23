@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { Fade } from 'react-bootstrap';
 import useOnScreen from 'hooks/useOnScreen';
-import avatarPlaceholder from '@assets/placeholder/avatar.png';
+import avatarPlaceholder from '@assets/placeholder/avatar.svg';
 
 function LazyImage({ variant = 'image', src, height, width, style, ...props }) {
   const ref = useRef();

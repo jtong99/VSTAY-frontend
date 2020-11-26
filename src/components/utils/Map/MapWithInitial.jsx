@@ -33,13 +33,15 @@ function MapWithInitial({ viewportInitial = {}, geocode = {}, address = '' }) {
         <Marker {...geocode} offsetTop={-30} offsetLeft={-15}>
           <div
             style={{
-              height: 100,
-              width: 100,
+              height: 150,
+              width: 150,
               display: 'flex',
               justifyContent: 'center',
               alignItems: 'center',
-              backgroundColor: '#EB423F',
+              backgroundColor: '#002f7a',
+              border: '1px solid rgb(182, 182, 182)',
               borderRadius: '50%',
+              color: '#ffffff',
             }}
           >
             <div className="font-weight-600">{(address && get()) || 'MARK'}</div>

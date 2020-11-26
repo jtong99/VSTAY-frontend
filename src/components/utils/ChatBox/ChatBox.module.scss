@@ -1,0 +1,67 @@
+.wrapper {
+  height: 300px;
+  width: 300px;
+  border: 1px solid #e3e3e3;
+  background-color: #ffffff;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  z-index: 999999;
+  .message {
+    display: flex;
+    align-items: center;
+  }
+  .messageContainer {
+    overflow-y: scroll;
+    height: 217px;
+    padding-top: 10px;
+  }
+  .sent p {
+    color: white;
+    background: #0b93f6;
+    align-self: flex-end;
+  }
+  .sent {
+    flex-direction: row-reverse;
+  }
+  .received p {
+    background: #e5e5ea;
+    color: black;
+  }
+  .messageText {
+    max-width: 500px;
+    margin-bottom: 12px;
+    line-height: 24px;
+    padding: 10px 20px;
+    border-radius: 25px;
+    position: relative;
+    color: white;
+    text-align: center;
+  }
+}
+.main {
+  padding: 10px;
+  height: 80vh;
+  margin: 10vh 0 10vh;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+}
+.main::-webkit-scrollbar {
+  width: 0.25rem;
+}
+
+.main::-webkit-scrollbar-track {
+  background: #1e1e24;
+}
+
+.main::-webkit-scrollbar-thumb {
+  background: #6649b8;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin: 2px 5px;
+}

@@ -52,7 +52,7 @@ function NeedPostComponent({ data }) {
             <Preference data={data.detail} />
           </Col>
           <Col lg={4}>
-            <Contact user={(userData && userData.user) ?? {}} />
+            <Contact id={data.poster ?? ''} />
           </Col>
         </Row>
       </Container>

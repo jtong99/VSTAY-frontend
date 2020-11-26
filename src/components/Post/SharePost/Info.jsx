@@ -10,6 +10,7 @@ function Info({
   postType,
   detail: { total_bedrooms, total_bathrooms, max_people_live_with },
   price,
+  address,
 }) {
   const { t } = useTranslation(['topnav']);
   const type = [
@@ -56,7 +57,12 @@ function Info({
           }}
         >
           <div className="mt-2">
-            <span style={{ fontWeight: 600, fontSize: 20 }}>${price}</span>
+            <span style={{ fontWeight: 600, fontSize: 20 }}>
+              {price.toLocaleString('en-US', {
+                style: 'currency',
+                currency: 'VND',
+              })}
+            </span>
             <span
               className="text-secondary"
               style={{ fontWeight: 600, fontSize: 15 }}
@@ -80,6 +86,11 @@ function Info({
             <span className="ml-1">{max_people_live_with}</span>
           </div>
         </div>
+      </div>
+      <div className="mt-5">
+        <span className="font-weight-bold">{t('Address')}:</span>
+        {'  '}
+        {address}
       </div>
     </>
   );

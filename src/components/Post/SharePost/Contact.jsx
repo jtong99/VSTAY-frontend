@@ -3,11 +3,20 @@ import LazyImage from '@components/utils/LazyImage';
 import { socialIcons } from '@helper/social';
 import { useTranslation } from 'i18n';
 import getLastActivity from '@helper/getLastActivity';
+import useUserById from '@hooks/api/useUserByUserId';
+import { Button } from 'react-bootstrap';
 
-function Contact({ user }) {
+function Contact({ id, onShowChat }) {
+  const { data } = useUserById(id);
+
+  const user = data && data.user;
   const { t } = useTranslation(['topnav']);
+
+  if (!data) {
+    return <div></div>;
+  }
   return (
-    <div style={{ border: '1px solid #e3e4e5', padding: '40px', marginTop: '5rem' }}>
+    <div style={{ border: '1px solid #e3e4e5', padding: '40px', marginTop: '2rem' }}>
       <div
         className="d-flex justify-content-center align-items-center"
         // style={{ width: '80%', margin: '0 auto' }}
@@ -24,6 +33,13 @@ function Contact({ user }) {
           <p className="text-secondary">{getLastActivity(user.lastActivity)}</p>
         </div>
       </div>
+      <Button
+        style={{ width: '70%', margin: '20px auto' }}
+        onClick={onShowChat}
+        block
+      >
+        {t('Send message')}
+      </Button>
       <div className="text-center mt-4">
         <p className="font-weight-600">{t('Social media')}</p>
         {user && user.social

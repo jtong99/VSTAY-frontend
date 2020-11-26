@@ -4,9 +4,16 @@ import LazyImage from '@components/utils/LazyImage';
 import { socialIcons } from '@helper/social';
 import { useTranslation } from 'i18n';
 import getLastActivity from '@helper/getLastActivity';
+import useUserById from '@hooks/api/useUserByUserId';
 
-function Contact({ user }) {
+function Contact({ id }) {
+  const { data } = useUserById(id);
+
+  const user = data && data.user;
   const { t } = useTranslation(['topnav']);
+  if (!data) {
+    return <div></div>;
+  }
   return (
     <div className={style.wrapperContact}>
       <div

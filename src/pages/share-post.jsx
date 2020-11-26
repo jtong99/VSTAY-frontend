@@ -6,6 +6,7 @@ import { useRouter } from 'next/router';
 import AuthContext from '@components/Auth/AuthContext';
 import useSharePost from '@hooks/api/useSharePost';
 import NavBar from '@components/NavBar';
+import ChatBox from '@components/utils/ChatBox';
 import { Container } from 'react-bootstrap';
 
 function SharePostPage() {
@@ -14,6 +15,7 @@ function SharePostPage() {
   const id = router.query.p;
   const { data, error, revalidate } = useSharePost(id);
   const [isError, setIsError] = useState(false);
+  const [showChat, setShowChat] = useState(false);
   const postData = data && data.result;
   useEffect(() => {
     if (!id) {
@@ -47,11 +49,19 @@ function SharePostPage() {
           description: 'Finding best place for your family',
         }}
       />
+
       <NavBar />
-      <div className="mb-5">
+      <div className="mb-5 position-relative">
         {/* <button onClick={() => console.log(postData)}>click</button> */}
-        <SharePost data={postData} />
+        <SharePost data={postData} onShowChat={() => setShowChat(!showChat)} />
       </div>
+
+      {showChat && (
+        <ChatBox
+          peerId={postData.poster}
+          onShowChat={() => setShowChat(!showChat)}
+        />
+      )}
     </>
   );
 }

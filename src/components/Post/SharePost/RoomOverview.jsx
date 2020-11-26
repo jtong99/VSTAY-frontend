@@ -75,7 +75,11 @@ function RoomOverview({
           <div>
             <Image src={Money} />
             <span className="ml-3" style={{ fontWeight: 600 }}>
-              ${price} monthly rent
+              {price.toLocaleString('en-US', {
+                style: 'currency',
+                currency: 'VND',
+              })}{' '}
+              monthly rent
             </span>
           </div>
           <div>

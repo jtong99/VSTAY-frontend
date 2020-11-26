@@ -10,7 +10,18 @@ import Contact from './Contact';
 import MapPreview from './MapPreview';
 
 function PostComponent({
-  data: { images, description, detail, price, title, type, features, address },
+  data: {
+    images,
+    description,
+    detail,
+    price,
+    title,
+    type,
+    features,
+    address,
+    poster,
+  },
+  onShowChat,
 }) {
   const { data: userData } = useCurrentUserData();
   const { user } = userData || {};
@@ -40,8 +51,14 @@ function PostComponent({
             </div>
           </Col>
           <Col lg={6}>
-            <Info title={title} postType={type} detail={detail} price={price} />
-            <Contact user={(userData && userData.user) ?? {}} />
+            <Info
+              title={title}
+              postType={type}
+              detail={detail}
+              price={price}
+              address={address.name}
+            />
+            <Contact id={poster ?? ''} onShowChat={onShowChat} />
           </Col>
         </Row>
       </Container>

@@ -55,7 +55,7 @@ function ChatBox({ peerId, onShowChat }) {
       user: { _id, avatar },
     } = userData;
     if (!isCurrentUserInsidePeerUser) {
-      await peerUserQuery.add({
+      await peerUserRef.add({
         uid: currentUserId,
         createdAt: firebase.firestore.FieldValue.serverTimestamp(),
         updatedAt: firebase.firestore.FieldValue.serverTimestamp(),

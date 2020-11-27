@@ -4,9 +4,11 @@ import { NextSeo } from 'next-seo';
 import { APP_URL } from 'app.config';
 import ActionBtn from '@components/home/ActionBtn';
 import ListPost from '@components/home/PostList';
+import useAllSharePost from '@hooks/api/useAllSharePost';
 import Test from '@components/Test';
 
 function MainPage() {
+  const { data } = useAllSharePost();
   return (
     <>
       <NextSeo
@@ -22,7 +24,7 @@ function MainPage() {
       <div>
         <NavBar />
         <ActionBtn />
-        <ListPost />
+        <ListPost data={data && data.result} />
       </div>
     </>
   );

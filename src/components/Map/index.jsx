@@ -4,10 +4,12 @@ import ReactMapGL, {
   GeolocateControl,
   FlyToInterpolator,
   Marker,
+  Popup,
 } from 'react-map-gl';
 import Geocoder from 'react-mapbox-gl-geocoder';
 import mapboxgl from 'mapbox-gl';
 import dynamic from 'next/dynamic';
+import useAllShare from '@hooks/api/useAllSharePost';
 // import MapboxDirections from '@mapbox/mapbox-gl-directions/dist/mapbox-gl-directions';
 // import * as MapboxDirections from '@mapbox/mapbox-gl-directions/dist/mapbox-gl-directions';
 
@@ -65,7 +67,8 @@ function MapComponent() {
   //     setMarkers((markers) => [...markers, { longitude, latitude }]);
   //   });
   // }, []);
-
+  const { data } = useAllShare();
+  const rs = data && data.result && data.result.resultArray;
   const onClickMap = (map) => {
     console.log(map);
     console.log(map.lngLat[1]);
@@ -120,6 +123,38 @@ function MapComponent() {
           transitionInterpolator={new FlyToInterpolator()}
           onClick={handleClick}
         >
+          <Popup
+            latitude={10.045995900840246}
+            longitude={105.7846671000007}
+            closeButton={true}
+            closeOnClick={false}
+            // onClose={() => this.setState({showPopup: false})}
+            anchor="top"
+          >
+            <div>You are here</div>
+          </Popup>
+          {rs &&
+            rs.map((r, i) => (
+              <>
+                <Marker
+                  longitude={r.address.geocode.longitude}
+                  latitude={r.address.geocode.latitude}
+                  key={i}
+                >
+                  <div style={{ backgroundColor: 'red' }}>Mark</div>
+                </Marker>
+                {/* <Popup
+                latitude={r.address.geocode.latitude}
+                longitude={r.address.geocode.longitude}
+                closeButton={true}
+                closeOnClick={false}
+                // onClose={() => this.setState({showPopup: false})}
+                anchor="top"
+              >
+                <div>You are here</div>
+              </Popup> */}
+              </>
+            ))}
           {markers.map((m, i) => (
             <Marker {...m} key={i}>
               mark

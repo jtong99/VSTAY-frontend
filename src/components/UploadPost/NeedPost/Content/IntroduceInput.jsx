@@ -6,6 +6,7 @@ import ButtonDirect from '../ButtonDirect';
 
 function IntroduceInput({ currentData, upStep, downStep, onFinishInput }) {
   const { t } = useTranslation(['topnav']);
+  const [errorAge, setErrorAge] = useState(false);
   const [about, setAbout] = useState({
     name: (currentData.about && currentData.about.name) ?? '',
     age: (currentData.about && currentData.about.age) ?? '',
@@ -22,9 +23,14 @@ function IntroduceInput({ currentData, upStep, downStep, onFinishInput }) {
       event.target.value.length < 3 &&
       (re.test(event.target.value) || event.target.value === '')
     ) {
+      if (parseInt(event.target.value) < 16) {
+        setErrorAge(true);
+      } else {
+        setErrorAge(false);
+      }
       return setAbout({
         ...about,
-        [field]: event.target.value,
+        [field]: event.target.value !== '' ? parseInt(event.target.value) : '',
       });
     } else if (field !== 'age') {
       return setAbout({
@@ -72,10 +78,10 @@ function IntroduceInput({ currentData, upStep, downStep, onFinishInput }) {
             value={about.age}
             onChange={handleChange('age')}
             required
-            // isInvalid={errorTitle}
+            isInvalid={errorAge}
           />
           <FormControl.Feedback type="invalid" style={{ whiteSpace: 'pre-line' }}>
-            {t('Title cannot be empty')}
+            {t('You have to be more than 16 years old')}
           </FormControl.Feedback>
         </Form.Group>
         <Form.Group>

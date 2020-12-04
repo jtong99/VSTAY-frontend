@@ -23,15 +23,16 @@ function RentAndBills({ currentData, upStep, downStep, onFinishRent }) {
   const [depositLength, setDepositLength] = useState(
     currentData.depositLength ?? '',
   );
-  const [rentData, setRentData] = useState({
-    bills: (currentData.detail && currentData.detail.bills) ?? '',
-    rent: currentData.price ?? '',
-  });
   const billData = [
     { text: 'Include in rent', val: Bills.INCLUDE_IN_RENT },
     { text: 'Some in rent', val: Bills.SOME_IN_RENT },
     { text: 'Not in rent', val: Bills.NOT_IN_RENT },
   ];
+  const [rentData, setRentData] = useState({
+    bills: (currentData.detail && currentData.detail.bills) ?? Bills.INCLUDE_IN_RENT,
+    rent: currentData.price ?? '',
+  });
+
   const isEmpty = () => {
     return rentData.bills === '' || rentData.rent === '';
   };

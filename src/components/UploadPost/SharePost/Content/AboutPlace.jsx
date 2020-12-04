@@ -24,13 +24,23 @@ function AboutPlace({ onFinishAbout, downStep, currentData, upStep }) {
   const [aboutData, setAboutData] = useState({
     title: currentData.title ?? '',
     addressName: (currentData.address && currentData.address.name) ?? '',
-    longitude: (currentData.address && currentData.address.longitude) ?? '',
-    latitude: (currentData.address && currentData.address.latitude) ?? '',
+    longitude:
+      (currentData.address &&
+        currentData.address.geocode &&
+        currentData.address.geocode.longitude) ??
+      '',
+    latitude:
+      (currentData.address &&
+        currentData.address.geocode &&
+        currentData.address.geocode.latitude) ??
+      '',
     parking: (currentData.detail && currentData.detail.internet) ?? 'Select parking',
     internet:
       (currentData.detail && currentData.detail.internet) ?? 'Select internet',
     total_bathrooms: (currentData.detail && currentData.detail.total_bathrooms) ?? 0,
     total_bedrooms: (currentData.detail && currentData.detail.total_bedrooms) ?? 0,
+    width: (currentData.detail && currentData.detail.width) ?? '',
+    length: (currentData.detail && currentData.detail.length) ?? '',
   });
   const isEmpty = () => {
     return (
@@ -39,15 +49,33 @@ function AboutPlace({ onFinishAbout, downStep, currentData, upStep }) {
       aboutData.longitude === '' ||
       aboutData.latitude === '' ||
       aboutData.parking === 'Select parking' ||
-      aboutData.internet === 'Select internet'
+      aboutData.internet === 'Select internet' ||
+      aboutData.width === '' ||
+      aboutData.length === ''
     );
   };
   const handleChange = (field) => (event) => {
+    const re = /^[0-9\b]+$/;
+    console.log(field);
+    if (field === 'width' || field === 'length') {
+      console.log(re.test(event.target.value));
+      if (re.test(event.target.value) || event.target.value === '') {
+        setAboutData({
+          ...aboutData,
+          [field]: event.target.value,
+        });
+      } else {
+        return null;
+      }
+    }
     if (
       field === 'addressName' &&
       (aboutData.longitude === '' || aboutData.latitude === '')
     ) {
-      setErrorLocation(true);
+      setAboutData({
+        ...aboutData,
+        [field]: event.target.value,
+      });
     } else {
       setErrorLocation(false);
     }
@@ -102,8 +130,10 @@ function AboutPlace({ onFinishAbout, downStep, currentData, upStep }) {
           ...currentData.detail,
           parking: aboutData.parking,
           internet: aboutData.internet,
-          total_bedrooms: aboutData.total_bedrooms,
-          total_bathrooms: aboutData.total_bathrooms,
+          total_bedrooms: parseInt(aboutData.total_bedrooms),
+          total_bathrooms: parseInt(aboutData.total_bathrooms),
+          width: parseInt(aboutData.width),
+          length: parseInt(aboutData.length),
         },
       });
     if (upStep) upStep();
@@ -116,7 +146,7 @@ function AboutPlace({ onFinishAbout, downStep, currentData, upStep }) {
   };
   return (
     <Container className="pt-5 pb-5">
-      {/* <button onClick={() => console.log(currentData)}>click</button> */}
+      {/* <button onClick={() => console.log(aboutData)}>click</button> */}
       <div className="p-3">
         <h4 className="text-secondary">{t('Introduce your place')}</h4>
         <h3 style={{ fontWeight: 600 }}>{t('About your place')}</h3>
@@ -174,11 +204,43 @@ function AboutPlace({ onFinishAbout, downStep, currentData, upStep }) {
           </Form.Text>
         </Form.Group>
 
-        {/* {((currentData && currentData.type === PostType.R_HOUSE) ||
+        <Form.Group>
+          <Form.Label style={{ fontWeight: 600 }}>{t('Width (meter)')}</Form.Label>
+          <Form.Control
+            type="text"
+            maxLength="4"
+            //   className=" border-light"
+            value={aboutData.width}
+            onChange={handleChange('width')}
+            required
+            // isInvalid={errorTitle}
+          />
+          <FormControl.Feedback type="invalid" style={{ whiteSpace: 'pre-line' }}>
+            {t('Width cannot be empty')}
+          </FormControl.Feedback>
+        </Form.Group>
+
+        <Form.Group>
+          <Form.Label style={{ fontWeight: 600 }}>{t('Length (meter)')}</Form.Label>
+          <Form.Control
+            type="text"
+            maxLength="4"
+            //   className=" border-light"
+            value={aboutData.length}
+            onChange={handleChange('length')}
+            required
+            // isInvalid={errorTitle}
+          />
+          {/* <FormControl.Feedback type="invalid" style={{ whiteSpace: 'pre-line' }}>
+            {t('Width cannot be empty')}
+          </FormControl.Feedback> */}
+        </Form.Group>
+
+        {(currentData.type === PostType.R_HOUSE ||
           currentData.type === PostType.N_HOUSE) && (
           <SelectNumberRoom onChangeBed={onChangeBed} onChangeBath={onChangeBath} />
-        )} */}
-        <SelectNumberRoom onChangeBed={onChangeBed} onChangeBath={onChangeBath} />
+        )}
+
         <Form.Group>
           <Form.Label style={{ fontWeight: 600 }}>{t('Parking')}</Form.Label>
           <Form.Control

@@ -22,8 +22,9 @@ function SelectNumberRoom({ onChangeBed, onChangeBath }) {
           <Form.Label style={{ fontWeight: 600 }}>{t('Total bedrooms')} </Form.Label>
 
           <div>
-            {bedSelect.map((b) => (
+            {bedSelect.map((b, i) => (
               <Button
+                key={`item-${i}`}
                 variant="whiter"
                 className={`border-dark ${bedroom === b ? 'bg-black-blue' : ''}`}
                 onClick={() => handleChangeBed(b)}
@@ -51,8 +52,9 @@ function SelectNumberRoom({ onChangeBed, onChangeBath }) {
           </Form.Label>
 
           <div>
-            {bedSelect.map((b) => (
+            {bedSelect.map((b, i) => (
               <Button
+                key={`item-${i}`}
                 variant="whiter"
                 className={`border-dark ${bathroom === b ? 'bg-black-blue' : ''}`}
                 onClick={() => handleChangeBath(b)}

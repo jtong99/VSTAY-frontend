@@ -35,8 +35,8 @@ function SelectTypeAccommodation({
         <h3 style={{ fontWeight: 600 }}>{t('What type of your place?')}</h3>
       </div>
       <div className="d-flex justify-content-center flex-wrap">
-        {propertyImage.map((i) => (
-          <div className={`${style.property__Container}`}>
+        {propertyImage.map((i, index) => (
+          <div key={`item-${index}`} className={`${style.property__Container}`}>
             <div>
               <Button
                 variant="link"

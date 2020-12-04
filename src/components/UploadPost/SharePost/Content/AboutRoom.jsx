@@ -67,8 +67,9 @@ function AboutRoom({ currentData, upStep, downStep, onFinishRoom }) {
           <Form.Label style={{ fontWeight: 600 }}>{t('Room Furnishing')}</Form.Label>
 
           <div>
-            {furnishSelect.map((b) => (
+            {furnishSelect.map((b, i) => (
               <Button
+                key={`item-${i}`}
                 variant="whiter"
                 className={`border-dark ${
                   roomData.furnishing === b.val ? 'bg-black-blue' : ''
@@ -94,8 +95,9 @@ function AboutRoom({ currentData, upStep, downStep, onFinishRoom }) {
           <Form.Label style={{ fontWeight: 600 }}>{t('Toilets')}</Form.Label>
 
           <div>
-            {toiletSelect.map((b) => (
+            {toiletSelect.map((b, i) => (
               <Button
+                key={`item-${i}`}
                 variant="whiter"
                 className={`border-dark ${
                   roomData.toilets === b.val ? 'bg-black-blue' : ''
@@ -138,8 +140,10 @@ function AboutRoom({ currentData, upStep, downStep, onFinishRoom }) {
             >
               {t('Select max people live with')}
             </option>
-            {maxPeopleLive.map((m) => (
-              <option value={m}>{m === 5 ? '5+' : m}</option>
+            {maxPeopleLive.map((m, i) => (
+              <option key={`item-${i}`} value={m}>
+                {m === 5 ? '5+' : m}
+              </option>
             ))}
           </Form.Control>
 

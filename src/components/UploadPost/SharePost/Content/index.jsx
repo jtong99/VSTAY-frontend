@@ -13,6 +13,7 @@ import DescriptionInput from './DescriptionInput';
 import ImagePost from './ImagesPost';
 import Preview from './Preview';
 import SuccessUpload from './Success';
+import Employment from './Employment';
 
 function Content({ currentStep, upStep, downStep, onFinishStep, currentPostData }) {
   return (
@@ -84,6 +85,14 @@ function Content({ currentStep, upStep, downStep, onFinishStep, currentPostData 
         />
       )}
       {currentStep === 10 && (
+        <Employment
+          onFinishEmploy={onFinishStep}
+          currentData={currentPostData}
+          upStep={upStep}
+          downStep={downStep}
+        />
+      )}
+      {currentStep === 11 && (
         <DescriptionTutorial
           onFinishDescription={onFinishStep}
           currentData={currentPostData}
@@ -91,7 +100,7 @@ function Content({ currentStep, upStep, downStep, onFinishStep, currentPostData 
           downStep={downStep}
         />
       )}
-      {currentStep === 11 && (
+      {currentStep === 12 && (
         <DescriptionInput
           onFinishInput={onFinishStep}
           currentData={currentPostData}
@@ -99,7 +108,7 @@ function Content({ currentStep, upStep, downStep, onFinishStep, currentPostData 
           downStep={downStep}
         />
       )}
-      {currentStep === 12 && (
+      {currentStep === 13 && (
         <Preview
           onFinishInput={onFinishStep}
           currentData={currentPostData}
@@ -107,7 +116,7 @@ function Content({ currentStep, upStep, downStep, onFinishStep, currentPostData 
           downStep={downStep}
         />
       )}
-      {currentStep === 13 && (
+      {currentStep === 14 && (
         <SuccessUpload
           onFinishInput={onFinishStep}
           currentData={currentPostData}

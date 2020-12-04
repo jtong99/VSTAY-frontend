@@ -18,7 +18,8 @@ function RoomAvailability({
     (currentData.detail &&
       currentData.detail.room_availability &&
       currentData.detail.room_availability.date_availability) ??
-      new Date(Date.now() - 7 * 24 * 60 * 60 * 1000),
+      // new Date(Date.now() - 7 * 24 * 60 * 60 * 1000),
+      new Date(),
   );
   const lengthStay = enumToArray(LengthOfStay);
   const [stayAvailable, setStayAvailable] = useState({
@@ -108,10 +109,10 @@ function RoomAvailability({
               setStayAvailable({ ...stayAvailable, min: e.target.value })
             }
           >
-            {lengthStay.map((l) => (
+            {lengthStay.map((l, i) => (
               <option
                 value={l}
-                key={l}
+                key={`item-${i}`}
                 disabled={stayAvailable.max !== '' && l > stayAvailable.max}
               >
                 {l === -1 ? 'Unlimited' : `${l} month${l > 1 ? 's' : ''}`}
@@ -134,8 +135,9 @@ function RoomAvailability({
               setStayAvailable({ ...stayAvailable, max: e.target.value })
             }
           >
-            {lengthStay.map((l) => (
+            {lengthStay.map((l, i) => (
               <option
+                key={`item-${i}`}
                 value={l}
                 disabled={stayAvailable.min !== '' && l < stayAvailable.min}
               >

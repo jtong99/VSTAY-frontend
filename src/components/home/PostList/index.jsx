@@ -2,8 +2,9 @@ import React from 'react';
 import style from './PostList.module.scss';
 import PostCard from '@components/utils/PostCard';
 import { Container } from 'react-bootstrap';
+import PostLoading from '@components/utils/PostLoading';
 
-function ListPost({ data }) {
+function ListPost({ data, loading }) {
   const generateFakeItem = () => {
     const items = [];
     const itemsCount = data.total % 3;
@@ -15,9 +16,14 @@ function ListPost({ data }) {
     }
     return items;
   };
-  if (!data) {
-    return <div />;
+  if (loading || !data) {
+    return (
+      <>
+        <PostLoading />
+      </>
+    );
   }
+
   return (
     <>
       <div className={style.wrapper}>

@@ -22,7 +22,7 @@ import Loading from '@components/utils/Loading';
 
 const signUpPath = '/v1/auth/signup/prod/verify';
 function SignUpComponent() {
-  const { t } = useTranslation(['signup']);
+  const { t } = useTranslation(['sign-up']);
   const [signUp, { loading }] = useFetch(signUpPath);
   const router = useRouter();
   const { email, name, token } = router.query;

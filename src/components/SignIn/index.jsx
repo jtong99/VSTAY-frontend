@@ -29,7 +29,7 @@ const signInPath = '/v1/auth/signin';
 function SignInComponent() {
   const provider = new firebase.auth.GoogleAuthProvider();
   const [showPasswd, setShowPasswd] = useState(false);
-  const { t } = useTranslation(['signin']);
+  const { t } = useTranslation(['sign-in']);
   const [error, setError] = useState({ state: false, message: '' });
   const router = useRouter();
   const { login } = useContext(AuthContext);

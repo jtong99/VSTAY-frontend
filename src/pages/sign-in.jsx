@@ -21,4 +21,8 @@ function SignInPage() {
   );
 }
 
+SignInPage.getInitialProps = async () => {
+  return { namespacesRequired: ['sign-in'] };
+};
+
 export default SignInPage;

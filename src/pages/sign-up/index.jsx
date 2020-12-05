@@ -21,4 +21,8 @@ function SignUpPage() {
   );
 }
 
+SignUpPage.getInitialProps = async () => {
+  return { namespacesRequired: ['sign-up'] };
+};
+
 export default SignUpPage;

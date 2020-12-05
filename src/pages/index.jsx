@@ -4,11 +4,10 @@ import { NextSeo } from 'next-seo';
 import { APP_URL } from 'app.config';
 import ActionBtn from '@components/home/ActionBtn';
 import ListPost from '@components/home/PostList';
-import useAllSharePost from '@hooks/api/useAllSharePost';
+import NeedPostList from '@components/home/NeedPostList';
+import Footer from '@components/Footer';
 
 function MainPage() {
-  const { data, loading } = useAllSharePost({ sortBy: 'newest' });
-
   return (
     <>
       <NextSeo
@@ -24,7 +23,10 @@ function MainPage() {
       <div>
         <NavBar />
         <ActionBtn />
-        <ListPost data={data && data.result} loading={loading} />
+
+        <ListPost />
+        {/* <NeedPostList /> */}
+        <Footer />
       </div>
     </>
   );

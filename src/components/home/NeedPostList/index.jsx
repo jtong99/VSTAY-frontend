@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
-import style from './PostList.module.scss';
-import PostCard from '@components/utils/PostCard';
+import style from './NeedPostList.module.scss';
+import PostCard from '@components/utils/NeedPostCard';
 import PostLoading from '@components/utils/PostLoading';
 import { Button } from 'react-bootstrap';
 import { useTranslation } from 'i18n';
-import useAllSharePost from '@hooks/api/useAllSharePost';
+import useAllNeedPost from '@hooks/api/useAllNeedPost';
 import Pagination from '@components/utils/Pagination';
-function ListPost() {
+
+function NeedPostList() {
   const { t } = useTranslation(['topnav']);
   const [pageNumber, setPageNumber] = useState(1);
   const pageSize = 6;
-  const { data, loading } = useAllSharePost({
+  const { data, loading } = useAllNeedPost({
     sortBy: 'newest',
     pageSize,
     pageNumber,
@@ -40,7 +41,6 @@ function ListPost() {
     }
     return items;
   };
-
   if (loading || !data) {
     return (
       <>
@@ -48,10 +48,10 @@ function ListPost() {
       </>
     );
   }
-
   return (
     <>
       <div className={style.wrapper}>
+        <button onClick={() => console.log(data)}>click</button>
         <div
           className="d-flex justify-content-between"
           style={{ padding: '0px 192px' }}
@@ -71,4 +71,4 @@ function ListPost() {
   );
 }
 
-export default ListPost;
+export default NeedPostList;

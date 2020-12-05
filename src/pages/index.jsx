@@ -8,7 +8,7 @@ import useAllSharePost from '@hooks/api/useAllSharePost';
 import Test from '@components/Test';
 
 function MainPage() {
-  const { data } = useAllSharePost();
+  const { data } = useAllSharePost({ sortBy: 'newest' });
   return (
     <>
       <NextSeo

@@ -46,3 +46,28 @@ export const formatDate = (value, mode) => {
       return datetime.toLocaleDateString(locale);
   }
 };
+
+export const formatNumber = (value, mode = 'long') => {
+  const number = value * 1;
+  let tmp = '';
+  let { length } = `${number}`;
+
+  switch (mode) {
+    case 'short':
+      if (number >= 1000000000) return `${(number / 1000000000).toFixed(1)}B`;
+      if (number >= 1000000) return `${(number / 1000000).toFixed(1)}M`;
+      if (number >= 1000) return `${(number / 1000).toFixed(1)}K`;
+      return `${number}`;
+    case 'long':
+      while (length > 0) {
+        tmp = `${`${number}`.slice(
+          length - 3 >= 0 ? length - 3 : 0,
+          length,
+        )}.${tmp}`;
+        length -= 3;
+      }
+      return tmp.slice(0, tmp.length - 1);
+    default:
+      return number;
+  }
+};

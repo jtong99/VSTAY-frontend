@@ -8,6 +8,7 @@ import Features from './Features';
 import useCurrentUserData from '@hooks/api/useCurrentUserData';
 import Contact from './Contact';
 import MapPreview from './MapPreview';
+import ReactionButton from '../Reaction';
 
 function PostComponent({
   data: {
@@ -20,6 +21,9 @@ function PostComponent({
     features,
     address,
     poster,
+    statistics,
+    yourReaction,
+    _id,
   },
   onShowChat,
 }) {
@@ -43,6 +47,7 @@ function PostComponent({
           <Col lg={6}>
             <div>
               <CarouselImage images={images} />
+
               <About about={description} />
               <hr className="my-4" />
               <RoomOverview overview={detail} price={price} />
@@ -58,6 +63,13 @@ function PostComponent({
               price={price}
               address={address.name}
             />
+            {statistics && (
+              <ReactionButton
+                postId={_id}
+                statistics={statistics}
+                currReaction={yourReaction}
+              />
+            )}
             <Contact id={poster ?? ''} onShowChat={onShowChat} />
           </Col>
         </Row>

@@ -4,11 +4,13 @@ import { useTranslation } from 'i18n';
 import Bathtub from '@assets/img/post/bathtub.svg';
 import Bed from '@assets/img/post/bed.svg';
 import Home from '@assets/img/post/home.svg';
+import Height from '@assets/img/post/height-icon.svg';
+import Width from '@assets/img/post/width-icon.svg';
 import { PostType } from '@helper/enum';
 function Info({
   title,
   postType,
-  detail: { total_bedrooms, total_bathrooms, max_people_live_with },
+  detail: { total_bedrooms, total_bathrooms, max_people_live_with, width, height },
   price,
   address,
 }) {
@@ -73,21 +75,36 @@ function Info({
           <p>{t('With bills')}</p>
         </div>
         <div className="d-flex pt-4 pl-4">
-          <div>
-            <Image src={Bed} />
-            <span className="ml-1">{total_bedrooms}</span>
-          </div>
-          <div className="ml-4">
-            <Image src={Bathtub} />
-            <span className="ml-1">{total_bathrooms}</span>
-          </div>
+          {postType === PostType.R_HOUSE ? (
+            <>
+              <div>
+                <Image src={Bed} />
+                <span className="ml-1">{total_bedrooms}</span>
+              </div>
+              <div className="ml-4">
+                <Image src={Bathtub} />
+                <span className="ml-1">{total_bathrooms}</span>
+              </div>
+            </>
+          ) : (
+            <>
+              <div>
+                <Image width="31px" src={Height} />
+                <span className="ml-1">{height} (m)</span>
+              </div>
+              <div className="ml-4">
+                <Image width="31px" src={Width} />
+                <span className="ml-1">{width} (m)</span>
+              </div>
+            </>
+          )}
           <div className="ml-4">
             <Image src={Home} />
             <span className="ml-1">{max_people_live_with}</span>
           </div>
         </div>
       </div>
-      <div className="mt-5">
+      <div className="mt-4">
         <span className="font-weight-bold">{t('Address')}:</span>
         {'  '}
         {address}

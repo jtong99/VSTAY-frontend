@@ -1,11 +1,11 @@
 import { useContext } from 'react';
 import useSWR from 'swr';
 import AuthContext from 'components/Auth/AuthContext';
-
-function useAllSharePost(config) {
+import composeQuery from 'helper/compose';
+function useAllSharePost(params, config) {
   const { getToken } = useContext(AuthContext);
   const { data, error, revalidate } = useSWR(
-    [`/v1/api/post/all`, getToken() || ''],
+    [composeQuery(`/v1/api/post/all`, params), getToken() || ''],
     config,
   );
 

@@ -22,6 +22,7 @@ function FormEditProfile({
   // setFalse,
   // handleSetLoading,
   // handleSuccess,
+  handleClose,
   success = false,
 }) {
   const { t } = useTranslation(['profile', 'common']);
@@ -267,9 +268,9 @@ function FormEditProfile({
       });
       // handleSuccess();
       // setFalse();
-      // setTimeout(() => {
-      //   handleCloseModalEdit();
-      // }, 500);
+      setTimeout(() => {
+        handleClose();
+      }, 500);
     } else if (err && err.errors) {
       err.errors.map((e) => {
         if (e.field === 'headline') {
@@ -300,6 +301,7 @@ function FormEditProfile({
 
   return (
     <>
+      {/* <button onClick={() => console.log(form)}>click</button> */}
       <Form id="EditProfileForm" onSubmit={handleUpdate}>
         {success && (
           <Alert variant="success">

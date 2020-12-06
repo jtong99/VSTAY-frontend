@@ -22,7 +22,7 @@ function UpdateProfile({ show, handleClose }) {
         </Modal.Header>
 
         <Modal.Body>
-          <FormUpdate />
+          <FormUpdate handleClose={handleClose} />
         </Modal.Body>
 
         {/* <Modal.Footer>

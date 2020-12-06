@@ -3,10 +3,12 @@ import { Edit3, Key, Trash2 } from 'react-feather';
 import { Button } from 'react-bootstrap';
 import { useTranslation } from 'i18n';
 import UpdateProfile from './UpdateProfile';
+import ChangePwd from './ChangePwd';
 
 function InfoComponent({ data }) {
   const { t } = useTranslation(['profile']);
   const [showUpdate, setShowUpdate] = useState(false);
+  const [showChangePwd, setShowChangePwd] = useState(false);
   return (
     <>
       <div>
@@ -24,7 +26,7 @@ function InfoComponent({ data }) {
             &nbsp;&nbsp;&nbsp; {t('Edit Profile')}
           </Button>
           <Button
-            // onClick={handleShowChangePwd}
+            onClick={() => setShowChangePwd(!showChangePwd)}
             variant=""
             style={{ border: '1px solid #E0E0E0' }}
             className="ml-2 bg-white"
@@ -41,6 +43,7 @@ function InfoComponent({ data }) {
         </p>
       </div>
       <UpdateProfile show={showUpdate} handleClose={() => setShowUpdate(false)} />
+      <ChangePwd show={showChangePwd} handleClose={() => setShowChangePwd(false)} />
     </>
   );
 }

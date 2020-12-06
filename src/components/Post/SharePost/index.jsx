@@ -9,7 +9,7 @@ import useCurrentUserData from '@hooks/api/useCurrentUserData';
 import Contact from './Contact';
 import MapPreview from './MapPreview';
 import ReactionButton from '../Reaction';
-
+import { useTranslation } from 'i18n';
 function PostComponent({
   data: {
     images,
@@ -27,6 +27,7 @@ function PostComponent({
   },
   onShowChat,
 }) {
+  const { t } = useTranslation(['post']);
   const { data: userData } = useCurrentUserData();
   const { user } = userData || {};
   //   const images = [
@@ -46,7 +47,23 @@ function PostComponent({
         <Row>
           <Col lg={6}>
             <div>
-              <CarouselImage images={images} />
+              {images && images.length > 0 ? (
+                <CarouselImage images={images} />
+              ) : (
+                <div
+                  style={{
+                    width: '100%',
+                    height: 300,
+                    border: '1px solid #9c9c9c',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    fontWeight: 600,
+                  }}
+                >
+                  {t("You don't choose images for this property")}
+                </div>
+              )}
 
               <About about={description} />
               <hr className="my-4" />

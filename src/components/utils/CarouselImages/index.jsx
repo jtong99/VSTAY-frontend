@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Carousel, Image, Button } from 'react-bootstrap';
 import { ArrowRight, ArrowLeft, Trash2 } from 'react-feather';
+import ImagePlaceholder from '@assets/placeholder/placeholder-image.png';
 
 function CarouselImage({ images, onRemove, style, imageHeight = '300px' }) {
   const [active, setActive] = useState(0);
@@ -9,6 +10,13 @@ function CarouselImage({ images, onRemove, style, imageHeight = '300px' }) {
     console.log(active);
     setActive(active > 0 ? active - 1 : active + 1);
   };
+  if (!images || images.length === 0) {
+    return (
+      <div className="text-center">
+        <Image src={ImagePlaceholder} height="200px" />
+      </div>
+    );
+  }
   return (
     <>
       <Carousel

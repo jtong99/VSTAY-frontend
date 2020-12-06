@@ -51,12 +51,12 @@ function NeedPostList() {
   return (
     <>
       <div className={style.wrapper}>
-        <button onClick={() => console.log(data)}>click</button>
+        {/* <button onClick={() => console.log(data)}>click</button> */}
         <div
           className="d-flex justify-content-between"
           style={{ padding: '0px 192px' }}
         >
-          <h3 style={{ fontWeight: 600 }}>{t('Sharing Accommodation')}</h3>
+          <h3 style={{ fontWeight: 600 }}>{t('Needing Accommodation')}</h3>
           {renderPagination()}
         </div>
 

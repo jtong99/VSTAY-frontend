@@ -7,6 +7,7 @@ import AuthContext from '@components/Auth/AuthContext';
 import ArrowDown from '@assets/img/down-arrow.svg';
 import Link from 'next/link';
 import { useTranslation } from 'i18n';
+import LazyImage from '@components/utils/LazyImage';
 
 function UserMenu() {
   const { t } = useTranslation(['topnav']);
@@ -39,13 +40,20 @@ function UserMenu() {
         style={{ textDecoration: 'none' }}
       >
         <div style={{ position: 'relative' }}>
-          <Image
+          <LazyImage
+            className={`rounded-circle overflow-hidden `}
+            variant="avatar"
+            src={user.avatar}
+            height={36}
+            width={36}
+          />
+          {/* <Image
             variant="avatar"
             src={user.avatar}
             className="rounded-circle overflow-hidden"
             height={36}
             width={36}
-          />
+          /> */}
         </div>
         <div className="ml-3">
           <div className="text-left">

@@ -25,7 +25,7 @@ function MainPage() {
         <ActionBtn />
 
         <ListPost />
-        {/* <NeedPostList /> */}
+        <NeedPostList />
         <Footer />
       </div>
     </>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext, useCallback, useEffect } from 'react';
 import { Button, Image, Container, Row, Col } from 'react-bootstrap';
 import style from './Need.module.scss';
 import Info from './Info';
@@ -9,6 +9,8 @@ import MapPreview from './MapPreview';
 import Contact from './Contact';
 import LazyImage from '@components/utils/LazyImage';
 import useCurrentUserData from '@hooks/api/useCurrentUserData';
+import useFetch from '@hooks/useFetch';
+import AuthContext from '@components/Auth/AuthContext';
 
 function NeedPostComponent({ data }) {
   const { data: userData } = useCurrentUserData();
@@ -19,17 +21,47 @@ function NeedPostComponent({ data }) {
   //     'https://images.unsplash.com/photo-1448630360428-65456885c650?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2094&q=80',
   //     'https://images.unsplash.com/photo-1534161308652-fdfcf10f62c4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2174&q=80',
   //   ];
+  const { getToken } = useContext(AuthContext);
+  const [pushView] = useFetch(`/v1/api/view/${data && data._id}?type=need`, {
+    token: getToken(),
+    method: 'POST',
+  });
+  const onLeaving = useCallback(
+    ({ currentTime }) => {
+      if (currentTime > 30) {
+        pushView({ watchingTime: currentTime });
+      }
+    },
+    [data._id, pushView],
+  );
+
+  useEffect(() => {
+    const enterTime = Date.now();
+    const handleLeaving = () => {
+      const duration = Math.round((Date.now() - enterTime) / 1000);
+      if (onLeaving) {
+        onLeaving({
+          currentTime: duration,
+        });
+      }
+    };
+    window.addEventListener('beforeunload', handleLeaving);
+    return () => {
+      handleLeaving();
+      window.removeEventListener('beforeunload', handleLeaving);
+    };
+  }, [onLeaving]);
   return (
     <div>
       <div className={style.imageWrapper}>
-        {/* <LazyImage
-            className="rounded-circle overflow-hidden dc-ava-profile-other img-ava"
-            variant="avatar"
-            src={(user && user.avatar) || ''}
-            height={300}
-            width={300}
-          /> */}
-        <Image src={(user && user.avatar) || ''} className={style.avatar} />
+        <LazyImage
+          className={`rounded-circle overflow-hidden ${style.avatar}`}
+          variant="avatar"
+          src={(user && user.avatar) || ''}
+          height={300}
+          width={300}
+        />
+        {/* <Image src={(user && user.avatar) || ''} className={style.avatar} /> */}
       </div>
 
       <Container className="mb-5 pt-4">

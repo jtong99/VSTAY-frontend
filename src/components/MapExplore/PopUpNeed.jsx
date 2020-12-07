@@ -1,10 +1,11 @@
 import React from 'react';
 import { Popup } from 'react-map-gl';
-import CarouselImage from '@components/utils/CarouselImages';
+import { Image } from 'react-bootstrap';
 import Link from 'next/link';
 import { useTranslation } from 'i18n';
+import { truncate } from '@helper/truncate';
 
-function PopUpShare({ latitude, longitude, data, onClose }) {
+function PopUpNeed({ latitude, longitude, data, onClose }) {
   const { t } = useTranslation(['map-explore']);
   if (!data.show) {
     return null;
@@ -20,19 +21,21 @@ function PopUpShare({ latitude, longitude, data, onClose }) {
       offsetTop={-20}
     >
       <div style={{ width: '200px', padding: 10 }}>
-        <div>
+        {/* <div>
+            <Image />
           <CarouselImage images={data.images} imageHeight="150px" />
-        </div>
-        <p className="font-weight-600">{data.title}</p>
+        </div> */}
+        <p className="font-weight-600">{data.about.name}</p>
+        <p>{truncate(data.description, 100)}</p>
         <p>
-          {t('price')}:{' '}
-          {data.price.toLocaleString('en-US', {
+          {t('Budget')}:{' '}
+          {data.budget.toLocaleString('en-US', {
             style: 'currency',
             currency: 'VND',
           })}
         </p>
         <div>
-          <Link href={`/share-post?p=${data._id}`}>
+          <Link href={`/need-post?p=${data._id}`}>
             <a>{t('detail...')}</a>
           </Link>
         </div>
@@ -41,4 +44,4 @@ function PopUpShare({ latitude, longitude, data, onClose }) {
   );
 }
 
-export default PopUpShare;
+export default PopUpNeed;

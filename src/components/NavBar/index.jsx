@@ -25,6 +25,19 @@ function NavBarComponent() {
               <div className="flex-grow-1 d-block mt-2 mb-2">
                 <SearchBar />
               </div>
+              {/* <div className="d-flex">
+                <div
+                  style={{
+                    backgroundColor: 'red',
+                    height: 10,
+                    width: 10,
+                    borderRadius: '50%',
+                  }}
+                ></div>
+                <Link href="/map-explore">
+                  <a style={{ fontSize: 10, marginLeft: 5 }}>Map explore</a>
+                </Link>
+              </div> */}
               {isAuth && (
                 <div className="d-block ">
                   <UserMenu />

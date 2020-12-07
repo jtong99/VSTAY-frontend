@@ -8,8 +8,12 @@ import ReactMapGL, {
 } from 'react-map-gl';
 import { mapBoxToken } from '@helper/vars';
 import useAllShare from '@hooks/api/useAllSharePost';
+import useAllNeed from '@hooks/api/useAllNeedPost';
 import MarkShare from './MarkShare';
 import PopUpShare from './PopUpShare';
+import MarkNeed from './MarkNeed';
+import PopUpNeed from './PopUpNeed';
+import Loading from '@components/utils/Loading';
 
 function MapExploreComponent() {
   const [viewport, setViewport] = useState({
@@ -21,6 +25,7 @@ function MapExploreComponent() {
   });
 
   const { data } = useAllShare();
+  const { data: needGet } = useAllNeed();
   const geolocateStyle = {
     position: 'absolute',
     top: 0,
@@ -34,7 +39,14 @@ function MapExploreComponent() {
     padding: '10px',
   };
   const shareData = data && data.result && data.result.resultArray;
+  const needData =
+    needGet &&
+    needGet.code === 200 &&
+    needGet.result &&
+    needGet.result.total > 0 &&
+    needGet.result.resultArray;
   const [popupData, setPopupData] = useState('');
+  const [needPopupData, setNeedPopupData] = useState('');
   useEffect(() => {
     if (shareData) {
       console.log('load share data');
@@ -45,6 +57,15 @@ function MapExploreComponent() {
       setPopupData(popup);
     }
   }, [shareData]);
+  useEffect(() => {
+    if (needData) {
+      let popup = [];
+      for (let i = 0; i < needData.length; i++) {
+        popup.push({ ...needData[i], show: false });
+      }
+      setNeedPopupData(popup);
+    }
+  }, [needData]);
   const onShowPopUp = (index) => {
     let newPopup = [...popupData];
     console.log(popupData);
@@ -68,11 +89,39 @@ function MapExploreComponent() {
     }
     setPopupData(newPopup);
   };
-  if (popupData === '') {
-    return <div>loading</div>;
+  const onShowNeedPopUp = (index) => {
+    let newPopup = [...needPopupData];
+    console.log(needPopupData);
+    for (let j = 0; j < newPopup.length; j++) {
+      if (j === index) {
+        newPopup[j].show = true;
+      } else {
+        newPopup[j].show = false;
+      }
+    }
+    setNeedPopupData(newPopup);
+  };
+  const onCloseNeedPopUp = (index) => {
+    let newPopup = [...needPopupData];
+    console.log(needPopupData);
+    for (let j = 0; j < newPopup.length; j++) {
+      if (j === index) {
+        newPopup[j].show = false;
+        break;
+      }
+    }
+    setNeedPopupData(newPopup);
+  };
+  if (popupData === '' || needPopupData === '') {
+    return (
+      <>
+        <Loading show={true} />
+      </>
+    );
   }
   return (
     <div>
+      {/* <button onClick={() => console.log(needData.length)}>click</button> */}
       <ReactMapGL
         {...viewport}
         mapStyle="mapbox://styles/mapbox/streets-v11"
@@ -88,17 +137,40 @@ function MapExploreComponent() {
           longitude={105.7846671000007}
           closeButton={true}
           closeOnClick={false}
-          // onClose={() => this.setState({showPopup: false})}
+          // onClose={() => this.setState({sonShowNeedPopUphowPopup: false})}
           anchor="top"
         >
           <div>You are here</div>
         </Popup> */}
+        {needData &&
+          needData.map((n, i) => (
+            <>
+              <MarkNeed
+                longitude={n.location.longitude}
+                latitude={n.location.latitude}
+                data={n}
+                key={`item${i}`}
+                onShow={() => onShowNeedPopUp(i)}
+              />
+            </>
+          ))}
+        {needPopupData !== '' &&
+          needPopupData.map((p, i) => (
+            <PopUpNeed
+              longitude={p.location.longitude}
+              latitude={p.location.latitude}
+              key={`item${i}`}
+              data={p}
+              onClose={() => onCloseNeedPopUp(i)}
+            />
+          ))}
         {shareData &&
           shareData.map((r, i) => (
             <>
               <MarkShare
                 longitude={r.address.geocode.longitude}
                 latitude={r.address.geocode.latitude}
+                data={r}
                 key={`item${i}`}
                 onShow={() => onShowPopUp(i)}
               />

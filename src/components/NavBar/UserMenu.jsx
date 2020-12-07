@@ -8,6 +8,7 @@ import ArrowDown from '@assets/img/down-arrow.svg';
 import Link from 'next/link';
 import { useTranslation } from 'i18n';
 import LazyImage from '@components/utils/LazyImage';
+import MapExplore from '@assets/img/earth.svg';
 
 function UserMenu() {
   const { t } = useTranslation(['topnav']);
@@ -69,7 +70,7 @@ function UserMenu() {
       </Button>
       <Button
         // ref={target}
-        onClick={() => router.push('/upload-post')}
+        onClick={() => router.push('/map-explore')}
         variant="link"
         style={{
           textDecoration: 'none',
@@ -81,7 +82,8 @@ function UserMenu() {
           marginTop: 5,
         }}
       >
-        <Plus style={{ color: '#000000', height: 20 }} />
+        <Image src={MapExplore} height="25px" />
+        {/* <Plus style={{ color: '#000000', height: 20 }} /> */}
       </Button>
       <Button
         // ref={target}

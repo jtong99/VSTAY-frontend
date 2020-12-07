@@ -14,7 +14,13 @@ function Detail({ budget, moveDate, lengthStay }) {
           <div className="d-flex">
             <Image src={Dollars} width="35px" alt="dollars" />
             <div className="ml-4">
-              <p className={`m-0 ${style.textIcon}`}>VND{budget}/mt</p>
+              <p className={`m-0 ${style.textIcon}`}>
+                {budget.toLocaleString('en-US', {
+                  style: 'currency',
+                  currency: 'VND',
+                })}
+                /mt
+              </p>
               <p className="text-center m-0">Budget</p>
             </div>
           </div>

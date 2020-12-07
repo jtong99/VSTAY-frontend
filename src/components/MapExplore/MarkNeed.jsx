@@ -1,9 +1,9 @@
 import React from 'react';
 import { Marker } from 'react-map-gl';
-import MarkImg from '@assets/img/location.svg';
+import MarkImg from '@assets/img/location_need.svg';
 import { Image, Button } from 'react-bootstrap';
 
-function MarkShare({ longitude, latitude, onShow, data }) {
+function MarkNeed({ longitude, latitude, onShow, data }) {
   return (
     <>
       <>
@@ -33,4 +33,4 @@ function MarkShare({ longitude, latitude, onShow, data }) {
   );
 }
 
-export default MarkShare;
+export default MarkNeed;

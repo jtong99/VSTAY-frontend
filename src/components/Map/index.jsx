@@ -83,7 +83,8 @@ function MapComponent() {
       'pk.eyJ1Ijoic2hhbmVlMTk5OCIsImEiOiJja2dxYnloMjYwMm95MnltZjM2dmg2YXp4In0.K8QHOI_y9wSPk0NjCxL30w',
   };
   const onSelect = (viewport, item) => {
-    setViewport(viewport);
+    console.log(viewport);
+    setViewport({ ...viewport, zoom: 10 });
     console.log('Selected: ', item);
   };
   const queryParams = {

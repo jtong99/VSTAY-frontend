@@ -15,7 +15,7 @@ const getLastActivity = (lastActivity) => {
   ) {
     return `Online yesterday`;
   }
-  return `Online at ${last.getDate()}/${last.getMonth()}/${last.getMonth()}`;
+  return `Online at ${last.getDate()}/${last.getMonth()}/${last.getFullYear()()}`;
 };
 
 export default getLastActivity;

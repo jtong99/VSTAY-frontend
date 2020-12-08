@@ -10,7 +10,7 @@ import LazyImage from '@components/utils/LazyImage';
 
 function NeedPostCard({ data }) {
   const { t } = useTranslation(['topnav']);
-  //   const { data: profile } = useUserById(data.poster);
+  const { data: profile } = useUserById(data.poster);
 
   return (
     <Link href={`/need-post?p=${data._id}`} passHref>
@@ -18,7 +18,7 @@ function NeedPostCard({ data }) {
         <div>
           <div style={{ height: 200, backgroundColor: '#d1d1d1' }}>
             <LazyImage
-              src={data.image}
+              src={profile && profile.user && profile.user.avatar}
               variant="avatar"
               height="200px"
               width="200px"

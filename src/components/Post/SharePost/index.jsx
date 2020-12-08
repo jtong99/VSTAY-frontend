@@ -95,7 +95,7 @@ function PostComponent({
                     fontWeight: 600,
                   }}
                 >
-                  {t("You don't choose images for this property")}
+                  {t("User don't choose images for this property")}
                 </div>
               )}
 

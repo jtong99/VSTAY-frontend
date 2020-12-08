@@ -1,9 +1,10 @@
 .wrapper {
-  padding: 0px 132px;
+  // padding: 0px 132px;
   background-position: 5% 5%, 100% 10%, 100% 80%, bottom;
   background-repeat: no-repeat;
   background-size: auto, auto, auto, cover;
-  // min-height: 100vh;
+  margin-bottom: 3rem;
+  // min-height: 20vh;
   .buttonGroup {
     background-color: #a6a6a6;
     text-align: center;
@@ -27,7 +28,7 @@
   .container {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    // justify-content: center;
 
     & > * {
       margin: 12px;

@@ -5,14 +5,17 @@ import { useTranslation } from 'i18n';
 import getLastActivity from '@helper/getLastActivity';
 import useUserById from '@hooks/api/useUserByUserId';
 import { Button } from 'react-bootstrap';
+import useCurrentUser from '@hooks/api/useCurrentUserData';
 
 function Contact({ id, onShowChat }) {
   const { data } = useUserById(id);
+  const { data: userData } = useCurrentUser();
 
   const user = data && data.user;
+  const currentUser = userData && userData.user;
   const { t } = useTranslation(['topnav']);
 
-  if (!data) {
+  if (!data || !userData) {
     return <div></div>;
   }
   return (
@@ -34,6 +37,7 @@ function Contact({ id, onShowChat }) {
         </div>
       </div>
       <Button
+        disabled={currentUser._id === user._id}
         style={{ width: '70%', margin: '20px auto' }}
         onClick={onShowChat}
         block

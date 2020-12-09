@@ -1,23 +1,23 @@
 import React, { useState } from 'react';
-import style from './PostList.module.scss';
-import PostCard from '@components/utils/PostCard';
+import style from './NeedPostList.module.scss';
+import PostCard from '@components/utils/NeedPostCard';
 import PostLoading from '@components/utils/PostLoading';
-import { Image } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 import { useTranslation } from 'i18n';
+import useAllNeedPost from '@hooks/api/useAllNeedPost';
 import Pagination from '@components/utils/Pagination';
-import NoPost from '@assets/message/no_data.jpg';
 
-function ListPost({ data, loading }) {
+function NeedPostList() {
   const { t } = useTranslation(['topnav']);
   const [pageNumber, setPageNumber] = useState(1);
   const pageSize = 6;
-  // const { data, loading } = useAllSharePost({
-  //   sortBy: 'newest',
-  //   pageSize,
-  //   pageNumber,
-  // });
+  const { data, loading } = useAllNeedPost({
+    sortBy: 'newest',
+    pageSize,
+    pageNumber,
+  });
   const renderPagination = () => {
-    const total = data && data.total;
+    const total = data && data.result && data.result.total;
 
     return (
       total > pageSize && (
@@ -41,7 +41,6 @@ function ListPost({ data, loading }) {
     }
     return items;
   };
-
   if (loading || !data) {
     return (
       <>
@@ -49,23 +48,20 @@ function ListPost({ data, loading }) {
       </>
     );
   }
-  if (data.code !== 200) {
-    return (
-      <div className="text-center">
-        <Image src={NoPost} style={{ maxWidth: 300 }} />
-        <p>{t('No sharing post uploaded')}</p>
-      </div>
-    );
-  }
-  // if (data.result.length === 0) {
-  //   return <div>no</div>;
-  // }
-
   return (
     <>
       <div className={style.wrapper}>
+        {/* <button onClick={() => console.log(data)}>click</button> */}
+        {/* <div
+          className="d-flex justify-content-between"
+          style={{ padding: '0px 192px' }}
+        >
+          <h3 style={{ fontWeight: 600 }}>{t('Needing Accommodation')}</h3>
+          {renderPagination()}
+        </div> */}
+
         <div className={style.container}>
-          {data.result.map((p) => (
+          {data.result.resultArray.map((p) => (
             <PostCard data={p} />
           ))}
           {generateFakeItem()}
@@ -75,4 +71,4 @@ function ListPost({ data, loading }) {
   );
 }
 
-export default ListPost;
+export default NeedPostList;

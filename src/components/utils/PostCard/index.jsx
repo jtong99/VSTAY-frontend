@@ -8,6 +8,9 @@ import Home from './img/home.svg';
 import Bathtub from './img/bathtub.svg';
 import Bed from './img/bedroom.svg';
 import Link from 'next/link';
+import Height from '@assets/img/post/height-icon.svg';
+import Width from '@assets/img/post/width-icon.svg';
+import { PostType } from '@helper/enum';
 
 function PostCard({ data }) {
   const { t } = useTranslation(['topnav']);
@@ -33,14 +36,30 @@ function PostCard({ data }) {
             /month
           </p>
           <div className="d-flex ">
-            <div>
-              <Image src={Bed} height="18px" />
-              <span className="ml-1">{data.detail.total_bedrooms}</span>
-            </div>
-            <div className="ml-4">
-              <Image src={Bathtub} height="18px" />
-              <span className="ml-1">{data.detail.total_bathrooms}</span>
-            </div>
+            {data.type === PostType.R_HOUSE ? (
+              <>
+                <div>
+                  <Image src={Bed} height="18px" />
+                  <span className="ml-1">{data.detail.total_bedrooms}</span>
+                </div>
+                <div className="ml-4">
+                  <Image src={Bathtub} height="18px" />
+                  <span className="ml-1">{data.detail.total_bathrooms}</span>
+                </div>
+              </>
+            ) : (
+              <>
+                <div>
+                  <Image height="18px" src={Height} />
+                  <span className="ml-1">{data.detail.height} (m)</span>
+                </div>
+                <div className="ml-4">
+                  <Image height="18px" src={Width} />
+                  <span className="ml-1">{data.detail.width} (m)</span>
+                </div>
+              </>
+            )}
+
             <div className="ml-4">
               <Image src={Home} height="18px" />
               <span className="ml-1">{data.detail.max_people_live_with}</span>

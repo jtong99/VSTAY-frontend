@@ -2,13 +2,13 @@ import React, { useContext, useState, useRef } from 'react';
 import { Badge, Button, Image, Popover, Overlay, Nav } from 'react-bootstrap';
 import useCurrentUser from '@hooks/api/useCurrentUserData';
 import { Plus, MessageSquare, LogOut, User } from 'react-feather';
-import { useRouter } from 'next/router';
 import AuthContext from '@components/Auth/AuthContext';
 import ArrowDown from '@assets/img/down-arrow.svg';
 import Link from 'next/link';
 import { useTranslation } from 'i18n';
 import LazyImage from '@components/utils/LazyImage';
 import MapExplore from '@assets/img/earth.svg';
+import { useRouter } from 'next/router';
 
 function UserMenu() {
   const { t } = useTranslation(['topnav']);
@@ -21,7 +21,6 @@ function UserMenu() {
   const target = useRef();
   const timer = useRef();
   const [show, setShow] = useState(false);
-
   const handleClose = () => {
     timer.current = setTimeout(() => {
       setShow(false);

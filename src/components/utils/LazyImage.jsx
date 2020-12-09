@@ -2,6 +2,7 @@ import React, { useState, useRef } from 'react';
 import { Fade } from 'react-bootstrap';
 import useOnScreen from 'hooks/useOnScreen';
 import avatarPlaceholder from '@assets/placeholder/avatar.svg';
+import imagePlaceholder from '@assets/placeholder/placeholder-image.svg';
 
 function LazyImage({ variant = 'image', src, height, width, style, ...props }) {
   const ref = useRef();
@@ -20,7 +21,9 @@ function LazyImage({ variant = 'image', src, height, width, style, ...props }) {
         overflow: 'hidden',
         backgroundColor: !isLoaded && 'lightgrey',
         backgroundImage:
-          variant === 'avatar' && !isLoaded && `url(${avatarPlaceholder})`,
+          variant === 'avatar' &&
+          !isLoaded &&
+          `url(${variant === 'avatar' ? avatarPlaceholder : imagePlaceholder})`,
         backgroundPosition: 'center',
         backgroundSize: 'cover',
         display: 'flex',

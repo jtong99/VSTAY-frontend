@@ -10,11 +10,13 @@ const timerPadding = 1000 * 60 * 1; // 1 minutes
 import { SWRConfig } from 'swr';
 import fetcher from '@helper/fetcher';
 
+import { useRouter } from 'next/router';
+
 function Auth({ tokenData, ...props }) {
   const timer = useRef();
   const token = useRef();
   const [isAuth, setIsAuth] = useState(!!tokenData.value);
-
+  const router = useRouter();
   const handleRenewToken = useCallback(async () => {
     clearTimeout(timer.current);
     const newToken = await fetchNewToken();
@@ -73,6 +75,7 @@ function Auth({ tokenData, ...props }) {
       window.localStorage.setItem('logout', Date.now());
       token.current = null;
       setIsAuth(false);
+      router.push('/');
     }
   }, [token]);
 

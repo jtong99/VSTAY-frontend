@@ -8,7 +8,7 @@ function Description({ onFinishDescription, upStep, currentData }) {
   const { t } = useTranslation(['topnav']);
   return (
     <Container className="pt-5">
-      <button onClick={() => console.log(currentData)}>click</button>
+      {/* <button onClick={() => console.log(currentData)}>click</button> */}
       <div className="p-3 text-center">
         <h3 style={{ fontWeight: 600, textAlign: 'center' }}>
           {t('Introduce yourself and your property')}

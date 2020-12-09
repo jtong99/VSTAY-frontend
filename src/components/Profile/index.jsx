@@ -2,6 +2,8 @@ import React from 'react';
 import Avatar from './Avatar';
 import Info from './Info';
 import UserPost from './UserPost';
+import UserNeedPost from './UserNeedPost';
+
 import { Button, Container, Row, Col, Alert, Spinner } from 'react-bootstrap';
 
 function ProfileComponent({ data }) {
@@ -16,6 +18,7 @@ function ProfileComponent({ data }) {
         </Col>
       </Row>
       <UserPost userId={data._id} />
+      <UserNeedPost userId={data._id} />
     </Container>
   );
 }

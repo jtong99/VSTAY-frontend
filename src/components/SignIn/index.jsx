@@ -45,6 +45,7 @@ function SignInComponent() {
   );
   const handleLoginWithFirebase = async (form) => {
     const { data, error: err } = await startLogin({ ...form, provider: 'firebase' });
+    console.log(data);
     if (!err && data) {
       const { accessToken, refreshToken, firebaseToken } = data;
 

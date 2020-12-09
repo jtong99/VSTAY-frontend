@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Carousel, Image, Button } from 'react-bootstrap';
 import { ArrowRight, ArrowLeft, Trash2 } from 'react-feather';
 import ImagePlaceholder from '@assets/placeholder/placeholder-image.svg';
+import LazyImage from '@components/utils/LazyImage';
 
 function CarouselImage({ images, onRemove, style, imageHeight = '300px' }) {
   const [active, setActive] = useState(0);
@@ -71,7 +72,8 @@ function CarouselImage({ images, onRemove, style, imageHeight = '300px' }) {
             // }}
           >
             <div style={{ position: 'relative' }}>
-              <Image src={img} style={{ width: '100%', height: imageHeight }} />
+              <LazyImage src={img} style={{ width: '100%', height: imageHeight }} />
+              {/* <Image src={img}  /> */}
 
               {onRemove && (
                 <Button

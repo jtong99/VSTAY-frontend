@@ -8,18 +8,22 @@ import { Button, Container, Row, Col, Alert, Spinner } from 'react-bootstrap';
 
 function ProfileComponent({ data }) {
   return (
-    <Container style={{ minHeight: '70vh' }}>
-      <Row>
-        <Col lg={4}>
-          <Avatar avatar={data.avatar} />
-        </Col>
-        <Col lg={8}>
-          <Info data={data} />
-        </Col>
-      </Row>
-      <UserPost userId={data._id} />
-      <UserNeedPost userId={data._id} />
-    </Container>
+    <div style={{ minHeight: '70vh' }}>
+      <Container>
+        <Row>
+          <Col lg={4}>
+            <Avatar avatar={data.avatar} />
+          </Col>
+          <Col lg={8}>
+            <Info data={data} />
+          </Col>
+        </Row>
+      </Container>
+      <div style={{ paddingLeft: '5rem', paddingRight: '5rem' }}>
+        <UserPost userId={data._id} />
+        <UserNeedPost userId={data._id} />
+      </div>
+    </div>
   );
 }
 

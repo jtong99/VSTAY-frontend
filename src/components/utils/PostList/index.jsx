@@ -7,7 +7,7 @@ import { useTranslation } from 'i18n';
 import Pagination from '@components/utils/Pagination';
 import NoPost from '@assets/message/no_data.jpg';
 
-function ListPost({ data, loading }) {
+function ListPost({ data, loading, itemCounts = 3 }) {
   const { t } = useTranslation(['topnav']);
   const [pageNumber, setPageNumber] = useState(1);
   const pageSize = 6;
@@ -32,7 +32,7 @@ function ListPost({ data, loading }) {
   };
   const generateFakeItem = () => {
     const items = [];
-    const itemsCount = data.total % 3;
+    const itemsCount = data.total % itemCounts;
     if (itemsCount === 0) {
       return null;
     }

@@ -21,7 +21,7 @@ function UserNeedPost({ userId }) {
       <div>
         <h3 style={{ fontWeight: 600 }}>{t('Needing Accommodation')}</h3>
       </div>
-      <PostList data={data} loading={false} />
+      <PostList data={data} loading={false} itemCounts={4} />
       {/* <button onClick={() => console.log(data)}>click</button> */}
     </div>
   );

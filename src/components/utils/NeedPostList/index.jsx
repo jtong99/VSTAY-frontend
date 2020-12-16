@@ -7,7 +7,7 @@ import { useTranslation } from 'i18n';
 import useAllNeedPost from '@hooks/api/useAllNeedPost';
 import Pagination from '@components/utils/Pagination';
 
-function NeedPostList() {
+function NeedPostList({ itemCounts = 3 }) {
   const { t } = useTranslation(['topnav']);
   const [pageNumber, setPageNumber] = useState(1);
   const pageSize = 6;
@@ -32,7 +32,7 @@ function NeedPostList() {
   };
   const generateFakeItem = () => {
     const items = [];
-    const itemsCount = data.total % 3;
+    const itemsCount = data.total % itemCounts;
     if (itemsCount === 0) {
       return null;
     }

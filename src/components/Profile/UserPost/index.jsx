@@ -21,7 +21,7 @@ function UserPost({ userId }) {
       <div>
         <h3 style={{ fontWeight: 600 }}>{t('Sharing Accommodation')}</h3>
       </div>
-      <PostList data={data} loading={false} />
+      <PostList data={data.result} total={data.total} loading={false} />
       {/* <button onClick={() => console.log(data)}>click</button> */}
     </div>
   );

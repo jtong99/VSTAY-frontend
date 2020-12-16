@@ -49,7 +49,7 @@ function ListPost({ data, loading }) {
       </>
     );
   }
-  if (data.code !== 200) {
+  if (!data) {
     return (
       <div className="text-center">
         <Image src={NoPost} style={{ maxWidth: 300 }} />
@@ -65,7 +65,7 @@ function ListPost({ data, loading }) {
     <>
       <div className={style.wrapper}>
         <div className={style.container}>
-          {data.result.map((p) => (
+          {data.map((p) => (
             <PostCard data={p} />
           ))}
           {generateFakeItem()}

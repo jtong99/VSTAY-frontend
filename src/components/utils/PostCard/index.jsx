@@ -11,6 +11,7 @@ import Link from 'next/link';
 import Height from '@assets/img/post/height-icon.svg';
 import Width from '@assets/img/post/width-icon.svg';
 import { PostType } from '@helper/enum';
+import { formatDate } from 'helper/format';
 
 function PostCard({ data }) {
   const { t } = useTranslation(['topnav']);
@@ -67,6 +68,7 @@ function PostCard({ data }) {
           </div>
         </div>
         <p className="text-secondary ">{data.address.name}</p>
+        <p className="text-secondary">{formatDate(data.releasedAt, 'long')}</p>
       </div>
     </Link>
   );

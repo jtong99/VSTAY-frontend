@@ -86,7 +86,7 @@ function UserMenu() {
       </Button>
       <Button
         // ref={target}
-        onClick={() => router.push('/upload-post')}
+        onClick={() => router.push('/chat')}
         variant="link"
         style={{
           textDecoration: 'none',

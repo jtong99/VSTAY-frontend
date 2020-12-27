@@ -1,0 +1,22 @@
+.hoverBtn {
+  &:hover {
+    background-color: #dbdbdb !important;
+  }
+}
+.wrapper {
+  // padding: 24px 20rem 24px 20rem;
+  .name {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .colContainer {
+    border-right: 1px solid #c9c9c9;
+    min-height: 90vh;
+  }
+  .dot {
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background-color: #898989;
+  }
+}

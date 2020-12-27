@@ -23,3 +23,13 @@ $theme-colors: (
 .font-weight-600 {
   font-weight: 600;
 }
+.btn-div {
+  padding: 0;
+  color: initial !important;
+  text-align: initial !important;
+  background-color: initial !important;
+  &:hover,
+  &:focus {
+    text-decoration: none !important;
+  }
+}

@@ -21,6 +21,46 @@ export function DateFormat(date_) {
     date_.getDate() >= 10 ? date_.getDate() : `0${date_.getDate()}`
   }`;
 }
+export const formatTimeRange = (start, mode = 'default') => {
+  const startDate = new Date(start);
+  const endDate = new Date();
+
+  const seconds = (endDate - startDate) / 1000;
+  if (seconds < 60) {
+    return 'just now';
+  }
+
+  const minutes = Math.round(seconds / 60);
+  if (minutes < 60) {
+    return mode === 'short'
+      ? `${minutes}m`
+      : `${minutes} minute${minutes === 1 ? '' : 's'} ago`;
+  }
+
+  const hours = Math.round(minutes / 60);
+  if (hours < 24) {
+    return mode === 'short'
+      ? `${hours}h`
+      : `${hours} hour${hours === 1 ? '' : 's'} ago`;
+  }
+
+  const days = Math.round(hours / 24);
+  if (days < 30) {
+    return mode === 'short' ? `${days}d` : `${days} day${days === 1 ? '' : 's'} ago`;
+  }
+
+  const months = Math.round(days / 30);
+  if (months < 12) {
+    return mode === 'short'
+      ? `${months} month${months === 1 ? '' : 's'}`
+      : `${months} month${months === 1 ? '' : 's'} ago`;
+  }
+
+  const years = Math.round(months / 12);
+  return mode === 'short'
+    ? `${years}y`
+    : `${years} year${years === 1 ? '' : 's'} ago`;
+};
 
 export const formatDate = (value, mode) => {
   const datetime = new Date(value);

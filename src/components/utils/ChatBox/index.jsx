@@ -24,6 +24,8 @@ function ChatBox({ peerId, onShowChat }) {
       : `${peerId}-${currentUserId}`
   }`;
 
+  const messageRefDoc = firestore.collection('messages').doc(groupChatId);
+
   const messagesRef = firestore
     .collection('messages')
     .doc(groupChatId)
@@ -54,6 +56,8 @@ function ChatBox({ peerId, onShowChat }) {
     const {
       user: { _id, avatar },
     } = userData;
+
+    //Insert or update last message and is read into user
     if (!isCurrentUserInsidePeerUser) {
       await peerUserRef.add({
         uid: currentUserId,
@@ -97,6 +101,7 @@ function ChatBox({ peerId, onShowChat }) {
       createdAt: firebase.firestore.FieldValue.serverTimestamp(),
       uid: _id,
       photoURL: avatar,
+      isRead: false,
     });
 
     setFormValue('');

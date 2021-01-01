@@ -5,7 +5,7 @@ import PostLoading from '@components/utils/PostLoading';
 import { Image } from 'react-bootstrap';
 import { useTranslation } from 'i18n';
 import Pagination from '@components/utils/Pagination';
-import NoPost from '@assets/message/no_data.jpg';
+import NoPost from '@assets/message/no_data.svg';
 
 function ListPost({ data, loading, itemCounts = 3 }) {
   const { t } = useTranslation(['topnav']);

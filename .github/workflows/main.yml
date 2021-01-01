@@ -31,7 +31,7 @@ jobs:
           script: |
             cd ${{ secrets.VSTAY_API_WORKDIR }}/V-stay-frontend
             git pull
-            cp app.config.prod.js src/app.config.js 
+            cp src/app.config.prod.js src/app.config.js 
             npm install
             docker-compose down
             docker image rm -f vstay/web-client:latest

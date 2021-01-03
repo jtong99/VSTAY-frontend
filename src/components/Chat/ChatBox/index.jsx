@@ -9,7 +9,7 @@ import { hashString } from '@helper/hashString';
 import { Button, Form } from 'react-bootstrap';
 import { X } from 'react-feather';
 
-function ChatBox({ peerId, onShowChat }) {
+function ChatBox({ peerId }) {
   const dummy = useRef();
   const firestore = firebase.firestore();
   //   const messagesRef = firestore.collection('messages');
@@ -112,36 +112,32 @@ function ChatBox({ peerId, onShowChat }) {
   return (
     <>
       <div className={style.wrapper}>
-        <div style={{ border: '1px solid #e3e3e3' }}>
-          {/* <button onClick={() => console.log(currentUserId)}>click</button> */}
-          <Button onClick={onShowChat} variant="link">
-            <X />
-          </Button>
-        </div>
-        <div className="mb-5" className={style.messageContainer}>
-          {messages &&
-            messages.map((msg) => (
-              <ChatMessage
-                key={msg.id}
-                message={msg}
-                currentUserId={currentUserId}
-              />
-            ))}
+        <div className={style.containerMessage}>
+          <div className="mb-5" className={style.messageContainer}>
+            {messages &&
+              messages.map((msg) => (
+                <ChatMessage
+                  key={msg.id}
+                  message={msg}
+                  currentUserId={currentUserId}
+                />
+              ))}
 
-          <span ref={dummy}></span>
-        </div>
-        <Form onSubmit={sendMessage} className="d-flex">
-          <Form.Control
-            type="text"
-            value={formValue}
-            onChange={(e) => setFormValue(e.target.value)}
-            placeholder="say something nice"
-          />
+            <span ref={dummy}></span>
+          </div>
+          <Form onSubmit={sendMessage} className="d-flex">
+            <Form.Control
+              type="text"
+              value={formValue}
+              onChange={(e) => setFormValue(e.target.value)}
+              placeholder="say something nice"
+            />
 
-          <Button type="submit" disabled={!formValue}>
-            Send
-          </Button>
-        </Form>
+            <Button type="submit" disabled={!formValue}>
+              Send
+            </Button>
+          </Form>
+        </div>
       </div>
     </>
   );

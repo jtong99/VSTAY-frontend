@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import useMessageOfCurrentUser from '@hooks/api/useMessageOfCurrentUser';
 import { Container, Row, Col } from 'react-bootstrap';
 import ChatElement from './ChatElement';
-import ChatContent from './ChatContent';
+import ChatBox from './ChatBox';
 import styles from './ChatElement.module.scss';
 import { useTranslation } from 'i18n';
 import firebase from '@helper/firebase';
@@ -12,10 +12,11 @@ function ChatComponent() {
   const data = useMessageOfCurrentUser();
   const { t } = useTranslation(['footer', 'common']);
   const [currentChatContent, setCurrentChatContent] = useState('');
+  const [peerId, setPeerId] = useState('');
   const firestore = firebase.firestore();
   useEffect(() => {
-    if (!currentChatContent && data && data.length > 0) {
-      setCurrentChatContent(data[0]);
+    if (!peerId && data && data.length > 0) {
+      setCurrentChatContent(data[0].uid);
     }
   }, []);
   if (!data) {
@@ -29,13 +30,15 @@ function ChatComponent() {
           <h4 className="font-weight-600">{t('Chat')}</h4>
           <div>
             {data.map((d, i) => (
-              <ChatElement key={`item-${i}`} data={d} />
+              <ChatElement
+                key={`item-${i}`}
+                data={d}
+                onSetPeerId={(v) => setPeerId(v)}
+              />
             ))}
           </div>
         </Col>
-        <Col lg={7}>
-          <ChatContent />
-        </Col>
+        <Col lg={7}>{peerId && <ChatBox peerId={peerId} />}</Col>
       </Row>
     </Container>
   );

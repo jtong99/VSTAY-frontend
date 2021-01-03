@@ -6,10 +6,15 @@ import styles from './ChatElement.module.scss';
 import { Button } from 'react-bootstrap';
 import { formatTimeRange } from '@helper/format';
 import useIsReadChat from '@hooks/useIsReadChat';
-import { setConversationChatDoneRead, getGroupChatId } from '@helper/firebaseHelper';
+import {
+  setConversationChatDoneRead,
+  getGroupChatId,
+  getChatContent,
+} from '@helper/firebaseHelper';
 
 function ChatELement({
-  data: { uid, lastMessage, isRead, createdAt, updatedAt, id },
+  data: { uid, lastMessage, isRead, createdAt, updatedAt, id, groupId },
+  onSetPeerId,
 }) {
   const { data } = useUserByUserId(uid);
   const { data: currentUserData } = useCurrentUserData();
@@ -19,7 +24,7 @@ function ChatELement({
     currentUserData && currentUserData.code === 200 ? currentUserData.user : '';
   const isReadConversation = useIsReadChat(currentUser._id || '', uid);
   const onClickGroupChat = async () => {
-    console.log(currentUser._id);
+    onSetPeerId(user._id);
     await setConversationChatDoneRead(currentUser._id, id);
   };
   return (
@@ -47,7 +52,7 @@ function ChatELement({
               }`}
             >
               {lastMessage} <span> · </span>{' '}
-              {formatTimeRange(new Date(updatedAt.seconds * 1000))}
+              {updatedAt && formatTimeRange(new Date(updatedAt.seconds * 1000))}
             </p>
           </div>
         </div>

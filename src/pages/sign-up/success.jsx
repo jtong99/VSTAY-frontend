@@ -1,6 +1,8 @@
 import React from 'react';
 import { NextSeo } from 'next-seo';
 import { APP_URL } from 'app.config';
+import Success from '@components/SignUp/Success';
+import NavBar from '@components/NavBar';
 
 function SignUpSuccess() {
   return (
@@ -15,7 +17,8 @@ function SignUpSuccess() {
           description: 'Finding best place for your family',
         }}
       />
-      <div>sign up success</div>
+      <NavBar />
+      <Success />
     </>
   );
 }

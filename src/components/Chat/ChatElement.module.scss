@@ -5,6 +5,9 @@
 }
 .wrapper {
   // padding: 24px 20rem 24px 20rem;
+  .bgCurrent {
+    background-color: #dbdbdb !important;
+  }
   .name {
     overflow: hidden;
     text-overflow: ellipsis;

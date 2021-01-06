@@ -9,14 +9,18 @@ import { useTranslation } from 'i18n';
 import LazyImage from '@components/utils/LazyImage';
 import MapExplore from '@assets/img/earth.svg';
 import { useRouter } from 'next/router';
+import isNewChat from '@hooks/useIsReadChat';
 
 function UserMenu() {
   const { t } = useTranslation(['topnav']);
   const router = useRouter();
   const { data } = useCurrentUser();
   const { logout } = useContext(AuthContext);
+
   //   const { data } = useCurrentUser();
   const user = data && data.user ? data.user : {};
+  const { isReadAll, notSeenCount } = isNewChat(user && user._id);
+  console.log(notSeenCount);
   const container = useRef();
   const target = useRef();
   const timer = useRef();
@@ -97,9 +101,18 @@ function UserMenu() {
           padding: 0,
           marginTop: 5,
           marginLeft: 10,
+          position: 'relative',
         }}
       >
         <MessageSquare style={{ color: '#000000', height: 20 }} />
+        {notSeenCount > 0 && (
+          <Badge
+            variant="danger"
+            style={{ marginLeft: 30, position: 'absolute', right: 0, marginTop: 30 }}
+          >
+            {notSeenCount > 10 ? '10+' : notSeenCount}
+          </Badge>
+        )}
       </Button>
       <Button
         ref={target}

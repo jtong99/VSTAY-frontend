@@ -329,9 +329,9 @@ function SignInComponent() {
               </Link>
             </div>
           </div>
-          <div className="text-danger error-message text-center mt-3">
+          {/* <div className="text-danger error-message text-center mt-3">
             {error.state && t(error.message)}
-          </div>
+          </div> */}
 
           <div className="text-center">
             <Button

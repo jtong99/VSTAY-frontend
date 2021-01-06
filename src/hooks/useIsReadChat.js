@@ -4,37 +4,35 @@ import 'firebase/firestore';
 import { hashString } from '@helper/hashString';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 
-function useIsReadConversation(userId1, userId2) {
+function useIsReadConversation(userId) {
+  console.log(userId);
   const firestore = firebase.firestore();
 
-  const [isRead, setIsRead] = useState(true);
+  const [isReadAll, setIsRead] = useState(true);
 
-  const groupChatId = `${
-    hashString(userId1) <= hashString(userId2)
-      ? `${userId1}-${userId2}`
-      : `${userId2}-${userId1}`
-  }`;
+  const [notSeenCount, setNotSeenCount] = useState(0);
 
-  const messagesRef = firestore
-    .collection('messages')
-    .doc(groupChatId)
-    .collection(groupChatId);
+  const userRef = firestore
+    .collection('user')
+    .doc(userId || 'id')
+    .collection(userId || 'id');
 
-  const [messages] = useCollectionData(messagesRef, { idField: 'id' });
+  const [users] = useCollectionData(userRef, { idField: 'id' });
 
   useEffect(() => {
-    console.log(groupChatId);
-    if (messages && messages.length > 0) {
-      for (let i = 0; i < messages.length; i++) {
-        console.log(messages[i]);
-        if (messages[i].isRead === false) {
+    if (users && users.length > 0) {
+      let tmpCount = 0;
+      for (let i = 0; i < users.length; i++) {
+        if (users[i].isRead === false) {
+          tmpCount += 1;
           setIsRead(false);
         }
       }
+      setNotSeenCount(tmpCount);
     }
-  }, [messages]);
+  }, [users]);
 
-  return isRead;
+  return { isReadAll, notSeenCount };
 }
 
 export default useIsReadConversation;

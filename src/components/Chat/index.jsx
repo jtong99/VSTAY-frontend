@@ -34,6 +34,7 @@ function ChatComponent() {
                 key={`item-${i}`}
                 data={d}
                 onSetPeerId={(v) => setPeerId(v)}
+                peerId={peerId}
               />
             ))}
           </div>

@@ -11,10 +11,12 @@ import {
   getGroupChatId,
   getChatContent,
 } from '@helper/firebaseHelper';
+import { truncate } from '@helper/truncate';
 
 function ChatELement({
   data: { uid, lastMessage, isRead, createdAt, updatedAt, id, groupId },
   onSetPeerId,
+  peerId,
 }) {
   const { data } = useUserByUserId(uid);
   const { data: currentUserData } = useCurrentUserData();
@@ -24,6 +26,7 @@ function ChatELement({
     currentUserData && currentUserData.code === 200 ? currentUserData.user : '';
   const isReadConversation = useIsReadChat(currentUser._id || '', uid);
   const onClickGroupChat = async () => {
+    console.log(peerId === uid);
     onSetPeerId(user._id);
     await setConversationChatDoneRead(currentUser._id, id);
   };
@@ -31,7 +34,9 @@ function ChatELement({
     <Button
       variant="link"
       onClick={onClickGroupChat}
-      className={`btn-div w-100 ${styles.hoverBtn}`}
+      className={`btn-div w-100 ${styles.hoverBtn} ${
+        peerId === uid ? styles.bgCurrent : ''
+      }`}
     >
       <div className="d-flex">
         <LazyImage
@@ -51,7 +56,7 @@ function ChatELement({
                 isRead ? 'text-secondary' : 'font-weight-600 text-primary'
               }`}
             >
-              {lastMessage} <span> · </span>{' '}
+              <span>{truncate(lastMessage, 30)}</span> <span> · </span>{' '}
               {updatedAt && formatTimeRange(new Date(updatedAt.seconds * 1000))}
             </p>
           </div>

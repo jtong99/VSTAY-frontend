@@ -3,6 +3,7 @@ import Avatar from './Avatar';
 import Info from './Info';
 import UserPost from './UserPost';
 import UserNeedPost from './UserNeedPost';
+import styles from './Profile.module.scss';
 
 import { Button, Container, Row, Col, Alert, Spinner } from 'react-bootstrap';
 
@@ -19,7 +20,7 @@ function ProfileComponent({ data }) {
           </Col>
         </Row>
       </Container>
-      <div style={{ paddingLeft: '5rem', paddingRight: '5rem' }}>
+      <div className={styles.wrapper}>
         <UserPost userId={data._id} />
         <UserNeedPost userId={data._id} />
       </div>

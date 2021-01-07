@@ -1,6 +1,8 @@
 .wrapper {
+  @media screen and (min-width: 1200px) {
+    padding: 0px 132px;
+  }
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  padding: 0px 132px;
 }

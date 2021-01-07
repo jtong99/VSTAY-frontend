@@ -54,10 +54,7 @@ function ListPost() {
   return (
     <>
       <div className={style.wrapper}>
-        <div
-          className="d-flex justify-content-between"
-          style={{ padding: '0px 192px' }}
-        >
+        <div className={`d-flex justify-content-between ${style.pagination}`}>
           <h3 style={{ fontWeight: 600 }}>{t('Sharing Accommodation')}</h3>
           {renderPagination()}
         </div>

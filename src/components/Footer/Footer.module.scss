@@ -1,4 +1,7 @@
 .wrapper {
+  @media screen and (min-width: 1200px) {
+    padding: 20px 292px;
+  }
   background-color: #2f3a4a;
   color: #ffffff !important;
   .icon {

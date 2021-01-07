@@ -18,20 +18,20 @@ function ShareAction() {
           isAuth ? '/upload-post?t=share' : `/sign-in?ref=upload-post?t=share`,
         )
       }
-      style={{ textDecoration: 'none', textAlign: 'inherit' }}
+      style={{ textDecoration: 'none', textAlign: 'inherit', margin: 'auto' }}
     >
       <div className={`text-dark ${style.wrapperShare}`}>
         <h4 className="text-center" style={{ fontWeight: 600 }}>
           {t('Share/Lease accommodation')}
         </h4>
-        <p className={`${style.description} text-left`}>
+        <p className={`${style.description} text-left m-0`}>
           {t(
             'Create an attractive list for youself, for your customers to find you.',
           )}
         </p>
         <div className="d-flex justify-content-between">
           <div>
-            <Image src={ShareBtn} width="300px" alt="need" />
+            <Image src={ShareBtn} width="100%" alt="need" />
           </div>
           <div>
             <div className={style.button}>{t("Let's do it!")}</div>

@@ -18,23 +18,23 @@ function NeedAction() {
         )
       }
       variant="link"
-      style={{ textDecoration: 'none', textAlign: 'inherit' }}
+      style={{ textDecoration: 'none', textAlign: 'inherit', margin: 'auto' }}
     >
       <div className={`text-dark ${style.wrapper}`}>
         <h4 className="text-center" style={{ fontWeight: 600 }}>
           {t('I need accommodation')}
         </h4>
-        <p className={`${style.description} text-left`}>
+        <p className={`${style.description} text-left m-0`}>
           {t(
             'Create a beautiful V-post about your requirements and we will do the rest.',
           )}
         </p>
-        <div className="d-flex justify-content-between">
+        <div className="d-flex justify-content-lg-between justify-content-center">
           <div>
             <div className={style.button}>{t('Get started!')}</div>
           </div>
           <div>
-            <Image src={NeedBtn} alt="need" />
+            <Image src={NeedBtn} alt="need" width="100%" />
           </div>
         </div>
       </div>

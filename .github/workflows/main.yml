@@ -29,7 +29,7 @@ jobs:
           password: ${{ secrets.VSTAY_API_PASSWORD }}
           port: ${{ secrets.VSTAY_API_PORT }}
           script: |
-            cd ${{ secrets.VSTAY_API_WORKDIR }}/V-stay-frontend
+            cd ${{ secrets.VSTAY_API_WORKDIR }}/frontend
             git pull
             cp src/app.config.prod.js src/app.config.js 
             npm install

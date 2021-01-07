@@ -12,7 +12,6 @@ function Footer() {
       as="footer"
       fluid
       className={`${style.wrapper}`}
-      style={{ padding: '20px 292px' }}
       //   style={{ minHeight: '20vh' }}
     >
       <div className="d-flex justify-content-between">

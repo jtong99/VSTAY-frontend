@@ -18,9 +18,6 @@ function UserPost({ userId }) {
   }
   return (
     <div className="mt-5">
-      <div>
-        <h3 style={{ fontWeight: 600 }}>{t('Sharing Accommodation')}</h3>
-      </div>
       <PostList
         data={data.result}
         total={data.total}

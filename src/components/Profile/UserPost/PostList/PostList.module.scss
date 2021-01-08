@@ -1,5 +1,8 @@
 .wrapper {
   // padding: 0px 132px;
+  @media screen and (min-width: 1200px) {
+    padding: 0px 222px;
+  }
   background-position: 5% 5%, 100% 10%, 100% 80%, bottom;
   background-repeat: no-repeat;
   background-size: auto, auto, auto, cover;
@@ -27,6 +30,7 @@
   }
   .container {
     display: flex;
+    justify-content: space-between;
     flex-wrap: wrap;
     // justify-content: center;
 

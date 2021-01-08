@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import style from './PostList.module.scss';
 import PostCard from '../PostCard';
 import PostLoading from '@components/utils/PostLoading';
@@ -6,6 +6,9 @@ import { Image } from 'react-bootstrap';
 import { useTranslation } from 'i18n';
 import Pagination from '@components/utils/Pagination';
 import NoPost from '@assets/message/no_data.svg';
+import { mutate } from 'swr';
+import useFighter from '@hooks/useFetch';
+import AuthContext from '@components/Auth/AuthContext';
 
 function ListPost({ data, loading, itemCounts = 3 }) {
   const { t } = useTranslation(['topnav']);
@@ -16,6 +19,12 @@ function ListPost({ data, loading, itemCounts = 3 }) {
   //   pageSize,
   //   pageNumber,
   // });
+  const { getToken } = useContext(AuthContext);
+
+  const [remove] = useFighter(``, {
+    token: getToken(),
+    method: 'PATCH',
+  });
   const renderPagination = () => {
     const total = data && data.total;
 
@@ -64,9 +73,46 @@ function ListPost({ data, loading, itemCounts = 3 }) {
   return (
     <>
       <div className={style.wrapper}>
+        <div>
+          <h3 style={{ fontWeight: 600 }}>{t('Sharing Accommodation')}</h3>
+        </div>
         <div className={style.container}>
           {data.map((p, i) => (
-            <PostCard key={`item-${i}`} data={p} />
+            <PostCard
+              key={`item-${i}`}
+              data={p}
+              onRemoveClick={async () => {
+                const { data: delData } = await remove(
+                  {
+                    postID: p._id,
+                    status: 'deleted',
+                  },
+                  {
+                    path: `/v1/api/post/status`,
+                  },
+                );
+                if (delData && delData.code === 200) {
+                  // mutate([
+                  //   composeQuery(`/v1/api/user-video-list/${listName}/search`, {
+                  //     pageNumber: 1,
+                  //     pageSize: 10,
+                  //     sortBy: sortValue === 'asc' ? '' : 'newest',
+                  //     keyword: searchValue,
+                  //   }),
+                  //   getToken() || '',
+                  // ]);
+                  // mutate([
+                  //   composeQuery(`/v1/api/user-video-list`, {
+                  //     pageNumber: 1,
+                  //     pageSize: 5,
+                  //   }),
+                  //   getToken() || '',
+                  // ]);
+                  return true;
+                }
+                return false;
+              }}
+            />
           ))}
           {generateFakeItem()}
         </div>

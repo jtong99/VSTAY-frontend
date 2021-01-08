@@ -15,7 +15,7 @@ function InfoComponent({ data }) {
         <h6 style={{ fontWeight: 300, fontSize: 29, marginLeft: 7 }}>
           {data && data.name}
         </h6>
-        <div className="mt-3 d-flex">
+        <div className="mt-3 d-flex flex-wrap">
           <Button
             onClick={() => setShowUpdate(!showUpdate)}
             variant=""

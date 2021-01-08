@@ -25,16 +25,24 @@ function Footer() {
         </div>
         <div>
           <p>{t('Connect with us on')}:</p>
-          <div>
-            <a href="/https://facebook.com" className={style.icon}>
-              <Facebook width="20px" />
-            </a>
-            <a href="/https://facebook.com" className={style.icon}>
-              <Instagram width="20px" />
-            </a>
-            <a href="/https://facebook.com" className={style.icon}>
-              <Twitter width="20px" />
-            </a>
+          <div className="d-flex flex-wrap">
+            <div>
+              <a className={style.icon} href="/https://facebook.com">
+                <Facebook width="20px" />
+              </a>
+            </div>
+
+            <div className="mt-4 mt-lg-0">
+              <a className={style.icon} href="/https://facebook.com">
+                <Instagram width="20px" />
+              </a>
+            </div>
+
+            <div className="mt-4 mt-lg-0">
+              <a className={style.icon} href="/https://facebook.com">
+                <Twitter width="20px" />
+              </a>
+            </div>
           </div>
         </div>
       </div>

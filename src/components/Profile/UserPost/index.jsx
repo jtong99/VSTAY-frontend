@@ -1,7 +1,7 @@
 import React from 'react';
 import useUserSharePost from '@hooks/api/useUserSharePost';
 import { Spinner } from 'react-bootstrap';
-import PostList from '@components/utils/PostList';
+import PostList from './PostList';
 import { useTranslation } from 'i18n';
 
 function UserPost({ userId }) {

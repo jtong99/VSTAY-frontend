@@ -36,7 +36,7 @@ function NeedPostList() {
     if (itemsCount === 0) {
       return null;
     }
-    for (let i = 0; i < (itemsCount === 1 ? 2 : 1); i += 1) {
+    for (let i = 0; i <= (itemsCount === 1 ? 2 : 1); i += 1) {
       items.push(<div key={`item-${i}`} style={{ minWidth: 400 }} />);
     }
     return items;

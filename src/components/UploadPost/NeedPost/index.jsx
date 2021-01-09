@@ -7,7 +7,7 @@ function NeedPostComponent() {
   const [currentStep, setCurrentStep] = useState(0);
   const [postData, setPostData] = useState({
     type_of_post: 'need',
-    status: 'pending',
+    status: 'approved',
   });
 
   const upStep = () => {

@@ -37,6 +37,7 @@ function PostCard({ data, onRemoveClick, onSuccessChange }) {
       setShowDelDialog(false);
     }
   };
+  const isEditable = data.status === 'pending';
   return (
     <>
       <div className={style.wrapper}>
@@ -46,14 +47,16 @@ function PostCard({ data, onRemoveClick, onSuccessChange }) {
               <X />
             </Button>
           </div>
-          <div
-            role="link"
-            tabIndex={-1}
-            style={{ visibility: 'hidden' }}
-            className={`${style.overlay} conversion`}
-          >
-            <EditBtn data={data} onSuccessChange={onSuccessChange} />
-          </div>
+          {isEditable && (
+            <div
+              role="link"
+              tabIndex={-1}
+              style={{ visibility: 'hidden' }}
+              className={`${style.overlay} conversion`}
+            >
+              <EditBtn data={data} onSuccessChange={onSuccessChange} />
+            </div>
+          )}
         </div>
 
         <Link href={`/share-post?p=${data._id}`} passHref>

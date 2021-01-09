@@ -67,7 +67,11 @@ function NeedPostComponent({ data }) {
       <Container className="mb-5 pt-4">
         <Row>
           <Col lg={8}>
-            <Info data={data && data.about} />
+            <Info
+              data={data && data.about}
+              propertyType={data && data.type}
+              address={data && data.location && data.location.name}
+            />
             <hr className="my-4" />
             <Detail
               budget={data.budget}

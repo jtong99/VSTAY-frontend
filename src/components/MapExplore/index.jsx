@@ -14,8 +14,13 @@ import PopUpShare from './PopUpShare';
 import MarkNeed from './MarkNeed';
 import PopUpNeed from './PopUpNeed';
 import Loading from '@components/utils/Loading';
+import Geocoder from 'react-mapbox-gl-geocoder';
+import { Home } from 'react-feather';
+import { Button } from 'react-bootstrap';
+import { useRouter } from 'next/router';
 
 function MapExploreComponent() {
+  const router = useRouter();
   const [viewport, setViewport] = useState({
     latitude: 10.762622,
     longitude: 106.660172,
@@ -38,6 +43,18 @@ function MapExploreComponent() {
     left: 0,
     padding: '10px',
   };
+  const geoStyle = {
+    position: 'absolute',
+    top: 42,
+    right: '35%',
+
+    width: 500,
+  };
+  const homeStyle = {
+    position: 'absolute',
+    top: 42,
+    right: 20,
+  };
   const shareData = data && data.result && data.result.resultArray;
   const needData =
     needGet &&
@@ -47,6 +64,9 @@ function MapExploreComponent() {
     needGet.result.resultArray;
   const [popupData, setPopupData] = useState('');
   const [needPopupData, setNeedPopupData] = useState('');
+  const queryParams = {
+    country: 'vn',
+  };
   useEffect(() => {
     if (shareData) {
       console.log('load share data');
@@ -112,7 +132,10 @@ function MapExploreComponent() {
     }
     setNeedPopupData(newPopup);
   };
-  if (popupData === '' || needPopupData === '') {
+  const onSelected = (v, item) => {
+    setViewport({ ...viewport, longitude: v.longitude, latitude: v.latitude });
+  };
+  if (data === '' || needGet === '') {
     return (
       <>
         <Loading show={true} />
@@ -186,12 +209,23 @@ function MapExploreComponent() {
               onClose={() => onClosePopUp(i)}
             />
           ))}
+
+        <div style={geoStyle}>
+          <Geocoder
+            mapboxApiAccessToken={mapBoxToken}
+            {...viewport}
+            queryParams={queryParams}
+            onSelected={onSelected}
+          />
+        </div>
+
         <div style={navStyle}>
           <NavigationControl
             style={geolocateStyle}
             onViewportChange={(viewport) => setViewport(viewport)}
           />
         </div>
+
         <div style={geolocateStyle}>
           <GeolocateControl
             positionOptions={{ enableHighAccuracy: true }}
@@ -199,6 +233,12 @@ function MapExploreComponent() {
             showUserLocation={true}
             auto={true}
           />
+        </div>
+
+        <div style={homeStyle}>
+          <Button onClick={() => router.push('/')}>
+            <Home />
+          </Button>
         </div>
       </ReactMapGL>
     </div>

@@ -5,7 +5,7 @@ import PostLoading from '@components/utils/PostLoading';
 import { Button, Image } from 'react-bootstrap';
 import { useTranslation } from 'i18n';
 import useAllNeedPost from '@hooks/api/useAllNeedPost';
-import NoPost from '@assets/message/no-data.jpg';
+import NoPost from '@assets/message/no-data.svg';
 import Pagination from '@components/utils/Pagination';
 
 import useFighter from '@hooks/useFetch';

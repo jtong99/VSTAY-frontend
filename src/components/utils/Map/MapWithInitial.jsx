@@ -44,7 +44,12 @@ function MapWithInitial({ viewportInitial = {}, geocode = {}, address = '' }) {
               color: '#ffffff',
             }}
           >
-            <div className="font-weight-600">{(address && get()) || 'MARK'}</div>
+            <div
+              className="font-weight-600 text-center"
+              style={{ width: 300, overflow: 'hidden' }}
+            >
+              {address || 'MARK'}
+            </div>
           </div>
         </Marker>
       )}

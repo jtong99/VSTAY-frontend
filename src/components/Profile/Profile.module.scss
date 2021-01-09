@@ -3,3 +3,8 @@
     padding: 0px 5rem;
   }
 }
+.padding {
+  @media screen and (min-width: 1200px) {
+    padding: 0px 222px;
+  }
+}

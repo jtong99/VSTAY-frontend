@@ -14,8 +14,8 @@ import { PostType } from '@helper/enum';
 import { formatDate } from 'helper/format';
 import { X } from 'react-feather';
 import DialogConfirm from '@components/utils/DialogConfirm';
-
-function PostCard({ data, onRemoveClick }) {
+import EditBtn from './EditButton.jsx';
+function PostCard({ data, onRemoveClick, onSuccessChange }) {
   const { t } = useTranslation(['topnav']);
   const [showDelDialog, setShowDelDialog] = useState(false);
 
@@ -40,11 +40,22 @@ function PostCard({ data, onRemoveClick }) {
   return (
     <>
       <div className={style.wrapper}>
-        <div className={style.topright}>
-          <Button variant="link" onClick={() => setShowDelDialog(!showDelDialog)}>
-            <X />
-          </Button>
+        <div style={{ position: 'relative' }}>
+          <div className={style.topright}>
+            <Button variant="link" onClick={() => setShowDelDialog(!showDelDialog)}>
+              <X />
+            </Button>
+          </div>
+          <div
+            role="link"
+            tabIndex={-1}
+            style={{ visibility: 'hidden' }}
+            className={`${style.overlay} conversion`}
+          >
+            <EditBtn data={data} onSuccessChange={onSuccessChange} />
+          </div>
         </div>
+
         <Link href={`/share-post?p=${data._id}`} passHref>
           <div>
             <div>

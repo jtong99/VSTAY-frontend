@@ -5,15 +5,15 @@ import PostLoading from '@components/utils/PostLoading';
 import { Image } from 'react-bootstrap';
 import { useTranslation } from 'i18n';
 import Pagination from '@components/utils/Pagination';
-import NoPost from '@assets/message/no_data.svg';
+import NoPost from '@assets/message/no-data.jpg';
 import { mutate } from 'swr';
 import useFighter from '@hooks/useFetch';
 import AuthContext from '@components/Auth/AuthContext';
+import composeQuery from '@helper/compose';
 
-function ListPost({ data, loading, itemCounts = 3 }) {
+function ListPost({ data, loading, itemCounts = 3, onSuccessChange }) {
   const { t } = useTranslation(['topnav']);
-  const [pageNumber, setPageNumber] = useState(1);
-  const pageSize = 6;
+
   // const { data, loading } = useAllSharePost({
   //   sortBy: 'newest',
   //   pageSize,
@@ -25,20 +25,7 @@ function ListPost({ data, loading, itemCounts = 3 }) {
     token: getToken(),
     method: 'PATCH',
   });
-  const renderPagination = () => {
-    const total = data && data.total;
 
-    return (
-      total > pageSize && (
-        <Pagination
-          page={pageNumber}
-          pageSize={pageSize}
-          itemsCount={total}
-          onPageChange={(value) => setPageNumber(value)}
-        />
-      )
-    );
-  };
   const generateFakeItem = () => {
     const items = [];
     const itemsCount = data.total % itemCounts;
@@ -58,11 +45,11 @@ function ListPost({ data, loading, itemCounts = 3 }) {
       </>
     );
   }
-  if (!data) {
+  if (data.length === 0) {
     return (
       <div className="text-center">
         <Image src={NoPost} style={{ maxWidth: 300 }} />
-        <p>{t('No sharing post uploaded')}</p>
+        <p className="font-weight-600">{t('No sharing post uploaded')}</p>
       </div>
     );
   }
@@ -73,14 +60,12 @@ function ListPost({ data, loading, itemCounts = 3 }) {
   return (
     <>
       <div className={style.wrapper}>
-        <div>
-          <h3 style={{ fontWeight: 600 }}>{t('Sharing Accommodation')}</h3>
-        </div>
         <div className={style.container}>
           {data.map((p, i) => (
             <PostCard
               key={`item-${i}`}
               data={p}
+              onSuccessChange={onSuccessChange}
               onRemoveClick={async () => {
                 const { data: delData } = await remove(
                   {
@@ -92,15 +77,7 @@ function ListPost({ data, loading, itemCounts = 3 }) {
                   },
                 );
                 if (delData && delData.code === 200) {
-                  // mutate([
-                  //   composeQuery(`/v1/api/user-video-list/${listName}/search`, {
-                  //     pageNumber: 1,
-                  //     pageSize: 10,
-                  //     sortBy: sortValue === 'asc' ? '' : 'newest',
-                  //     keyword: searchValue,
-                  //   }),
-                  //   getToken() || '',
-                  // ]);
+                  onSuccessChange();
                   // mutate([
                   //   composeQuery(`/v1/api/user-video-list`, {
                   //     pageNumber: 1,

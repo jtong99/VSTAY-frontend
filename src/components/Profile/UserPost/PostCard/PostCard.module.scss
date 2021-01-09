@@ -13,6 +13,16 @@
   position: relative;
   transition: all 400ms;
   transform: scale(1);
+  position: relative;
+  transition: visibility 400ms;
+  &:hover {
+    .overlay {
+      visibility: visible !important;
+    }
+    .topright {
+      visibility: visible !important;
+    }
+  }
   .button {
     border: 1px solid #232946;
     padding: 3px 10px;
@@ -49,6 +59,33 @@
       svg {
         height: 16px;
         width: 16px;
+      }
+    }
+  }
+  .overlay {
+    position: absolute;
+    top: 70px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    z-index: 999999;
+
+    button {
+      width: 36px;
+      height: 36px;
+      border-radius: 25px;
+      box-shadow: 1px 25px 30px rgba(41, 50, 85, 0.15);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      svg {
+        height: 18px;
+        pointer-events: none;
       }
     }
   }

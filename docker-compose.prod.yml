@@ -7,11 +7,9 @@ services:
     image: vstay/web-client
     container_name: web-client
     restart: always
-    command: node server.js
     expose:
       - 3000
-
-networks:
-  default:
-    external:
-      name: nginx-proxy
+# networks:
+#   default:
+#     external:
+#       name: nginx-proxy

@@ -10,6 +10,6 @@ RUN apk add --no-cache make gcc g++ python autoconf libtool automake zlib-dev na
   npm run build && \
   apk del make gcc g++ python autoconf libtool automake zlib-dev nasm
 
-CMD [ "npm", "run", "dev" ]
+CMD [ "npm", "start" ]
 
 EXPOSE 3000

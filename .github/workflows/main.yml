@@ -36,3 +36,26 @@ jobs:
             docker-compose down
             docker image rm -f vstay/web-client:latest
             docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d
+  build:
+    # The type of runner that the job will run ons
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      - uses: actions/checkout@master
+
+      - name: executing remote ssh commands using ssh key
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.AZURE_HOST }}
+          username: ${{ secrets.AZURE_API_USER }}
+          password: ${{ secrets.AZURE_API_PASSWORD }}
+          port: ${{ secrets.AZURE_API_PORT }}
+          script: |
+            cd ${{ secrets.AZURE_API_WORKDIR }}/V-stay-frontend
+            git pull
+            cp src/app.config.prod.js src/app.config.js 
+            npm install
+            docker-compose down
+            docker image rm -f vstay/web-client:latest
+            docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d

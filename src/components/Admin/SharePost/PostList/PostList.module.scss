@@ -1,0 +1,41 @@
+.wrapper {
+  // padding: 0px 132px;
+  @media screen and (min-width: 1200px) {
+    padding: 0px 222px;
+  }
+  background-position: 5% 5%, 100% 10%, 100% 80%, bottom;
+  background-repeat: no-repeat;
+  background-size: auto, auto, auto, cover;
+  margin-bottom: 3rem;
+  // min-height: 20vh;
+  .buttonGroup {
+    background-color: #a6a6a6;
+    text-align: center;
+    width: 230px;
+    margin: 0 auto;
+    border-radius: 20px;
+    padding: 3px;
+    .buttonItemLeft {
+      background-color: #ffffff;
+      color: #000000;
+      border-radius: 20px 0px 0px 20px;
+      margin: 2px;
+    }
+    .buttonItemRight {
+      background-color: #ffffff;
+      color: #000000;
+      border-radius: 0px 20px 20px 0px;
+      margin: 2px;
+    }
+  }
+  .container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    // justify-content: center;
+
+    & > * {
+      margin: 12px;
+    }
+  }
+}

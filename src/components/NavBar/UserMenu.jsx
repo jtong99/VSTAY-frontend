@@ -196,6 +196,26 @@ function UserMenu() {
       >
         Sign out
       </Button> */}
+      {user && user.role === 'admin' && (
+        <Button
+          // ref={target}
+          onClick={() => router.push('/admin')}
+          variant="primary"
+          style={{
+            // textDecoration: 'none',
+            // border: '1px solid #ACACAC',
+            // borderRadius: '50%',
+            height: 37,
+            // width: 35,
+            // padding: 0,
+            marginTop: 5,
+            marginLeft: 5,
+          }}
+        >
+          Moderator
+          {/* <Plus style={{ color: '#000000', height: 20 }} /> */}
+        </Button>
+      )}
     </div>
   );
 }

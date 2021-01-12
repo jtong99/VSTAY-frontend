@@ -179,6 +179,7 @@ function PostUpdateDialog({
               <div>{datePicker()}</div>
             </Form.Group>
           </Form>
+
           {error && (
             <Alert variant="danger">
               <strong>{t('Error')}: </strong>

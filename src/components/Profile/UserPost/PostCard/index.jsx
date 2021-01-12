@@ -111,7 +111,7 @@ function PostCard({ data, onRemoveClick, onSuccessChange }) {
                   <>
                     <div>
                       <Image height="18px" src={Height} />
-                      <span className="ml-1">{data.detail.height} (m)</span>
+                      <span className="ml-1">{data.detail.length} (m)</span>
                     </div>
                     <div className="ml-4">
                       <Image height="18px" src={Width} />
@@ -127,7 +127,7 @@ function PostCard({ data, onRemoveClick, onSuccessChange }) {
               </div>
             </div>
             <p className="text-secondary ">{data.address.name}</p>
-            <p className="text-secondary">{formatDate(data.releasedAt, 'long')}</p>
+            <p className="text-secondary">{formatDate(data.createdAt, 'long')}</p>
           </div>
         </Link>
       </div>

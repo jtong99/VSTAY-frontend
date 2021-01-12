@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { NextSeo } from 'next-seo';
 import { APP_URL } from 'app.config';
-import AdminComp from '@components/Admin/ShareTab';
+import AdminComp from '@components/Admin';
 import NavBar from '@components/NavBar';
 
 function AdminPage() {

@@ -16,7 +16,7 @@ function NeedPostList({ itemCounts = 3, onSuccessChange, data, loading }) {
   const [pageNumber, setPageNumber] = useState(1);
   const pageSize = 3;
   const { getToken } = useContext(AuthContext);
-
+  console.log(data);
   const renderPagination = () => {
     const total = data && data.result && data.result.total;
 
@@ -49,11 +49,11 @@ function NeedPostList({ itemCounts = 3, onSuccessChange, data, loading }) {
       </>
     );
   }
-  if (data.resultArray.length === []) {
+  if (data.total === 0) {
     return (
       <div className="text-center">
         <Image src={NoPost} style={{ maxWidth: 300 }} />
-        <p className="font-weight-600">{t('No post uploaded')}</p>
+        <p className="font-weight-600">{t('No post')}</p>
       </div>
     );
   }

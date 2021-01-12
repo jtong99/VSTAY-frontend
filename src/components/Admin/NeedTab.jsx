@@ -30,11 +30,10 @@ function AdminComponent() {
   }, [totalCount]);
   return (
     <div className={style.wrapper}>
-      <h4 className="font-weight-600">Need Post List</h4>
-
       <Tab.Container activeKey={activeTab} onSelect={(tab) => setActiveTab(tab)}>
         <Container fluid>
-          <Row>
+          <Row className={style.tabWrapper}>
+            <h4 className="font-weight-600">Need Post List</h4>
             <Col md={12}>
               <Nav variant="tabs" style={{ margin: 10 }}>
                 <Nav.Item>

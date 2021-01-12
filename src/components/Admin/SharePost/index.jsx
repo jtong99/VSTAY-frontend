@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Spinner } from 'react-bootstrap';
 import useSharePostByType from '@hooks/api/useSharePostByType';
 import PostList from './PostList';
 import Pagination from '@components/utils/Pagination';
@@ -11,7 +12,11 @@ function SharePost({ type }) {
     pageNumber,
   });
   if (!sharePost) {
-    return <div>loading</div>;
+    return (
+      <div className="text-center">
+        <Spinner animation="border" variant="primary" />
+      </div>
+    );
   }
   const renderPagination = () => {
     const total = sharePost && sharePost.result && sharePost.result.total;

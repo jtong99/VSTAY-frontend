@@ -68,7 +68,7 @@ function PostCard({ data }) {
           </div>
         </div>
         <p className="text-secondary ">{data.address.name}</p>
-        <p className="text-secondary">{formatDate(data.releasedAt, 'long')}</p>
+        <p className="text-secondary">{formatDate(data.createdAt, 'long')}</p>
       </div>
     </Link>
   );

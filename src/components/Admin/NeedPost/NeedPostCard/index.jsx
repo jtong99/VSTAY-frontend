@@ -22,7 +22,7 @@ function NeedPostCard({ data, onRemoveClick }) {
   return (
     <>
       <div className={style.wrapper}>
-        <Link href={`/need-post?p=${data._id}`} passHref>
+        <Link href={`/need-post-preview?p=${data._id}`} passHref>
           <div>
             <div>
               <div

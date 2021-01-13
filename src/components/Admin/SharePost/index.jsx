@@ -33,7 +33,7 @@ function SharePost({ type }) {
     );
   };
   return (
-    <div>
+    <div style={{ minHeight: '70vh' }}>
       {/* <button onClick={() => console.log(sharePost)}>click</button> */}
       <PostList
         data={sharePost && sharePost.result}

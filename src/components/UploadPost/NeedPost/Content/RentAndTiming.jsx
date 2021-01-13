@@ -27,9 +27,7 @@ function RentAndTiming({ currentData, upStep, downStep, onFinishRent }) {
   const [stayAvailable, setStayAvailable] = useState(
     currentData.length_of_stay ?? '',
   );
-  const [date, setDate] = useState(
-    currentData.move_date ?? new Date(Date.now() - 7 * 24 * 60 * 60 * 1000),
-  );
+  const [date, setDate] = useState(currentData.move_date ?? new Date());
 
   const isEmpty = () => {
     return (

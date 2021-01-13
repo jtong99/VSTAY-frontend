@@ -30,10 +30,12 @@ function Info({ data, propertyType, address }) {
       </div>
       <p>
         <span className="text-danger">*</span>{' '}
-        <span className="text-secondary text-italic">
-          {typePostShow.filter((t) => t.type === propertyType)[0].text} near{' '}
-          {address}
-        </span>
+        {propertyType && (
+          <span className="text-secondary text-italic">
+            {typePostShow.filter((t) => t.type === propertyType)[0].text} near{' '}
+            {address}
+          </span>
+        )}
       </p>
     </div>
   );

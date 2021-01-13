@@ -52,7 +52,7 @@ function PostCard({ data }) {
               <>
                 <div>
                   <Image height="18px" src={Height} />
-                  <span className="ml-1">{data.detail.height} (m)</span>
+                  <span className="ml-1">{data.detail.length} (m)</span>
                 </div>
                 <div className="ml-4">
                   <Image height="18px" src={Width} />

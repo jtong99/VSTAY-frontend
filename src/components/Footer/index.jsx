@@ -4,6 +4,7 @@ import { useTranslation } from 'i18n';
 import { Container, Row, Col, Image } from 'react-bootstrap';
 import style from './Footer.module.scss';
 import { Facebook, Instagram, Twitter } from 'react-feather';
+import LanguageDropdown from '@components/utils/LanguageDropdown';
 
 function Footer() {
   const { t } = useTranslation(['footer', 'common']);
@@ -24,8 +25,12 @@ function Footer() {
           </p>
         </div>
         <div>
+          <div>
+            <LanguageDropdown />
+          </div>
           <p>{t('Connect with us on')}:</p>
-          <div className="d-flex flex-wrap">
+
+          <div className="d-flex flex-wrap mt-3">
             <div>
               <a className={style.icon} href="/https://facebook.com">
                 <Facebook width="20px" />
@@ -33,13 +38,13 @@ function Footer() {
             </div>
 
             <div className="mt-4 mt-lg-0">
-              <a className={style.icon} href="/https://facebook.com">
+              <a className={style.icon} href="/https://instagram.com">
                 <Instagram width="20px" />
               </a>
             </div>
 
             <div className="mt-4 mt-lg-0">
-              <a className={style.icon} href="/https://facebook.com">
+              <a className={style.icon} href="/https://twitter.com">
                 <Twitter width="20px" />
               </a>
             </div>

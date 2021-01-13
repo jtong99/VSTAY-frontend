@@ -22,7 +22,7 @@ function RejectDialog({ id, status, open, onClose, decision, posterID }) {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const { data } = await fire({
-      budget: decision,
+      status: decision,
     });
     if (data && data.code === 200) {
       sendMessage();

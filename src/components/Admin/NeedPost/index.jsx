@@ -25,7 +25,7 @@ function UserNeedPost({ type }) {
   }
 
   return (
-    <div className="mt-5">
+    <div className="mt-5" style={{ minHeight: '70vh' }}>
       {/* <div>
         <h3 style={{ fontWeight: 600 }}>{t('Needing Accommodation')}</h3>
       </div> */}

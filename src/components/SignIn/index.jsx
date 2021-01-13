@@ -308,7 +308,7 @@ function SignInComponent() {
               </Form.Group>
             </Form>
           </div>
-          <div
+          {/* <div
             className="d-flex mt-3"
             style={{ marginTop: 6, width: '80%', margin: '0 auto' }}
           >
@@ -328,7 +328,7 @@ function SignInComponent() {
                 <a>{t('Forgot password?')}</a>
               </Link>
             </div>
-          </div>
+          </div> */}
           {/* <div className="text-danger error-message text-center mt-3">
             {error.state && t(error.message)}
           </div> */}

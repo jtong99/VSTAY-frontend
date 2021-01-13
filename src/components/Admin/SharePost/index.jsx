@@ -13,7 +13,7 @@ function SharePost({ type }) {
   });
   if (!sharePost) {
     return (
-      <div className="text-center">
+      <div className="text-center" style={{ minHeight: '70vh' }}>
         <Spinner animation="border" variant="primary" />
       </div>
     );

@@ -1,5 +1,5 @@
-import usIcon from '@assets/flags/us-flag.png';
-import vnIcon from '@assets/flags/vietnam.png';
+import usIcon from '@assets/flags/us-flag.svg';
+import vnIcon from '@assets/flags/vietnam.svg';
 
 export default {
   codes: ['en', 'vi'],

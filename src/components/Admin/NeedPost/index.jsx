@@ -17,7 +17,7 @@ function UserNeedPost({ type }) {
   if (!sharePost) {
     return (
       <>
-        <div>
+        <div style={{ minHeight: '70vh', textAlign: 'center' }}>
           <Spinner size="sm" />
         </div>
       </>

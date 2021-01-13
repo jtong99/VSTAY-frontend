@@ -12,8 +12,9 @@ import useDataFromGeocode from '@hooks/api/useDataFromGeocode';
 
 function MapComponent({ width, height, onSetLocation, onSetAddress }) {
   const [viewport, setViewport] = useState({
-    // latitude: 10.762622,
-    // longitude: 106.660172,
+    latitude: 10.762622,
+    longitude: 106.660172,
+    zoom: 10,
     width,
     height,
     zoom: 10,
@@ -61,14 +62,15 @@ function MapComponent({ width, height, onSetLocation, onSetAddress }) {
           </div>
         </Marker>
       )}
-
-      <GeolocateControl
-        style={geolocateStyle}
-        positionOptions={{ enableHighAccuracy: true }}
-        trackUserLocation={true}
-        showUserLocation={true}
-        auto={true}
-      />
+      <div style={{ position: 'absolute', top: 0, right: 0, padding: '10px' }}>
+        {' '}
+        <GeolocateControl
+          positionOptions={{ enableHighAccuracy: true }}
+          trackUserLocation={true}
+          showUserLocation={true}
+          auto={true}
+        />
+      </div>
 
       <div style={{ position: 'absolute', top: 0, right: 0, padding: '10px' }}>
         <NavigationControl

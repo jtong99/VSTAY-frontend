@@ -8,12 +8,12 @@ import Preference from './Preference';
 import MapPreview from './MapPreview';
 import Contact from './Contact';
 import LazyImage from '@components/utils/LazyImage';
-import useCurrentUserData from '@hooks/api/useCurrentUserData';
+import useUserByUserId from '@hooks/api/useUserByUserId';
 import useFetch from '@hooks/useFetch';
 import AuthContext from '@components/Auth/AuthContext';
 
 function NeedPostComponent({ data }) {
-  const { data: userData } = useCurrentUserData();
+  const { data: userData } = useUserByUserId(data && data.poster);
   const { user } = userData || {};
   //   const images = [
   //     'https://images.unsplash.com/photo-1449034446853-66c86144b0ad?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2100&q=80',

@@ -44,21 +44,21 @@ function NeedPostList({ itemCounts = 3, onSuccessChange, data, loading }) {
   };
   if (loading || !data) {
     return (
-      <>
+      <div style={{ minHeight: '70vh' }}>
         <PostLoading />
-      </>
+      </div>
     );
   }
   if (data.total === 0) {
     return (
-      <div className="text-center">
+      <div className="text-center" style={{ minHeight: '70vh' }}>
         <Image src={NoPost} style={{ maxWidth: 300 }} />
         <p className="font-weight-600">{t('No post')}</p>
       </div>
     );
   }
   return (
-    <>
+    <div style={{ minHeight: '70vh' }}>
       <div className={style.wrapper}>
         {/* <button onClick={() => console.log(data)}>click</button> */}
         {/* <div
@@ -78,7 +78,7 @@ function NeedPostList({ itemCounts = 3, onSuccessChange, data, loading }) {
       </div>
 
       <div className="d-flex justify-content-center">{renderPagination()}</div>
-    </>
+    </div>
   );
 }
 

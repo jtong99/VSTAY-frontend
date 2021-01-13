@@ -40,9 +40,9 @@ function ListPost({ data, loading, itemCounts = 3, onSuccessChange }) {
 
   if (loading || !data) {
     return (
-      <>
+      <div style={{ minHeight: '70vh' }}>
         <PostLoading />
-      </>
+      </div>
     );
   }
   if (data.resultArray.length === 0) {

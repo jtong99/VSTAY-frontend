@@ -9,7 +9,7 @@ const maxInputWidth = 474;
 function SearchBar() {
   const [input, setInput] = useState('');
   const router = useRouter();
-  const { t } = useTranslation(['topnav']);
+  const { t } = useTranslation(['common']);
   const [inputWidth, setInputWidth] = useState(minInputWidth);
 
   const toggleWidth = () => {

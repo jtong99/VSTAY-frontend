@@ -7,7 +7,7 @@ import { useTranslation } from 'i18n';
 import useAllSharePost from '@hooks/api/useAllSharePost';
 import Pagination from '@components/utils/Pagination';
 function ListPost() {
-  const { t } = useTranslation(['topnav']);
+  const { t } = useTranslation(['common']);
   const [pageNumber, setPageNumber] = useState(1);
   const pageSize = 6;
   const { data, loading } = useAllSharePost({

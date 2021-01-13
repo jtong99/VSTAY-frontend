@@ -54,5 +54,7 @@ function NeedPostPage() {
     </>
   );
 }
-
+NeedPostPage.getInitialProps = async (context) => {
+  return { namespacesRequired: ['common'] };
+};
 export default NeedPostPage;

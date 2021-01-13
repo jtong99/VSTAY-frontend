@@ -8,10 +8,12 @@ import useSharePost from '@hooks/api/useSharePost';
 import NavBar from '@components/NavBar';
 import ChatBox from '@components/utils/ChatBox';
 import { Container } from 'react-bootstrap';
+import LoginRequired from '@components/SignIn/LoginRequired';
+import Footer from '@components/Footer';
 
 function SharePostPage() {
   const router = useRouter();
-  const { getToken } = useContext(AuthContext);
+  const { getToken, isAuth } = useContext(AuthContext);
   const id = router.query.p;
   const { data, error, revalidate } = useSharePost(id);
   const [isError, setIsError] = useState(false);
@@ -30,13 +32,13 @@ function SharePostPage() {
   if (!data) {
     return <div>loading</div>;
   }
-  if (isError) {
-    return (
-      <div>
-        <p>error</p>
-      </div>
-    );
-  }
+  // if (isError) {
+  //   return (
+  //     <div>
+  //       <p>error</p>
+  //     </div>
+  //   );
+  // }
   return (
     <>
       <NextSeo
@@ -51,17 +53,21 @@ function SharePostPage() {
       />
 
       <NavBar />
-      <div className="mb-5 position-relative">
-        {/* <button onClick={() => console.log(postData)}>click</button> */}
-        <SharePost data={postData} onShowChat={() => setShowChat(!showChat)} />
-      </div>
-
-      {showChat && (
-        <ChatBox
-          peerId={postData.poster}
-          onShowChat={() => setShowChat(!showChat)}
-        />
+      {isAuth ? (
+        <div className="mb-5 position-relative">
+          {/* <button onClick={() => console.log(postData)}>click</button> */}
+          <SharePost data={postData} onShowChat={() => setShowChat(!showChat)} />
+          {showChat && (
+            <ChatBox
+              peerId={postData.poster}
+              onShowChat={() => setShowChat(!showChat)}
+            />
+          )}
+        </div>
+      ) : (
+        <LoginRequired />
       )}
+      <Footer />
     </>
   );
 }

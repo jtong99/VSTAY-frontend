@@ -22,5 +22,7 @@ function AdminPage() {
     </>
   );
 }
-
+AdminPage.getInitialProps = async (context) => {
+  return { namespacesRequired: ['common'] };
+};
 export default AdminPage;

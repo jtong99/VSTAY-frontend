@@ -39,3 +39,6 @@ $theme-colors: (
 .react-geocoder input {
   width: 100%;
 }
+.disabled-link {
+  pointer-events: none;
+}

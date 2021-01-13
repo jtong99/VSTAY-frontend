@@ -41,61 +41,66 @@ function NeedPostCard({ data, onRemoveClick }) {
             </div>
           )}
         </div>
-        <Link href={`/need-post?p=${data._id}`} passHref>
+
+        <div>
           <div>
-            <div>
-              <div
-                className={style.img}
-                style={{ height: 200, backgroundColor: '#d1d1d1' }}
-              >
-                <LazyImage
-                  src={profile && profile.user && profile.user.avatar}
-                  variant="avatar"
-                  height="200px"
-                  width="200px"
-                  style={{ margin: '0 auto' }}
-                />
-              </div>
-
-              {/* <Image src={data.image} height="200px" /> */}
-            </div>
-            <div className="d-flex justify-content-between mt-2">
-              <h5 className="font-weight-600">{data.about.name}</h5>
-              <div>
-                <Badge
-                  variant="light"
-                  className={`text-uppercase mb-1 mr-1 text-${
-                    data.status === 'pending' ? 'warning' : 'danger'
-                  } border border-${
-                    data.status === 'pending' ? 'warning' : 'danger'
+            <div
+              className={style.img}
+              style={{ height: 200, backgroundColor: '#d1d1d1' }}
+            >
+              <Link href={`/need-post?p=${data._id}`} passHref>
+                <a
+                  className={`${
+                    data.status !== 'approved' ? 'disabled-link' : null
                   }`}
-                  style={{
-                    padding: '6px 8px',
-                    fontSize: '0.8rem',
-                    borderRadius: 5,
-                  }}
                 >
-                  {data.status === 'rejected' && t('Rejected')}
+                  <LazyImage
+                    src={profile && profile.user && profile.user.avatar}
+                    variant="avatar"
+                    height="200px"
+                    width="200px"
+                    style={{ margin: '0 auto' }}
+                  />
+                </a>
+              </Link>
+            </div>
 
-                  {data.status === 'pending' && t('IN REVIEW')}
-                </Badge>
-                {/* <div className={style.button}>{data.status}</div> */}
-              </div>
-            </div>
-            <div className="d-flex  text-secondary mt-2">
-              <p>
-                {data.budget.toLocaleString('en-US', {
-                  style: 'currency',
-                  currency: 'VND',
-                })}
-                /month
-              </p>
-              <div className={style.dot} />
-              <p>{data.about.age} years old</p>
-            </div>
-            <p className="text-secondary ">{truncate(data.description, 18)}</p>
+            {/* <Image src={data.image} height="200px" /> */}
           </div>
-        </Link>
+          <div className="d-flex justify-content-between mt-2">
+            <h5 className="font-weight-600">{data.about.name}</h5>
+            <div>
+              <Badge
+                variant="light"
+                className={`text-uppercase mb-1 mr-1 text-${
+                  data.status === 'pending' ? 'warning' : 'danger'
+                } border border-${data.status === 'pending' ? 'warning' : 'danger'}`}
+                style={{
+                  padding: '6px 8px',
+                  fontSize: '0.8rem',
+                  borderRadius: 5,
+                }}
+              >
+                {data.status === 'rejected' && t('Rejected')}
+
+                {data.status === 'pending' && t('IN REVIEW')}
+              </Badge>
+              {/* <div className={style.button}>{data.status}</div> */}
+            </div>
+          </div>
+          <div className="d-flex  text-secondary mt-2">
+            <p>
+              {data.budget.toLocaleString('en-US', {
+                style: 'currency',
+                currency: 'VND',
+              })}
+              /month
+            </p>
+            <div className={style.dot} />
+            <p>{data.about.age} years old</p>
+          </div>
+          <p className="text-secondary ">{truncate(data.description, 18)}</p>
+        </div>
       </div>
       {showDelDialog && (
         <DialogConfirm

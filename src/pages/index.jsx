@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import NavBar from '@components/NavBar';
 import { NextSeo } from 'next-seo';
 import { APP_URL } from 'app.config';
@@ -31,5 +31,8 @@ function MainPage() {
     </>
   );
 }
+MainPage.getInitialProps = async (context) => {
+  return { namespacesRequired: ['common'] };
+};
 
 export default MainPage;

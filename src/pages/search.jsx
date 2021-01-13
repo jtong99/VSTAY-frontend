@@ -30,5 +30,7 @@ function SearchPage() {
     </>
   );
 }
-
+SearchPage.getInitialProps = async (context) => {
+  return { namespacesRequired: ['common'] };
+};
 export default SearchPage;

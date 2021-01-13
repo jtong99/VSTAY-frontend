@@ -5,6 +5,7 @@ import PostList from './NeedPostList';
 import { useTranslation } from 'i18n';
 import style from '../Profile.module.scss';
 import useNeedPostOfCurrentUser from '@hooks/api/useNeedPostOfCurrentUser';
+import NoPost from '@assets/message/no-data.svg';
 
 function UserNeedPost({ userId }) {
   const [pageNumber, setPageNumber] = useState(1);
@@ -23,7 +24,19 @@ function UserNeedPost({ userId }) {
       </>
     );
   }
-
+  if (data.code !== 200) {
+    return (
+      <>
+        <div className={style.padding}>
+          <h3 style={{ fontWeight: 600 }}>{t('Needing Accommodation')}</h3>
+        </div>
+        <div className="text-center">
+          <Image src={NoPost} style={{ maxWidth: 300 }} />
+          <p className="font-weight-600">{t('No post uploaded')}</p>
+        </div>
+      </>
+    );
+  }
   return (
     <div className="mt-5">
       <div className={style.padding}>

@@ -9,7 +9,7 @@ import AuthContext from '@components/Auth/AuthContext';
 function ShareAction() {
   const { isAuth } = useContext(AuthContext);
   const router = useRouter();
-  const { t } = useTranslation(['signin']);
+  const { t } = useTranslation(['common']);
   return (
     <Button
       variant="link"

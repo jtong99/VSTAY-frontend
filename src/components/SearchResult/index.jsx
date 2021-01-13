@@ -87,12 +87,12 @@ function SearchResult() {
           </div>
         </div>
 
-        <h2
+        {/* <h2
           className="font-weight-bold mt-5 mb-n2 px-lg-5"
           style={{ fontSize: '24px' }}
         >
           {t('Share Post')}
-        </h2>
+        </h2> */}
         <div className="px-lg-5">
           <ResultList key={router.asPath} />
         </div>

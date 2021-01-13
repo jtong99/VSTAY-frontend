@@ -10,7 +10,7 @@ import { PostType } from '@helper/enum';
 function Info({
   title,
   postType,
-  detail: { total_bedrooms, total_bathrooms, max_people_live_with, width, height },
+  detail: { total_bedrooms, total_bathrooms, max_people_live_with, width, length },
   price,
   address,
 }) {
@@ -90,7 +90,7 @@ function Info({
             <>
               <div>
                 <Image width="31px" src={Height} />
-                <span className="ml-1">{height} (m)</span>
+                <span className="ml-1">{length} (m)</span>
               </div>
               <div className="ml-4">
                 <Image width="31px" src={Width} />

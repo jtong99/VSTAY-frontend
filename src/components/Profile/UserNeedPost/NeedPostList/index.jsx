@@ -5,7 +5,7 @@ import PostLoading from '@components/utils/PostLoading';
 import { Button, Image } from 'react-bootstrap';
 import { useTranslation } from 'i18n';
 import useAllNeedPost from '@hooks/api/useAllNeedPost';
-import NoPost from '@assets/message/no-data.svg';
+
 import Pagination from '@components/utils/Pagination';
 
 import useFighter from '@hooks/useFetch';
@@ -53,14 +53,7 @@ function NeedPostList({ itemCounts = 3, onSuccessChange, data, loading }) {
       </>
     );
   }
-  if (data.length === []) {
-    return (
-      <div className="text-center">
-        <Image src={NoPost} style={{ maxWidth: 300 }} />
-        <p className="font-weight-600">{t('No post uploaded')}</p>
-      </div>
-    );
-  }
+
   return (
     <>
       <div className={style.wrapper}>

@@ -7,7 +7,7 @@ import { Facebook, Instagram, Twitter } from 'react-feather';
 import LanguageDropdown from '@components/utils/LanguageDropdown';
 
 function Footer() {
-  const { t } = useTranslation(['footer', 'common']);
+  const { t } = useTranslation(['common']);
   return (
     <Container
       as="footer"

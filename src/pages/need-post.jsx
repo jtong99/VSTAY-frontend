@@ -6,10 +6,12 @@ import { useRouter } from 'next/router';
 import AuthContext from '@components/Auth/AuthContext';
 import useNeedPost from '@hooks/api/useNeedPost';
 import NavBar from '@components/NavBar';
+import LoginRequired from '@components/SignIn/LoginRequired';
+import Footer from '@components/Footer';
 
 function NeedPostPage() {
   const router = useRouter();
-  const { getToken } = useContext(AuthContext);
+  const { getToken, isAuth } = useContext(AuthContext);
   const id = router.query.p;
   const { data, error, revalidate } = useNeedPost(id);
   const [isError, setIsError] = useState(false);
@@ -27,13 +29,6 @@ function NeedPostPage() {
   if (!data) {
     return <div>loading</div>;
   }
-  if (isError) {
-    return (
-      <div>
-        <p>error</p>
-      </div>
-    );
-  }
   return (
     <>
       <NextSeo
@@ -47,12 +42,19 @@ function NeedPostPage() {
         }}
       />
       <NavBar />
-      <div className="mb-5">
-        {/* <button onClick={() => console.log(postData)}>click</button> */}
-        <NeedPost data={postData} />
-      </div>
+      {isAuth ? (
+        <div className="mb-5">
+          {/* <button onClick={() => console.log(postData)}>click</button> */}
+          <NeedPost data={postData} />
+        </div>
+      ) : (
+        <LoginRequired />
+      )}
+      <Footer />
     </>
   );
 }
-
+NeedPostPage.getInitialProps = async (context) => {
+  return { namespacesRequired: ['common'] };
+};
 export default NeedPostPage;

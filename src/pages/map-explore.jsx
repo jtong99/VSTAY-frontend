@@ -7,6 +7,13 @@ import AuthContext from '@components/Auth/AuthContext';
 import MapExplore from '@components/MapExplore';
 
 function MapExplorePage() {
+  const router = useRouter();
+  const { isAuth } = useContext(AuthContext);
+  useEffect(() => {
+    if (!isAuth) {
+      router.push(`/login?ref=${encodeURIComponent(router.asPath)}`);
+    }
+  }, []);
   return (
     <>
       <NextSeo
@@ -23,5 +30,7 @@ function MapExplorePage() {
     </>
   );
 }
-
+MapExplorePage.getInitialProps = async (context) => {
+  return { namespacesRequired: ['common'] };
+};
 export default MapExplorePage;

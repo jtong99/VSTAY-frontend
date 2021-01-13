@@ -65,5 +65,7 @@ function SharePostPreviewPage() {
     </>
   );
 }
-
+SharePostPreviewPage.getInitialProps = async (context) => {
+  return { namespacesRequired: ['common'] };
+};
 export default SharePostPreviewPage;

@@ -30,5 +30,7 @@ function ProfilePage() {
     </>
   );
 }
-
+ProfilePage.getInitialProps = async (context) => {
+  return { namespacesRequired: ['common'] };
+};
 export default ProfilePage;

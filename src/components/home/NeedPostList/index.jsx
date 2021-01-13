@@ -8,7 +8,7 @@ import useAllNeedPost from '@hooks/api/useAllNeedPost';
 import Pagination from '@components/utils/Pagination';
 
 function NeedPostList() {
-  const { t } = useTranslation(['topnav']);
+  const { t } = useTranslation(['common']);
   const [pageNumber, setPageNumber] = useState(1);
   const pageSize = 6;
   const { data, loading } = useAllNeedPost({

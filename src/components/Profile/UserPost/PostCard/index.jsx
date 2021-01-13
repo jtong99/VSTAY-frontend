@@ -59,77 +59,79 @@ function PostCard({ data, onRemoveClick, onSuccessChange }) {
           )}
         </div>
 
-        <Link href={`/share-post?p=${data._id}`} passHref>
+        <div>
           <div>
-            <div>
-              <CarouselImage images={data.images} imageHeight="200px" />
-            </div>
-            <div className="d-flex justify-content-between">
-              <h5 className="font-weight-600">{truncate(data.title, 18)}</h5>
-              <div>
-                <Badge
-                  variant="light"
-                  className={`text-uppercase mb-1 mr-1 text-${
-                    data.status === 'pending' ? 'warning' : 'danger'
-                  } border border-${
-                    data.status === 'pending' ? 'warning' : 'danger'
-                  }`}
-                  style={{
-                    padding: '6px 8px',
-                    fontSize: '0.8rem',
-                    borderRadius: 5,
-                  }}
-                >
-                  {data.status === 'rejected' && t('Rejected')}
-
-                  {data.status === 'pending' && t('IN REVIEW')}
-                </Badge>
-                {/* <div className={style.button}>{data.status}</div> */}
-              </div>
-            </div>
-            <div className="d-flex justify-content-between text-secondary mt-2">
-              <p>
-                {data.price.toLocaleString('en-US', {
-                  style: 'currency',
-                  currency: 'VND',
-                })}
-                /month
-              </p>
-              <div className="d-flex ">
-                {data.type === PostType.R_HOUSE ? (
-                  <>
-                    <div>
-                      <Image src={Bed} height="18px" />
-                      <span className="ml-1">{data.detail.total_bedrooms}</span>
-                    </div>
-                    <div className="ml-4">
-                      <Image src={Bathtub} height="18px" />
-                      <span className="ml-1">{data.detail.total_bathrooms}</span>
-                    </div>
-                  </>
-                ) : (
-                  <>
-                    <div>
-                      <Image height="18px" src={Height} />
-                      <span className="ml-1">{data.detail.length} (m)</span>
-                    </div>
-                    <div className="ml-4">
-                      <Image height="18px" src={Width} />
-                      <span className="ml-1">{data.detail.width} (m)</span>
-                    </div>
-                  </>
-                )}
-
-                <div className="ml-4">
-                  <Image src={Home} height="18px" />
-                  <span className="ml-1">{data.detail.max_people_live_with}</span>
-                </div>
-              </div>
-            </div>
-            <p className="text-secondary ">{data.address.name}</p>
-            <p className="text-secondary">{formatDate(data.createdAt, 'long')}</p>
+            <Link href={`/need-post?p=${data._id}`} passHref>
+              <a
+                className={`${data.status !== 'approved' ? 'disabled-link' : null}`}
+              >
+                <CarouselImage images={data.images} imageHeight="200px" />
+              </a>
+            </Link>
           </div>
-        </Link>
+          <div className="d-flex justify-content-between">
+            <h5 className="font-weight-600">{truncate(data.title, 18)}</h5>
+            <div>
+              <Badge
+                variant="light"
+                className={`text-uppercase mb-1 mr-1 text-${
+                  data.status === 'pending' ? 'warning' : 'danger'
+                } border border-${data.status === 'pending' ? 'warning' : 'danger'}`}
+                style={{
+                  padding: '6px 8px',
+                  fontSize: '0.8rem',
+                  borderRadius: 5,
+                }}
+              >
+                {data.status === 'rejected' && t('Rejected')}
+
+                {data.status === 'pending' && t('IN REVIEW')}
+              </Badge>
+              {/* <div className={style.button}>{data.status}</div> */}
+            </div>
+          </div>
+          <div className="d-flex justify-content-between text-secondary mt-2">
+            <p>
+              {data.price.toLocaleString('en-US', {
+                style: 'currency',
+                currency: 'VND',
+              })}
+              /month
+            </p>
+            <div className="d-flex ">
+              {data.type === PostType.R_HOUSE ? (
+                <>
+                  <div>
+                    <Image src={Bed} height="18px" />
+                    <span className="ml-1">{data.detail.total_bedrooms}</span>
+                  </div>
+                  <div className="ml-4">
+                    <Image src={Bathtub} height="18px" />
+                    <span className="ml-1">{data.detail.total_bathrooms}</span>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div>
+                    <Image height="18px" src={Height} />
+                    <span className="ml-1">{data.detail.length} (m)</span>
+                  </div>
+                  <div className="ml-4">
+                    <Image height="18px" src={Width} />
+                    <span className="ml-1">{data.detail.width} (m)</span>
+                  </div>
+                </>
+              )}
+
+              <div className="ml-4">
+                <Image src={Home} height="18px" />
+                <span className="ml-1">{data.detail.max_people_live_with}</span>
+              </div>
+            </div>
+          </div>
+          <p className="text-secondary ">{data.address.name}</p>
+          <p className="text-secondary">{formatDate(data.createdAt, 'long')}</p>
+        </div>
       </div>
 
       {showDelDialog && (

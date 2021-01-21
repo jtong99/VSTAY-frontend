@@ -12,12 +12,10 @@ Make sure following command available on your system:
 + npm
 + git
 
-First, run the development server:
-
 ```bash
-npm run dev
-# or
-yarn dev
+cp src/app.config.prod.js src/app.config.js
+npm install
+docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.

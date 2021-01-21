@@ -2,6 +2,16 @@ This is a thesis about V-stay project.
 
 ## Getting Started
 
+# Requirements
+
+Make sure following command available on your system:
+
++ docker
++ docker-compose
++ node
++ npm
++ git
+
 First, run the development server:
 
 ```bash

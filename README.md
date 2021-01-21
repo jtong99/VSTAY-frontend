@@ -13,6 +13,8 @@ Make sure following command available on your system:
 + git
 
 ```bash
+Open terminal:
+
 cp src/app.config.prod.js src/app.config.js
 npm install
 docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d
